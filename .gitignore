@@ -16,3 +16,6 @@ frontend/videos_originales/
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Registro del hook de guardado automático
+.claude/hooks/guardar-sesion.log

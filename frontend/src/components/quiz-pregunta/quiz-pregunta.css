@@ -1,0 +1,78 @@
+/* components/quiz-pregunta/quiz-pregunta.css
+   [IA] Estilos de la tarjeta de pregunta del quiz. Mantiene la identidad de la
+   web (cajas con sombra difusa y paleta de variables globales). */
+
+.QuizPregunta{
+    width: 100%;
+    max-width: 50rem;
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.75rem;
+
+    padding: 1.25rem 2rem;
+    background-color: var(--color-sombra-texto);
+    box-shadow: 0 0 2rem 1rem var(--color-sombra-texto);
+}
+
+.QuizPregunta-progreso{
+    font-family: "cabeceras";
+    color: var(--light-color);
+    font-size: 1.1em;
+}
+
+.QuizPregunta-pelicula{
+    font-family: "texto";
+    color: var(--color-primary-text);
+    font-size: 1em;
+    opacity: 0.7;
+    text-transform: uppercase;
+}
+
+.QuizPregunta-enunciado{
+    font-family: "negrita";
+    color: var(--color-primary-text);
+    font-size: 1.4em;
+    font-weight: 800;
+}
+
+.QuizPregunta-opciones{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.5rem;
+}
+
+.QuizPregunta-opcion{
+    width: 100%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 1rem;
+
+    padding: 0.6rem 1.25rem;
+    font-family: "texto";
+    font-size: 1.05em;
+    text-align: left;
+    color: var(--color-primary-text);
+    background-color: var(--header-color);
+    border-radius: 0.5rem;
+    cursor: pointer;
+
+    transition: background-color .3s ease, transform .3s ease;
+}
+.QuizPregunta-opcion:hover{
+    background-color: var(--color-cajas);
+    transform: scale(1.02);
+}
+
+.QuizPregunta-opcion.is-seleccionada{
+    background-color: var(--light-color);
+    color: var(--color-secondary-text);
+}
+
+.QuizPregunta-letra{
+    font-family: "cabeceras";
+    font-weight: 800;
+    font-size: 1.1em;
+}

@@ -1,0 +1,322 @@
+[
+    {
+      "quizId": "quiz_harry_potter_peliculas_001",
+      "tipo": "test",
+      "pelicula": "Harry Potter y la piedra filosofal",
+      "pregunta": "¿Quién dirigió Harry Potter y la piedra filosofal?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Chris Columbus"
+        },
+        {
+          "id": "b",
+          "texto": "Mike Newell"
+        },
+        {
+          "id": "c",
+          "texto": "Alfonso Cuarón"
+        },
+        {
+          "id": "d",
+          "texto": "David Yates"
+        }
+      ],
+      "respuestaCorrecta": "a",
+      "feedback": {
+        "acierto": "¡Correcto! Chris Columbus dirigió la primera película.",
+        "fallo": "Incorrecto. La respuesta correcta es la opción indicada como respuestaCorrecta."
+      },
+      "activa": true,
+      "createdAt": "2026-08-11T10:00:00Z",
+      "updatedAt": "2026-08-11T10:00:00Z"
+    },
+    {
+      "quizId": "quiz_harry_potter_peliculas_001",
+      "tipo": "test",
+      "pelicula": "Harry Potter y la piedra filosofal",
+      "pregunta": "¿Qué hace que Fluffy, el perro de tres cabezas, se duerma?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "La luz"
+        },
+        {
+          "id": "b",
+          "texto": "La música"
+        },
+        {
+          "id": "c",
+          "texto": "El fuego"
+        },
+        {
+          "id": "d",
+          "texto": "El agua"
+        }
+      ],
+      "respuestaCorrecta": "b",
+      "feedback": {
+        "acierto": "¡Correcto! La música hace que Fluffy se duerma.",
+        "fallo": "Incorrecto. La respuesta correcta es la opción indicada como respuestaCorrecta."
+      },
+      "activa": true,
+      "createdAt": "2026-08-11T10:00:00Z",
+      "updatedAt": "2026-08-11T10:00:00Z"
+    },
+    {
+      "quizId": "quiz_harry_potter_peliculas_001",
+      "tipo": "test",
+      "pelicula": "Harry Potter y la cámara secreta",
+      "pregunta": "¿Qué objeto utiliza Harry para liberar a Dobby?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Una bufanda"
+        },
+        {
+          "id": "b",
+          "texto": "Un calcetín"
+        },
+        {
+          "id": "c",
+          "texto": "Una capa"
+        },
+        {
+          "id": "d",
+          "texto": "Un sombrero"
+        }
+      ],
+      "respuestaCorrecta": "b",
+      "feedback": {
+        "acierto": "¡Correcto! Harry utiliza un calcetín para liberar a Dobby.",
+        "fallo": "Incorrecto. La respuesta correcta es la opción indicada como respuestaCorrecta."
+      },
+      "activa": true,
+      "createdAt": "2026-08-11T10:00:00Z",
+      "updatedAt": "2026-08-11T10:00:00Z"
+    },
+    {
+      "quizId": "quiz_harry_potter_peliculas_001",
+      "tipo": "test",
+      "pelicula": "Harry Potter y el prisionero de Azkaban",
+      "pregunta": "¿Quién interpreta al profesor Remus Lupin?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Gary Oldman"
+        },
+        {
+          "id": "b",
+          "texto": "David Thewlis"
+        },
+        {
+          "id": "c",
+          "texto": "Brendan Gleeson"
+        },
+        {
+          "id": "d",
+          "texto": "Jason Isaacs"
+        }
+      ],
+      "respuestaCorrecta": "b",
+      "feedback": {
+        "acierto": "¡Correcto! David Thewlis interpreta a Remus Lupin.",
+        "fallo": "Incorrecto. La respuesta correcta es la opción indicada como respuestaCorrecta."
+      },
+      "activa": true,
+      "createdAt": "2026-08-11T10:00:00Z",
+      "updatedAt": "2026-08-11T10:00:00Z"
+    },
+    {
+      "quizId": "quiz_harry_potter_peliculas_001",
+      "tipo": "test",
+      "pelicula": "Harry Potter y el cáliz de fuego",
+      "pregunta": "¿Qué dos países disputan la final de la Copa Mundial de Quidditch?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Inglaterra y Francia"
+        },
+        {
+          "id": "b",
+          "texto": "Irlanda y Bulgaria"
+        },
+        {
+          "id": "c",
+          "texto": "Escocia y Bulgaria"
+        },
+        {
+          "id": "d",
+          "texto": "Irlanda y Francia"
+        }
+      ],
+      "respuestaCorrecta": "b",
+      "feedback": {
+        "acierto": "¡Correcto! Irlanda y Bulgaria disputan la final.",
+        "fallo": "Incorrecto. La respuesta correcta es la opción indicada como respuestaCorrecta."
+      },
+      "activa": true,
+      "createdAt": "2026-08-11T10:00:00Z",
+      "updatedAt": "2026-08-11T10:00:00Z"
+    },
+    {
+      "quizId": "quiz_harry_potter_peliculas_001",
+      "tipo": "test",
+      "pelicula": "Harry Potter y el cáliz de fuego",
+      "pregunta": "¿Qué objeto del Torneo de los Tres Magos resulta ser un Traslador?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "La Copa de los Tres Magos"
+        },
+        {
+          "id": "b",
+          "texto": "El huevo de oro"
+        },
+        {
+          "id": "c",
+          "texto": "La escoba de Harry"
+        },
+        {
+          "id": "d",
+          "texto": "El mapa del Merodeador"
+        }
+      ],
+      "respuestaCorrecta": "a",
+      "feedback": {
+        "acierto": "¡Correcto! La Copa de los Tres Magos es un Traslador.",
+        "fallo": "Incorrecto. La respuesta correcta es la opción indicada como respuestaCorrecta."
+      },
+      "activa": true,
+      "createdAt": "2026-08-11T10:00:00Z",
+      "updatedAt": "2026-08-11T10:00:00Z"
+    },
+    {
+      "quizId": "quiz_harry_potter_peliculas_001",
+      "tipo": "test",
+      "pelicula": "Harry Potter y la Orden del Fénix",
+      "pregunta": "¿Quién ayuda a Harry a organizar el Ejército de Dumbledore?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Hermione Granger"
+        },
+        {
+          "id": "b",
+          "texto": "Draco Malfoy"
+        },
+        {
+          "id": "c",
+          "texto": "Lucius Malfoy"
+        },
+        {
+          "id": "d",
+          "texto": "Cornelius Fudge"
+        }
+      ],
+      "respuestaCorrecta": "a",
+      "feedback": {
+        "acierto": "¡Correcto! Hermione ayuda a Harry a organizar el Ejército de Dumbledore.",
+        "fallo": "Incorrecto. La respuesta correcta es la opción indicada como respuestaCorrecta."
+      },
+      "activa": true,
+      "createdAt": "2026-08-11T10:00:00Z",
+      "updatedAt": "2026-08-11T10:00:00Z"
+    },
+    {
+      "quizId": "quiz_harry_potter_peliculas_001",
+      "tipo": "test",
+      "pelicula": "Harry Potter y el misterio del príncipe",
+      "pregunta": "¿Quién es el director de Hogwarts que muere al final de esta película?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Severus Snape"
+        },
+        {
+          "id": "b",
+          "texto": "Albus Dumbledore"
+        },
+        {
+          "id": "c",
+          "texto": "Minerva McGonagall"
+        },
+        {
+          "id": "d",
+          "texto": "Horace Slughorn"
+        }
+      ],
+      "respuestaCorrecta": "b",
+      "feedback": {
+        "acierto": "¡Correcto! Albus Dumbledore muere al final de esta película.",
+        "fallo": "Incorrecto. La respuesta correcta es la opción indicada como respuestaCorrecta."
+      },
+      "activa": true,
+      "createdAt": "2026-08-11T10:00:00Z",
+      "updatedAt": "2026-08-11T10:00:00Z"
+    },
+    {
+      "quizId": "quiz_harry_potter_peliculas_001",
+      "tipo": "test",
+      "pelicula": "Harry Potter y las Reliquias de la Muerte – Parte 1",
+      "pregunta": "¿Qué utilizan Harry, Ron y Hermione para hacerse pasar por otras personas en el Ministerio de Magia?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Poción multijugos"
+        },
+        {
+          "id": "b",
+          "texto": "Capa de invisibilidad"
+        },
+        {
+          "id": "c",
+          "texto": "Polvo Floo"
+        },
+        {
+          "id": "d",
+          "texto": "Giratiempo"
+        }
+      ],
+      "respuestaCorrecta": "a",
+      "feedback": {
+        "acierto": "¡Correcto! Utilizan poción multijugos para cambiar de apariencia.",
+        "fallo": "Incorrecto. La respuesta correcta es la opción indicada como respuestaCorrecta."
+      },
+      "activa": true,
+      "createdAt": "2026-08-11T10:00:00Z",
+      "updatedAt": "2026-08-11T10:00:00Z"
+    },
+    {
+      "quizId": "quiz_harry_potter_peliculas_001",
+      "tipo": "test",
+      "pelicula": "Harry Potter y las Reliquias de la Muerte – Parte 2",
+      "pregunta": "¿Qué hechizo utiliza Harry en el duelo final contra Voldemort?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Expelliarmus"
+        },
+        {
+          "id": "b",
+          "texto": "Avada Kedavra"
+        },
+        {
+          "id": "c",
+          "texto": "Stupefy"
+        },
+        {
+          "id": "d",
+          "texto": "Expecto Patronum"
+        }
+      ],
+      "respuestaCorrecta": "a",
+      "feedback": {
+        "acierto": "¡Correcto! Harry utiliza Expelliarmus en el duelo final.",
+        "fallo": "Incorrecto. La respuesta correcta es la opción indicada como respuestaCorrecta."
+      },
+      "activa": true,
+      "createdAt": "2026-08-11T10:00:00Z",
+      "updatedAt": "2026-08-11T10:00:00Z"
+    }
+  ]

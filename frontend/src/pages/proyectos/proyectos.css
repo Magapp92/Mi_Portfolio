@@ -1,0 +1,183 @@
+/* pages/proyectos/proyectos.css
+   [IA] Estilos de proyectos. Trasladados de css/proyectos.css renombrando el
+   bloque .Main → .Proyectos. Las flechas usan los SVG de /public/assets en vez
+   de los paths inline del HTML original. */
+
+.Proyectos{
+    width: 100%;
+    background-color: black;
+    margin: 6rem 0 0;
+
+    overflow: hidden;
+    position: relative;
+
+    /* Contenido centrado en vertical cuando sobra alto de ventana. */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    cursor: none;
+    --color-cursor-halo: #8cdbd3b3;
+}
+
+/* Vídeo como fondo: cubre todo el alto real de la página (igual que Formación). */
+.Proyectos-video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.Proyectos-wrapper{
+    width: 95%;
+    background-color: var(--light-color-fondo);
+
+    padding: .75rem 5rem;
+    margin: 1.25rem auto;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 1rem 1rem var(--light-color-fondo);
+}
+
+.Proyectos-section{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 1rem;
+}
+
+.Proyectos-h2{
+    font-family: "titulos";
+    color: var(--color-secondary-text);
+    font-size: 2.5em;
+    font-weight: 800;
+    background-color: transparent;
+
+    animation: translateLeft 3s ease;
+}
+
+.Proyectos-slider{
+    width: 100%;
+    max-width: 150rem;
+    background-color: var(--color-cajas);
+    margin: auto;
+    box-shadow: 0 0 1rem 1rem var(--color-cajas);
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* --tarjetas llega desde el JSX (proyectos × 3 copias del bucle infinito);
+   cada tarjeta ocupa media pantalla del slider. */
+.Proyectos-container{
+    width: calc(var(--tarjetas) * 50%);
+    background-color: var(--color-cajas);
+    padding: 1rem 0;
+    box-shadow: 0 0 3rem 3rem var(--color-cajas);
+
+    display: flex;
+    flex-flow: row nowrap;
+
+    transition: transform 4s ease;
+}
+
+.Slider-arrow{
+    width: 5rem;
+    height: 5rem;
+
+    position: absolute;
+    top: calc(50% - 1.5rem);
+    cursor: none;
+
+    background: center / contain no-repeat;
+}
+
+/* En hover/foco se cargan las variantes con relleno y borde invertidos. */
+.Slider-arrow--next{
+    right: 0;
+    background-image: url('/assets/next.svg');
+}
+
+.Slider-arrow--next:hover,
+.Slider-arrow--next:focus-visible{
+    background-image: url('/assets/next-hover.svg');
+}
+
+.Slider-arrow--prev{
+    left: 0;
+    background-image: url('/assets/prev.svg');
+}
+
+.Slider-arrow--prev:hover,
+.Slider-arrow--prev:focus-visible{
+    background-image: url('/assets/prev-hover.svg');
+}
+
+/* Cada tarjeta ocupa 1/--tarjetas del contenedor (= media pantalla del
+   slider): así las dos visibles nunca quedan cortadas. La separación va en
+   margin (restada del flex-basis) en vez de gap, que descuadraba el reparto. */
+.Proyectos-article{
+    flex: 0 0 calc(100% / var(--tarjetas) - 1.5rem);
+    margin: 0 .75rem;
+    background-color: #1e9180;
+    box-shadow: 0 0 8px 5px var(--color-sombra-texto);
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: .75rem;
+
+    /* Lateral amplio para que el texto no quede bajo las flechas. */
+    padding: 1.25rem 4.5rem;
+}
+
+/* Tarjeta con página de detalle: toda la tarjeta es el enlace y se eleva un
+   poco al pasar el ratón para que se entienda que es clicable. */
+.Proyectos-article--enlace{
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+.Proyectos-article--enlace:hover{
+    transform: translateY(-.35rem);
+    box-shadow: 0 0 14px 8px var(--color-sombra-texto);
+}
+
+.Proyectos-enlace{
+    width: 100%;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: .75rem;
+
+    color: inherit;
+    cursor: none;
+}
+
+.Proyectos-img{
+    width: 100%;
+    max-width: 400px;
+    height: 180px;
+    background-color: pink;
+    object-fit: cover;
+}
+
+.Proyectos-h3{
+    font-family: "negrita";
+    color: var(--color-secondary-text);
+    font-size: 1.7em;
+    font-weight: 800;
+}
+
+.Proyectos-p{
+    font-family: "texto";
+    color: var(--color-secondary-text);
+    font-size: 1em;
+    font-weight: 600;
+}

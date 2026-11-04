@@ -1,0 +1,191 @@
+/* pages/formacion/formacion.css
+   [IA] Estilos de formación. Trasladados de css/formacion.css renombrando el
+   bloque .Main → .Formacion y .flipped → .is-girada. El vídeo pasa a ser fondo
+   absoluto y el wrapper vuelve al flujo: la página tiene altura real, hay
+   scroll y las tarjetas no quedan cortadas por el footer. Hexágonos reducidos
+   un 20% para que quepan mejor en pantalla. */
+
+.Formacion{
+    width: 100%;
+    background-color: black;
+    margin: 6rem 0 0;
+
+    position: relative;
+
+    /* Contenido centrado en vertical cuando sobra alto de ventana. */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    cursor: none;
+    --color-cursor-halo: #54d550b3;
+}
+
+/* Vídeo como fondo: cubre todo el alto real de la página. */
+.Formacion-video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.Formacion-wrapper{
+    width: 95%;
+    background-color: var(--color-fondo-green);
+
+    padding: 1rem 3rem;
+    margin: 1.25rem auto;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 1rem 1rem var(--color-fondo-green);
+}
+
+.Formacion-section{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: .75rem;
+}
+
+.Formacion-h2{
+    font-family: "titulos";
+    color: var(--color-primary-text);
+    font-size: 2.5em;
+    font-weight: 800;
+    background-color: transparent;
+
+    animation: translateLeft 3s ease;
+}
+
+.Formacion-pSection{
+    font-family: "texto";
+    font-size: 1.5em;
+    color: var(--color-primary-text);
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: transparent;
+    margin: 0 0 .5rem;
+
+    animation: translateRight 3s ease;
+}
+
+/* Los 4 hexágonos en una fila: --ancho se adapta al ancho disponible (95vw
+   del wrapper − padding − huecos) con tope de 20rem. En pantallas estrechas
+   llega al mínimo y la fila se parte en varias. */
+.Formacion-bottom{
+    --ancho: clamp(13rem, calc((95vw - 16rem) / 4), 20rem);
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: 2rem;
+}
+
+/* Hexágono: cuerpo + triángulos generados con bordes. Todas las medidas
+   derivan de --ancho para mantener la proporción a cualquier tamaño. */
+.Formacion-article{
+    perspective: 62.5rem;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    width: var(--ancho);
+    height: calc(var(--ancho) * 0.5775);
+    background-color: var(--color-hexagonos);
+    margin: calc(var(--ancho) * 0.29) 0;
+
+    animation: rotateScale 4s ease;
+}
+
+.Formacion-article:before, .Formacion-article:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: calc(var(--ancho) / 2) solid transparent;
+    border-right: calc(var(--ancho) / 2) solid transparent;
+}
+
+.Formacion-article:before {
+    border-bottom: calc(var(--ancho) * 0.288) solid var(--color-hexagonos);
+    top: calc(var(--ancho) * -0.2875);
+}
+
+.Formacion-article:after {
+    border-top: calc(var(--ancho) * 0.28875) solid var(--color-hexagonos);
+    bottom: calc(var(--ancho) * -0.2875);
+}
+
+.Formacion-front, .Formacion-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: transform 0.8s ease;
+}
+
+.Formacion-front{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0 1.5rem;
+}
+
+.Formacion-back {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0 1rem;
+
+    transform: rotateY(180deg);
+}
+
+.Formacion-article:hover .Formacion-front {
+    transform: rotateY(180deg);
+}
+
+.Formacion-article:hover .Formacion-back {
+    transform: rotateY(0deg);
+}
+
+.Formacion-h3{
+    font-family: "negrita";
+    color: var(--color-primary-text);
+    font-size: 1.3em;
+    text-align: center;
+    text-transform: capitalize;
+
+    background-color: transparent;
+    margin: 0 0 1rem;
+
+    transition: transform 1.2s ease, text-shadow 1s ease;
+}
+.Formacion-h3:hover{
+    transform: scale(1.1);
+    text-shadow: 2px 2px 2px rgba(88, 88, 88, 0.859);
+}
+
+.Formacion-p{
+    font-family: "texto";
+    color: var(--color-primary-text);
+    font-size: 1em;
+    text-align: center;
+
+    background-color: transparent;
+}
+
+.Formacion-h3--front{
+    font-size: 1.5em;
+    margin: 0;
+}

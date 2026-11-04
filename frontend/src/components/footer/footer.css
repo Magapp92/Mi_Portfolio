@@ -1,0 +1,37 @@
+/* components/footer/footer.css
+   [IA] Estilos del pie. Trasladados de css/footer.css con el alto y las
+   letras reducidos para que ocupe menos pantalla. */
+
+.Footer{
+    background-color: var(--header-color);
+    font-family: "cabeceras";
+    color: var(--color-primary-text);
+    font-size: .95em;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+
+    padding: 1.25rem 4rem;
+    position: relative;
+    z-index: 2;
+}
+
+.Footer-h4{
+    font-size: 1.15em;
+    margin: 0 0 .3rem;
+}
+
+.Footer-autor{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.Footer-fecha{
+    font-size: 1.05em;
+}

@@ -1,0 +1,67 @@
+/* components/cursor/cursor.css
+   [IA] Estilos del cursor personalizado. Trasladados de css/cursor.css y del
+   .Main-cursor de about.css. Se usa position:fixed (en vez de absolute dentro
+   de .Main) porque el listener usa clientX/clientY del viewport. */
+
+.Cursor{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+/* Variante home: bolita cian pequeña con brillo. */
+.Cursor--punto{
+    width: 1.25rem;
+    height: 1.25rem;
+    background-color: var(--color-cursor);
+    box-shadow: 0 0 .725rem var(--color-cursor), 0 0 1rem var(--color-cursor), 0 0 2rem var(--color-cursor);
+    margin: -0.625rem 0 0 -0.625rem;
+}
+
+/* Variante about: círculo difuminado con halo rosa. */
+.Cursor--halo{
+    width: 4rem;
+    height: 4rem;
+    background-color: var(--color-cursor-blur);
+    box-shadow: 0 0 .725rem var(--color-cursor-halo), 0 0 1rem var(--color-cursor-halo), 0 0 2rem var(--color-cursor-halo);
+    margin: -2rem 0 0 -2rem;
+    transition: transform 0.01s ease;
+}
+
+/* Sin transition en transform: el movimiento lo interpola el bucle de
+   requestAnimationFrame del componente — mezclar ambos daba saltos. */
+.Cursor-tail{
+    width: 1.25rem;
+    height: 1.25rem;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+
+    border-radius: 50%;
+    box-shadow: 0 0 .725rem var(--color-cursor), 0 0 1rem var(--color-cursor), 0 0 2rem var(--color-cursor);
+    pointer-events: none;
+    margin: -0.625rem 0 0 -0.625rem;
+    mix-blend-mode: screen;
+}
+
+/* Variante detalle de proyecto: huella de perro como la del carrusel de
+   PawCare, en turquesa claro con contorno oscuro para verse tanto sobre los
+   recuadros claros como sobre el fondo azul. Inclinada como si caminara. */
+.Cursor--huella{
+    width: 2rem;
+    height: 2rem;
+    margin: -1rem 0 0 -1rem;
+
+    border-radius: 0;
+    mix-blend-mode: normal;
+    filter: drop-shadow(0 0 .2rem rgba(9, 44, 54, .45));
+
+    background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg transform='rotate(-20 32 32)' fill='%238cdbd3' stroke='%23092c36' stroke-width='2.5'%3E%3Cpath d='M32 34c-9 0-17 8-17 15 0 6 5 9 10 8 3-.5 4.5-2 7-2s4 1.5 7 2c5 1 10-2 10-8 0-7-8-15-17-15z'/%3E%3Cellipse cx='15' cy='27' rx='5.5' ry='7.5' transform='rotate(-25 15 27)'/%3E%3Cellipse cx='25.5' cy='15' rx='5.5' ry='8' transform='rotate(-8 25.5 15)'/%3E%3Cellipse cx='38.5' cy='15' rx='5.5' ry='8' transform='rotate(8 38.5 15)'/%3E%3Cellipse cx='49' cy='27' rx='5.5' ry='7.5' transform='rotate(25 49 27)'/%3E%3C/g%3E%3C/svg%3E");
+}

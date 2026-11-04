@@ -1,0 +1,521 @@
+/* pages/proyecto/proyecto.css
+   [IA] Detalle de proyecto. Fondo en el azul oscuro del header: caja en el azul de la huella del logo de PawCare,
+   recuadros en el turquesa claro de las huellas (--light-color) y las tipografías
+   titulos / negrita / texto. Los huecos rosas marcan dónde van las capturas. */
+
+.Proyecto{
+    width: 100%;
+    background-color: var(--header-color-oscuro);
+    margin: 6rem 0 0;
+
+    overflow: hidden;
+    position: relative;
+
+    cursor: none;
+}
+
+.Proyecto-wrapper{
+    width: 95%;
+    max-width: 90rem;
+    background-color: var(--color-azul-pawcare-translucido);
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 2.5rem;
+
+    padding: 1.5rem 4rem 3rem;
+    margin: 1.25rem auto 2rem;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 1rem 1rem var(--color-azul-pawcare-translucido);
+}
+
+.Proyecto-volver{
+    align-self: flex-start;
+    background-color: transparent;
+    font-family: "negrita";
+    color: var(--color-secondary-text);
+    font-size: 1em;
+    cursor: none;
+
+    transition: transform .3s ease;
+}
+.Proyecto-volver:hover{
+    transform: translateX(-.4rem);
+}
+
+/* Cabecera: presentación a la izquierda y portada a la derecha. */
+.Proyecto-cabecera{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.Proyecto-presentacion{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    gap: 1rem;
+
+    animation: translateLeft 3s ease;
+}
+
+.Proyecto-h2{
+    font-family: "titulos";
+    color: var(--color-secondary-text);
+    font-size: 3em;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.Proyecto-subtitulo{
+    font-family: "texto";
+    color: var(--color-secondary-text);
+    font-size: 1.3em;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.Proyecto-h3{
+    font-family: "titulos";
+    color: var(--color-secondary-text);
+    font-size: 2em;
+    font-weight: 800;
+}
+
+.Proyecto-h4{
+    font-family: "negrita";
+    color: var(--color-secondary-text);
+    font-size: 1.3em;
+    font-weight: 800;
+}
+
+.Proyecto-p{
+    font-family: "texto";
+    color: var(--color-secondary-text);
+    font-size: 1em;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.Proyecto-p--nota{
+    flex: 1 1 16rem;
+    font-size: .9em;
+}
+
+.Proyecto-tags{
+    display: flex;
+    flex-flow: row wrap;
+    gap: .5rem;
+}
+
+.Proyecto-tag{
+    font-family: "negrita";
+    color: var(--color-primary-text);
+    font-size: .85em;
+    background-color: var(--header-color);
+    padding: .3rem .8rem;
+    border-radius: 1rem;
+}
+
+.Proyecto-enlaces{
+    display: flex;
+    flex-flow: row wrap;
+    gap: .75rem;
+}
+
+/* Botones con el mismo gesto que las flechas del slider: relleno y borde se
+   invierten en hover para que se entienda que son clicables. */
+.Proyecto-boton{
+    font-family: "negrita";
+    color: var(--color-secondary-text);
+    background-color: var(--light-color);
+    border: 2px solid var(--color-secondary-text);
+    padding: .55rem 1.2rem;
+    cursor: none;
+
+    transition: background-color .3s ease, color .3s ease;
+}
+.Proyecto-boton:hover,
+.Proyecto-boton:focus-visible{
+    color: var(--light-color);
+    background-color: var(--color-secondary-text);
+}
+
+.Proyecto-section{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+}
+
+.Proyecto-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1.5rem;
+}
+
+.Proyecto-grid--dos{
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+.Proyecto-grid--tres{
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+}
+
+.Proyecto-tarjeta{
+    background-color: var(--light-color);
+    box-shadow: 0 0 8px 5px var(--color-sombra-texto);
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: .6rem;
+
+    padding: 1.25rem;
+}
+
+/* Imagen del proyecto o hueco reservado (rosa, como en el carrusel). */
+.Proyecto-imagen{
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+.Proyecto-imagen--grande{
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 0 8px 5px var(--color-sombra-texto);
+}
+
+/* ---------- Recorrido por la app: carrusel + rastro de huellas ---------- */
+
+.Recorrido{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1.25rem;
+}
+
+/* Flecha | pista | flecha: las flechas nunca tapan el contenido. */
+.Recorrido-escenario{
+    display: grid;
+    grid-template-columns: 3.5rem minmax(0, 1fr) 3.5rem;
+    align-items: center;
+    gap: .75rem;
+}
+
+/* Ventana del carrusel: los laterales se funden con el fondo, así los slides
+   entran y salen difuminados en vez de cortarse en seco. */
+.Recorrido-ventana{
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
+
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+/* Paso lento y fluido: arranca y frena con suavidad. */
+.Recorrido-pista{
+    display: flex;
+    transition: transform 1.2s cubic-bezier(.65, .05, .35, 1);
+}
+
+/* Margen interior para que el resplandor difuso de la tarjeta quepa. */
+.Recorrido-slide{
+    flex: 0 0 100%;
+    padding: 2rem 2.5rem;
+}
+
+/* Bordes difusos: un resplandor del mismo turquesa que la tarjeta hace que
+   el borde se disuelva en lugar de marcarse como una caja. */
+.Recorrido-paso{
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    align-items: center;
+    gap: 2rem;
+
+    background-color: var(--light-color);
+    box-shadow: 0 0 1.5rem 1rem var(--light-color);
+    padding: 1.5rem;
+}
+
+.Recorrido-texto{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: .75rem;
+}
+
+.Recorrido-h4{
+    font-family: "titulos";
+    color: var(--color-secondary-text);
+    font-size: 1.8em;
+    font-weight: 800;
+}
+
+/* Mismas flechas que el slider de Proyectos, con su hover invertido. */
+.Recorrido-flecha{
+    width: 3.5rem;
+    height: 3.5rem;
+    cursor: none;
+
+    background: center / contain no-repeat;
+    transition: transform .3s ease;
+}
+.Recorrido-flecha:hover{
+    transform: scale(1.1);
+}
+
+.Recorrido-flecha--prev{
+    background-image: url('/assets/prev.svg');
+}
+.Recorrido-flecha--prev:hover,
+.Recorrido-flecha--prev:focus-visible{
+    background-image: url('/assets/prev-hover.svg');
+}
+
+.Recorrido-flecha--next{
+    background-image: url('/assets/next.svg');
+}
+.Recorrido-flecha--next:hover,
+.Recorrido-flecha--next:focus-visible{
+    background-image: url('/assets/next-hover.svg');
+}
+
+/* Rastro de huellas: caminan hacia la derecha alternando pata izquierda
+   (arriba) y derecha (abajo). Las pisadas quedan marcadas; las que faltan
+   se insinúan apenas. */
+.Recorrido-huellas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.1rem;
+    padding: .75rem 0;
+}
+
+.Recorrido-huella{
+    width: 2.3rem;
+    height: 2.3rem;
+    cursor: none;
+
+    transform: translateY(-.45rem) rotate(80deg);
+}
+
+.Recorrido-huella--derecha{
+    transform: translateY(.45rem) rotate(100deg);
+}
+
+.Recorrido-huellaSvg{
+    width: 100%;
+    height: 100%;
+    fill: var(--color-secondary-text);
+    opacity: .18;
+
+    transition: opacity .4s ease, fill .4s ease;
+}
+
+.Recorrido-huella:hover .Recorrido-huellaSvg,
+.Recorrido-huella:focus-visible .Recorrido-huellaSvg{
+    opacity: .45;
+}
+
+.Recorrido-huella.is-pisada .Recorrido-huellaSvg{
+    opacity: .85;
+    animation: pisada .45s ease-out;
+}
+
+/* La huella del paso actual, en el turquesa claro del portfolio. */
+.Recorrido-huella.is-actual .Recorrido-huellaSvg{
+    opacity: 1;
+    fill: var(--light-color);
+    filter: drop-shadow(0 0 .35rem var(--color-sombra-texto));
+}
+
+/* La pata "cae" sobre el suelo: llega grande y transparente y se asienta. */
+@keyframes pisada{
+    from{
+        transform: scale(1.6);
+        opacity: 0;
+    }
+    to{
+        transform: scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .Recorrido-pista{
+        transition: none;
+    }
+
+    .Recorrido-huella.is-pisada .Recorrido-huellaSvg{
+        animation: none;
+    }
+}
+
+/* Flujos: 4 diagramas en fila (2 en pantallas medianas). El fondo blanco
+   respeta el del diagrama original y la altura fija iguala las tarjetas. */
+.Proyecto-grid--flujos{
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+/* Reserva dos líneas de título para que las miniaturas queden alineadas. */
+.Proyecto-h4--flujo{
+    min-height: 2.5em;
+    line-height: 1.25;
+}
+
+.Proyecto-flujo{
+    background-color: #fff;
+    padding: .5rem;
+    cursor: none;
+
+    transition: transform .4s ease;
+}
+.Proyecto-flujo:hover,
+.Proyecto-flujo:focus-visible{
+    transform: scale(1.03);
+}
+
+.Proyecto-flujoImg{
+    height: 22rem;
+    object-fit: contain;
+}
+
+.Proyecto-imagen--hueco{
+    background-color: pink;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.Proyecto-etiqueta{
+    font-family: "texto";
+    color: var(--color-secondary-text);
+    font-size: .9em;
+    font-weight: 600;
+    text-align: center;
+    opacity: .7;
+}
+
+.Proyecto-diseno{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    gap: 2rem;
+}
+
+.Proyecto-disenoTexto{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+}
+
+.Proyecto-colores{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: .75rem;
+}
+
+.Proyecto-color{
+    display: grid;
+    grid-template-columns: 2.25rem 1fr;
+    grid-template-rows: auto auto;
+    column-gap: .6rem;
+    align-items: center;
+}
+
+.Proyecto-muestra{
+    grid-row: span 2;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 2px solid var(--color-secondary-text);
+}
+
+.Proyecto-colorNombre{
+    font-family: "negrita";
+    color: var(--color-secondary-text);
+    font-size: .9em;
+}
+
+.Proyecto-colorHex{
+    font-family: "texto";
+    color: var(--color-secondary-text);
+    font-size: .85em;
+    font-weight: 600;
+}
+
+.Proyecto-lista{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: .4rem;
+    padding: 0 0 0 1.25rem;
+}
+
+.Proyecto-item{
+    font-family: "texto";
+    color: var(--color-secondary-text);
+    font-weight: 600;
+    line-height: 1.5;
+    list-style: disc;
+}
+
+.Proyecto-metricas{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.Proyecto-metrica{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    background-color: var(--light-color);
+    box-shadow: 0 0 8px 5px var(--color-sombra-texto);
+    padding: .75rem 1.5rem;
+}
+
+.Proyecto-metricaValor{
+    font-family: "titulos";
+    color: var(--color-secondary-text);
+    font-size: 2.2em;
+    font-weight: 800;
+}
+
+.Proyecto-metricaTexto{
+    font-family: "negrita";
+    color: var(--color-secondary-text);
+    font-size: .85em;
+}
+
+@media (max-width: 900px){
+    .Proyecto-wrapper{
+        padding: 1.25rem 1.5rem 2rem;
+    }
+
+    .Proyecto-cabecera,
+    .Proyecto-diseno,
+    .Recorrido-paso{
+        grid-template-columns: 1fr;
+    }
+
+    .Recorrido-escenario{
+        grid-template-columns: 2.5rem minmax(0, 1fr) 2.5rem;
+        gap: .25rem;
+    }
+
+    .Recorrido-flecha{
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .Recorrido-huellas{
+        gap: .6rem;
+    }
+
+    .Recorrido-huella{
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+}

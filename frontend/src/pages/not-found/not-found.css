@@ -1,0 +1,41 @@
+/* pages/not-found/not-found.css
+   [IA] Estilos de la página 404. */
+
+.NotFound{
+    width: 100%;
+    background-color: var(--bg-main-color);
+    margin: 6rem 0 0;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    padding: 5rem 2rem;
+}
+
+.NotFound-h2{
+    font-family: "titulos";
+    color: var(--light-color);
+    font-size: 8em;
+    font-weight: 800;
+}
+
+.NotFound-p{
+    font-family: "texto";
+    color: var(--color-primary-text);
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.NotFound-enlace{
+    font-family: "cabeceras";
+    color: var(--light-color);
+    font-size: 1.3em;
+
+    transition: transform .5s ease;
+}
+.NotFound-enlace:hover{
+    transform: scale(1.1);
+}

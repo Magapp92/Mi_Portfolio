@@ -1,0 +1,107 @@
+/* components/header/header.css
+   [IA] Estilos de la cabecera. Trasladados de css/header.css sin cambios. */
+
+.Header{
+    background-color: var(--header-color);
+    width: 100%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: .75rem 4rem;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+
+    transition: background-color .4s ease, backdrop-filter .4s ease;
+}
+
+/* Con scroll: mismo azul con transparencia y un leve desenfoque, para que el
+   contenido se vea a través sin perder legibilidad del menú. */
+.Header.is-translucida{
+    background-color: rgba(41, 80, 114, 0.55);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+
+.Header-logo{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* El logo ahora es un contenedor en flujo (relative) con tamaño fijo:
+   no puede sobresalir por debajo de la cabecera. */
+.Header-logoCompleto{
+    position: relative;
+    width: 4.5rem;
+    height: 4.5rem;
+}
+
+.Header-imgFondo{
+    width: 4.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+.Header-imgCirculo{
+    width: 3.8rem;
+    position: absolute;
+    top: .35rem;
+    left: .35rem;
+    z-index: 5;
+
+    animation: logo360 5s linear infinite;
+}
+
+.Header-imgBombilla{
+    width: 2.1rem;
+    position: absolute;
+    top: 1.2rem;
+    left: 1.2rem;
+    z-index: 4;
+
+    animation: bombilla 2s linear infinite;
+}
+
+/* El nombre vuelve al flujo del flex (sin position fixed): ya no puede
+   solaparse con la navegación. */
+.Header-h1{
+    font-family: "nombre";
+    color: var(--color-primary-text);
+    font-weight: 600;
+    font-size: 1.6em;
+    white-space: nowrap;
+}
+
+.Header-nav{
+    padding: 0 4rem 0 0;
+}
+
+.Header-ul{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.Header-li{
+    font-family: "cabeceras";
+    color: var(--color-primary-text);
+    font-size: 1.3em;
+
+    transition: transform 1s ease, color .8s ease, text-shadow .6s ease;
+}
+.Header-li:hover{
+    color: var(--light-color);
+    transform: scale(1.2);
+    text-shadow: .1rem .1rem .25rem #001d27;
+}

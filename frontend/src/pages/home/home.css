@@ -1,0 +1,104 @@
+/* pages/home/home.css
+   [IA] Estilos de la home. Trasladados de css/index.css renombrando el bloque
+   .Main → .Home para evitar colisiones entre páginas del SPA (en la web
+   original cada HTML cargaba solo su CSS; aquí conviven todos). */
+
+.Home{
+    width: 100%;
+    background-color: var(--bg-main-color);
+    overflow: hidden;
+    position: relative;
+    cursor: none;
+    margin: 6.25rem 0 0;
+    min-height: 30rem;
+}
+
+.Home-video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.Home-content{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 5rem 8rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.Home-studies{
+    width: 110%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 0 0 16rem;
+
+    transition: transform 3s ease-in;
+}
+.Home-studies:hover{
+    transform: scale(0.8);
+}
+
+.Home-enlace{
+    color: inherit;
+    text-decoration: none;
+    cursor: none;
+}
+
+.Home-h2{
+    font-family: "titulos";
+    color: var(--color-primary-text);
+    font-weight: 800;
+    font-size: 4.5em;
+    text-transform: capitalize;
+}
+
+.Home-h2--front{
+    animation: appear 4s;
+}
+
+.Home-h2--fullstack{
+    animation: appear 5s;
+}
+
+.Home-h2--diseno{
+    animation: appear 6s;
+}
+
+.Home-h2--ux{
+    text-transform: uppercase;
+
+    animation: appear 7s;
+}
+
+.Home-h3{
+    font-family: "texto";
+    color: var(--color-primary-text);
+    font-weight: 800;
+    font-size: 3.2em;
+    text-transform: uppercase;
+
+    animation: disolve 6s;
+}
+
+.Home-frase{
+    transition: transform 2s ease, text-shadow 1.5s ease;
+}
+.Home-frase:hover{
+    text-shadow: 5px 5px 5px rgba(213, 213, 213, 0.416);
+    transform: scale(1.2);
+}

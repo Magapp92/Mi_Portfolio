@@ -1,0 +1,52 @@
+/* components/ranking-tabla/ranking-tabla.css
+   [IA] Estilos de la tabla de ranking del quiz. */
+
+.RankingTabla{
+    width: 100%;
+    max-width: 50rem;
+    border-collapse: collapse;
+
+    font-family: "texto";
+    color: var(--color-primary-text);
+    font-size: 1.1em;
+
+    background-color: var(--color-sombra-texto);
+    box-shadow: 0 0 2rem 1rem var(--color-sombra-texto);
+}
+
+.RankingTabla-cabecera{
+    font-family: "cabeceras";
+    background-color: var(--header-color);
+}
+
+.RankingTabla-th{
+    padding: 1rem;
+    text-align: left;
+}
+
+.RankingTabla-td{
+    padding: .8rem 1rem;
+}
+
+.RankingTabla-fila{
+    border-top: 1px solid var(--header-color);
+    transition: background-color .3s ease;
+}
+.RankingTabla-fila:hover{
+    background-color: rgba(140, 219, 211, 0.08);
+}
+
+/* Fila del propio jugador resaltada en turquesa. */
+.RankingTabla-fila.is-propia{
+    background-color: var(--light-color);
+    color: var(--color-secondary-text);
+    font-weight: 800;
+}
+
+.RankingTabla-vacio{
+    font-family: "texto";
+    color: var(--color-primary-text);
+    font-size: 1.2em;
+    text-align: center;
+    padding: 2rem;
+}

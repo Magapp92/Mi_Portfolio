@@ -1,5 +1,5 @@
 /* components/cursor/cursor.css
-   [IA] Estilos del cursor personalizado. Trasladados de css/cursor.css y del
+   Estilos del cursor personalizado. Trasladados de css/cursor.css y del
    .Main-cursor de about.css. Se usa position:fixed (en vez de absolute dentro
    de .Main) porque el listener usa clientX/clientY del viewport. */
 
@@ -106,4 +106,18 @@
     filter: drop-shadow(0 0 .2rem rgba(9, 44, 54, .45));
 
     background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='%234DC79E' stroke='%23092c36' stroke-width='2.5'%3E%3Ccircle cx='36' cy='9' r='6'/%3E%3Cpath d='M31 17h7l2 14h12l6 18-5 2-5-14H33z'/%3E%3Cpath fill-rule='evenodd' d='M11 44a16 16 0 1 0 32 0a16 16 0 1 0-32 0zM16 44a11 11 0 1 0 22 0a11 11 0 1 0-22 0z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Variante libro abierto (Ahora Somos Dos): naranja salmón del libro con
+   contorno oscuro. */
+.Cursor--libro{
+    width: 2rem;
+    height: 2rem;
+    margin: -1rem 0 0 -1rem;
+
+    border-radius: 0;
+    mix-blend-mode: normal;
+    filter: drop-shadow(0 0 .2rem rgba(9, 44, 54, .45));
+
+    background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23F0836E' stroke='%23092c36' stroke-width='2.5' fill-rule='evenodd' d='M32 15C25 10 15 9 5 11v40c10-2 20-1 27 4 7-5 17-6 27-4V11c-10-2-20-1-27 4zM31 18h2v33h-2z'/%3E%3C/svg%3E");
 }

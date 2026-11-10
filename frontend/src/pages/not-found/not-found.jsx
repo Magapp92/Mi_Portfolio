@@ -1,5 +1,5 @@
 // pages/not-found/not-found.jsx
-// [IA] Página 404 del SPA (ruta catch-all '*').
+// Página 404 del SPA (ruta catch-all '*').
 
 import { Link } from 'react-router-dom'
 import { ROUTES } from '@/const/routes.js'

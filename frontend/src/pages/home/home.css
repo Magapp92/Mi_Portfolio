@@ -1,5 +1,5 @@
 /* pages/home/home.css
-   [IA] Estilos de la home. Trasladados de css/index.css renombrando el bloque
+   Estilos de la home. Trasladados de css/index.css renombrando el bloque
    .Main → .Home para evitar colisiones entre páginas del SPA (en la web
    original cada HTML cargaba solo su CSS; aquí conviven todos). */
 

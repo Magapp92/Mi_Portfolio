@@ -1,5 +1,5 @@
 // data/proyectos-detalle.js
-// [IA] Contenido de la página de detalle de cada proyecto, indexado por el id
+// Contenido de la página de detalle de cada proyecto, indexado por el id
 // de data/proyectos.js. `imagen: ''` deja un hueco reservado para la captura
 // que corresponde (la `etiqueta` indica cuál).
 
@@ -124,7 +124,7 @@ export const PROYECTOS_DETALLE = {
         tipografias: 'Outfit para títulos e Inter para el texto, en WOFF2 y servidas desde la propia web: ningún servicio externo recibe la IP del visitante.',
         logo: { imagen: '/assets/buscatupeli-logo.webp', etiqueta: 'Logo de Busca tu peli' },
         reto: {
-            titulo: 'Seguridad y comprobaciones',
+            titulo: 'Seguridad, rendimiento y comprobaciones',
             texto: 'Al recoger emails y tener un panel de administración público, la seguridad y la privacidad no podían ser un añadido final.',
             intro: 'La web se protegió desde el principio:',
             lista: [
@@ -133,15 +133,25 @@ export const PROYECTOS_DETALLE = {
                 { id: 'spam', texto: 'Formularios con límite de envíos por hora, campo trampa para bots y longitud máxima en cada campo.' },
                 { id: 'rgpd', texto: 'Cumplimiento del RGPD: política de privacidad, consentimiento expreso y sin cookies de seguimiento.' }
             ],
+            extra: {
+                intro: 'Después la optimicé con Lighthouse. En escritorio, el rendimiento pasó de 82 a 99, la accesibilidad de 92 a 100 y el SEO de 91 a 100; el peso de la portada bajó de 8,5 MB a 2,1 MB:',
+                lista: [
+                    { id: 'carrusel', texto: 'Carga prioritaria del carrusel: se pinta en cuanto llegan sus películas y el resto de la portada se pide después de ver su primera imagen.' },
+                    { id: 'bajo-demanda', texto: 'Imágenes del carrusel bajo demanda: solo se descarga la primera diapositiva y cada una de las demás justo antes de mostrarse.' },
+                    { id: 'tamanos', texto: 'Imágenes del tamaño justo: fondos de 1280 px hasta Full HD, pósters de 185, 342 o 500 px según la tarjeta y decodificación asíncrona.' },
+                    { id: 'preconnect', texto: 'Conexión anticipada (preconnect) con el servidor de imágenes de TMDB.' },
+                    { id: 'accesibilidad', texto: 'Accesibilidad: contraste mínimo de 4,5:1 en los textos secundarios, buscador declarado como combobox y diapositivas ocultas con inert para que no reciban el foco.' },
+                    { id: 'seo', texto: 'SEO: el enlace «Más información» incluye el título de la película para lectores de pantalla.' }
+                ]
+            },
             metricas: [
-                { id: 'capturas', valor: '31', texto: 'Capturas idénticas tras el refactor' },
-                { id: 'interaccion', valor: '37', texto: 'Pruebas de interacción' },
-                { id: 'ataques', valor: '23', texto: 'Ataques bloqueados' },
-                { id: 'audit', valor: '0', texto: 'Vulnerabilidades (npm audit)' }
+                { id: 'escritorio', valor: '99', texto: 'Rendimiento en escritorio' },
+                { id: 'movil', valor: '97', texto: 'Rendimiento en móvil' },
+                { id: 'cien', valor: '100', texto: 'Accesibilidad, prácticas y SEO' }
             ],
-            nota: 'Pruebas automáticas con Puppeteer en escritorio y móvil antes de cada publicación.'
+            nota: 'Puntuaciones de Lighthouse en escritorio y móvil.'
         },
-        conclusion: 'Busca tu peli me enseñó a separar frontend y backend, diseñar una API REST e integrar servicios de terceros, y a resolver problemas reales de producción al desplegar en Netlify. Mantener un código coherente y probarlo de forma automática me permitió cambiar mucho sin miedo a romper la web.'
+        conclusion: 'Busca tu peli me enseñó a separar frontend y backend, diseñar una API REST e integrar servicios de terceros, y a resolver problemas reales de producción al desplegar en Netlify. Mantener una forma de escribir coherente, con SUIT en el CSS y una API ordenada por rutas, controladores y modelos, hizo el código más fácil de entender y de modificar.'
     },
 
     portaldental: {
@@ -297,5 +307,82 @@ export const PROYECTOS_DETALLE = {
             nota: 'Encuesta en Google Forms, diciembre de 2024, con 52 respuestas.'
         },
         conclusion: 'Turismo Sin Barreras me enseñó a diseñar empezando por las personas: escuchar a quienes viven las barreras cambia lo que parece importante. La accesibilidad no es un añadido, es la base del producto, y prototipar en Figma me permitió comprobar que cada pantalla responde a una necesidad real.'
+    },
+
+    ahorasomosdos: {
+        titulo: 'Ahora Somos Dos',
+        subtitulo: 'Cuento infantil ilustrado sobre la llegada de una hermana',
+        icono: 'libro',
+        intro: 'Ahora Somos Dos es un cuento ilustrado para primeros lectores, basado en una historia real: cómo se conocieron mis dos perras, Luna y Nube. Es un proyecto académico de diseño editorial en el que escribí el texto, creé las ilustraciones y maqueté el libro completo, preparado para imprenta.',
+        portada: { imagen: '/assets/asd-portada.webp', etiqueta: 'Mockup de la portada de Ahora Somos Dos', natural: true },
+        tecnologias: ['Illustrator', 'Photoshop', 'InDesign', 'Ilustración vectorial', 'Diseño editorial', 'Maquetación'],
+        enlaces: [],
+        idea: 'Luna, una chihuahua mimada, vive feliz hasta que un día llega a casa Nube, una bichón maltés a la que confunde con un conejo. Lo que empieza con celos acaba en complicidad: el cuento habla de la llegada de un hermano y refuerza valores de hermandad, tolerancia y amistad. Los dos personajes se diseñaron para transmitir su carácter:',
+        perfiles: [
+            { id: 'luna', titulo: 'Luna', texto: 'Representa la fuerza, el carácter y la independencia: formas más definidas, orejas grandes y erguidas y una postura orgullosa.' },
+            { id: 'nube', titulo: 'Nube', texto: 'Representa la ternura, la inocencia y la adaptabilidad: formas redondeadas, pelo esponjoso y ojos grandes.' }
+        ],
+        recorrido: { titulo: 'Recorrido por el libro', pasos: [
+            { id: 'portada', titulo: 'Portada', texto: 'Tapa dura con acabado plastificado mate. El título, en Marhey Bold blanco, se curva en arco sobre una línea de puntos salmón en el tercio superior, con la autora debajo. Cielo azul pastel con nubes de acuarela, un árbol con búho que enmarca la escena por la derecha y, abajo, Luna y Nube jugando sobre el césped verde; una mariposa con trazo punteado guía la mirada. El lomo, en naranja salmón, repite título y autora.', imagen: '/assets/asd-mockup-portada.webp', etiqueta: 'Mockup de la portada' },
+            { id: 'contraportada', titulo: 'Contraportada', texto: 'Continúa el cielo y las nubes de la portada para que la cubierta se lea como una sola ilustración. La sinopsis, en Coming Soon, va dentro de un recuadro de puntos salmón, el mismo marco que el interior. Abajo, Luna y Nube de espaldas a la izquierda se equilibran con un arbusto a la derecha, y la mariposa enlaza con la portada.', imagen: '/assets/asd-mockup-contraportada.webp', etiqueta: 'Mockup de la contraportada' },
+            { id: 'interior', titulo: 'El libro abierto', texto: 'Cada página repite la misma estructura: marco punteado, cenefa de huellitas, texto y una escena ilustrada con borde rasgado.', imagen: '/assets/asd-mockup-interior.webp', etiqueta: 'Mockup del libro abierto' },
+            { id: 'inicio', titulo: 'Empieza la historia', texto: 'Luna se presenta en su casa. Una página, una escena: el texto cuenta lo que muestra la ilustración.', imagen: '/assets/asd-pag-inicio.webp', etiqueta: 'Primera página del cuento' },
+            { id: 'llegada', titulo: 'La llegada de Nube', texto: 'Un bocadillo de pensamiento resume la duda de Luna: ¿un helado, un juguete o un conejo?', imagen: '/assets/asd-pag-llegada.webp', etiqueta: 'Doble página de la llegada de Nube' },
+            { id: 'parque', titulo: 'Paseos en el parque', texto: 'Al salir de casa, la paleta cálida del interior se abre a los verdes del exterior.', imagen: '/assets/asd-pag-parque.webp', etiqueta: 'Doble página en el parque' },
+            { id: 'playa', titulo: 'Rumbo a la playa', texto: 'El viaje en coche y el primer día de playa llenan las páginas de azules.', imagen: '/assets/asd-pag-playa.webp', etiqueta: 'Doble página de la playa' },
+            { id: 'final', titulo: 'Juntas', texto: 'El cuento cierra con las dos hermanas frente a un atardecer en el campo.', imagen: '/assets/asd-pag-final.webp', etiqueta: 'Página final del cuento' }
+        ] },
+        funcionalidades: [
+            { id: 'escena', titulo: 'Una página, una escena', texto: 'Cada página es una unidad narrativa y visual: el texto coincide con la ilustración para que la historia sea fácil de seguir.' },
+            { id: 'estilo', titulo: 'Estilo pensado para niños', texto: 'Formas simples y redondeadas, cabezas grandes, contornos gruesos y ojos expresivos que transmiten emociones incluso sin texto.' },
+            { id: 'lectores', titulo: 'Para primeros lectores', texto: 'Una tipografía redondeada a 14 pt, márgenes amplios y una estructura clásica de introducción, nudo y desenlace.' }
+        ],
+        construccionTitulo: 'Cómo lo diseñé',
+        construccion: [
+            { id: 'investigacion', titulo: 'Investigación', texto: 'Referencias de ilustración infantil, de cuentos sobre la amistad y de la maquetación y el tono de editoriales infantiles, y un moodboard para la portada y los textos.' },
+            { id: 'personajes', titulo: 'Personajes', texto: 'Bocetos a partir de fotos de mis perras e ilustración vectorial en Illustrator hasta encontrar la personalidad de cada una.' },
+            { id: 'escenas', titulo: 'Escenas', texto: 'Primero los elementos sueltos (muebles, juguetes, personajes) y después el montaje de cada escena con su fondo y su marco en Photoshop.' },
+            { id: 'maquetacion', titulo: 'Maquetación', texto: 'Retícula, estilos de párrafo, folios y elementos decorativos en InDesign, y el archivo final para imprenta.' }
+        ],
+        flujos: {
+            titulo: 'Proceso de diseño',
+            texto: 'Del personaje a la página: las ilustraciones de Luna y Nube, la construcción de una escena y las bases tipográficas y de color del libro. Pulsa una imagen para verla a tamaño completo.',
+            anchos: true,
+            diagramas: [
+                { id: 'personajes', titulo: 'Luna y Nube', imagen: '/assets/asd-personajes.webp' },
+                { id: 'elementos', titulo: 'Elementos de la escena', imagen: '/assets/asd-elementos.webp' },
+                { id: 'escena', titulo: 'Escena montada', imagen: '/assets/asd-escena.webp' },
+                { id: 'tipografias', titulo: 'Tipografías', imagen: '/assets/asd-tipografias.webp' }
+            ]
+        },
+        diseno: 'Ilustración plana con líneas suaves, colores cálidos y composiciones sencillas. Cada color tiene una intención: el salmón aporta calidez y ternura, el azul calma, el verde invita a la aventura y el blanco roto transmite inocencia. Detalles como la cenefa de huellitas y el marco punteado dan unidad a todo el libro.',
+        colores: [
+            { id: 'salmon', nombre: 'Naranja salmón', hex: '#F0836E' },
+            { id: 'azul', nombre: 'Azul cielo pastel', hex: '#90B9E2' },
+            { id: 'verde', nombre: 'Verde', hex: '#80AF59' },
+            { id: 'amarillo', nombre: 'Amarillo anaranjado', hex: '#DDAB45' },
+            { id: 'marron', nombre: 'Marrón cálido', hex: '#AB8856' },
+            { id: 'blanco', nombre: 'Blanco roto', hex: '#FEFCF7' }
+        ],
+        tipografias: 'Coming Soon a 14 pt para el cuento, redondeada y amigable; Marhey Bold a 52 pt para el título de portada, divertida y expresiva; y Lato para la introducción y la ficha técnica.',
+        logo: { imagen: '/assets/asd-luna-nube.webp', etiqueta: 'Luna y Nube, las protagonistas' },
+        reto: {
+            titulo: 'Producción para imprenta',
+            texto: 'El libro está preparado para impresión profesional en tapa dura, con decisiones técnicas pensadas para un producto atractivo y resistente en manos de niños.',
+            intro: 'Ficha técnica:',
+            lista: [
+                { id: 'formato', texto: 'Formato cuadrado de 220 × 220 mm, márgenes de 20 a 25 mm y sangrado de 3 mm.' },
+                { id: 'archivo', texto: 'Archivo final en PDF para imprenta, en CMYK y a 300 ppp.' },
+                { id: 'papel', texto: 'Tapa dura de cartón rígido forrada con la cubierta impresa y plastificado mate; interior en papel estucado mate de 150 g/m².' },
+                { id: 'acabado', texto: 'Impresión digital y encuadernación en tapa dura (cartoné), con lomo impreso con el título y la autora.' }
+            ],
+            metricas: [
+                { id: 'formato', valor: '220 mm', texto: 'Formato cuadrado' },
+                { id: 'paginas', valor: '30', texto: 'Páginas de contenido' },
+                { id: 'ppp', valor: '300 ppp', texto: 'Archivo final en CMYK' }
+            ],
+            nota: 'Proyecto académico: el libro no se ha impreso ni publicado.'
+        },
+        conclusion: 'Ahora Somos Dos me permitió recorrer todo el proceso editorial: escribir una historia, darle forma con ilustraciones propias y convertirla en un libro listo para imprenta. Combinar Illustrator, Photoshop e InDesign, alejándome de mi estilo habitual, me enseñó a que cada decisión de diseño sirva a la historia y a sus lectores.'
     }
 }

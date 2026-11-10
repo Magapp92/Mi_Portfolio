@@ -1,5 +1,5 @@
 // components/header/header.jsx
-// [IA] Cabecera fija con logo animado y navegación. Traslada el <header> de la
+// Cabecera fija con logo animado y navegación. Traslada el <header> de la
 // web original a React Router (Link en vez de <a href="*.html">), añadiendo el
 // enlace nuevo a la sección del juego.
 

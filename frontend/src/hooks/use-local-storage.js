@@ -1,5 +1,5 @@
 // hooks/use-local-storage.js
-// [IA] Persiste un valor en localStorage (regla C19: guardar datos relevantes
+// Persiste un valor en localStorage (regla C19: guardar datos relevantes
 // como el nick del jugador para que sobrevivan a recargas).
 
 import { useState, useEffect } from 'react'

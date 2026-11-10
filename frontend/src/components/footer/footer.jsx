@@ -1,5 +1,5 @@
 // components/footer/footer.jsx
-// [IA] Pie de página común. Traslada el <footer> de la web original.
+// Pie de página común. Traslada el <footer> de la web original.
 
 import './footer.css'
 

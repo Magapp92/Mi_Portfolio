@@ -1,5 +1,5 @@
 // data/estudios.js
-// [IA] Especialidades que se muestran en la home (antes h2 sueltos en index.html).
+// Especialidades que se muestran en la home (antes h2 sueltos en index.html).
 // Cada una lleva su modificador CSS para conservar la animación escalonada.
 
 export const ESTUDIOS = [

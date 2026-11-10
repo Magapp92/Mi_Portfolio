@@ -1,5 +1,5 @@
 // const/api.js
-// [IA] Helper único para llamar a la API del juego. Centraliza:
+// Helper único para llamar a la API del juego. Centraliza:
 //  - la URL base (de .env, regla C17),
 //  - el parseo de la respuesta `{ message, data }` que devuelve la API Express.
 //

@@ -1,5 +1,5 @@
 // main.jsx
-// [IA] Punto de entrada del SPA. Monta React en #root y envuelve la app con el
+// Punto de entrada del SPA. Monta React en #root y envuelve la app con el
 // JuegoProvider (estado global del quiz, regla C8).
 
 import { StrictMode } from 'react'

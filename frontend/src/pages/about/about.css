@@ -1,5 +1,5 @@
 /* pages/about/about.css
-   [IA] Estilos de "Sobre mi". Trasladados de css/about.css renombrando el
+   Estilos de "Sobre mi". Trasladados de css/about.css renombrando el
    bloque .Main → .About. El vídeo pasa a ser fondo absoluto (inset 0) y el
    wrapper vuelve al flujo normal: así la página tiene altura real, hay scroll
    y el contenido nunca queda cortado por el footer. */

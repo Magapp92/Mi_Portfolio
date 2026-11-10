@@ -1,5 +1,5 @@
 // hooks/use-api.js
-// [IA] Hook para llamadas GET a la API. Devuelve { data, loading, error, refetch }.
+// Hook para llamadas GET a la API. Devuelve { data, loading, error, refetch }.
 // Sigue el patrón del profesor: un useState por variable, setter directo,
 // funciones declaradas como arrow functions (sin useCallback).
 

@@ -1,5 +1,5 @@
 // hooks/use-juego.js
-// [IA] Acceso cómodo al contexto del juego. Los componentes importan este hook
+// Acceso cómodo al contexto del juego. Los componentes importan este hook
 // en vez de useContext + JuegoContext por separado.
 
 import { useContext } from 'react'

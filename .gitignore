@@ -10,12 +10,10 @@ dist/
 # Vídeos originales sin comprimir (221 MB, superan el límite de GitHub)
 frontend/videos_originales/
 
-# Ajustes locales de Claude Code
-.claude/settings.local.json
+# Configuración local del editor
+.claude/
 
 # Sistema
 .DS_Store
 Thumbs.db
 
-# Registro del hook de guardado automático
-.claude/hooks/guardar-sesion.log

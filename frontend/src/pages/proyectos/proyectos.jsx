@@ -1,5 +1,5 @@
 // pages/proyectos/proyectos.jsx
-// [IA] Página de proyectos. Traslada proyectos.html + js/proyectos.js: slider
+// Página de proyectos. Traslada proyectos.html + js/proyectos.js: slider
 // automático e infinito cada 8 s, pausa al pasar el ratón y flechas manuales.
 // El setInterval se limpia en el return del useEffect (regla C13). El estado
 // sigue el patrón profesor: un useState por variable y setter directo (C6/C7).

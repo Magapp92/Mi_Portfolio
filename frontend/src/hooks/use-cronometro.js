@@ -1,5 +1,5 @@
 // hooks/use-cronometro.js
-// [IA] Cronómetro del juego. Cuenta segundos mientras está activo.
+// Cronómetro del juego. Cuenta segundos mientras está activo.
 // El setTimeout se limpia en el return del useEffect (regla C13) y el setter
 // se llama con el valor directo `segundos + 1` (patrón profesor, regla C7).
 

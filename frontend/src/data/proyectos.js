@@ -1,5 +1,5 @@
 // data/proyectos.js
-// [IA] Proyectos del slider (antes artículos duplicados en proyectos.html).
+// Proyectos del slider (antes artículos duplicados en proyectos.html).
 // Sustituir imagen y texto cuando haya contenido real de cada proyecto.
 
 export const PROYECTOS = [
@@ -28,5 +28,12 @@ export const PROYECTOS = [
         imagen: '/assets/tsb-portada.webp',
         imagenEntera: true,
         descripcion: 'Proyecto UX/UI: app móvil y landing para descubrir los museos de Madrid según su accesibilidad, calcular la ruta más accesible hasta ellos y organizar la visita. Diseñada con Design Thinking a partir de una encuesta a personas con y sin diversidad funcional.'
+    },
+    {
+        id: 'ahorasomosdos',
+        titulo: 'Ahora Somos Dos',
+        imagen: '/assets/asd-portada.webp',
+        imagenEntera: true,
+        descripcion: 'Diseño editorial: cuento infantil ilustrado sobre la llegada de una nueva hermana, inspirado en mis dos perras. Escribí el texto, creé las ilustraciones y maqueté el libro completo en InDesign, listo para imprenta.'
     }
 ]

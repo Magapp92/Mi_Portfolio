@@ -1,5 +1,5 @@
 // pages/juego/juego.jsx
-// [IA] Sección nueva: Quiz de Harry Potter contra la API Express + MongoDB.
+// Sección nueva: Quiz de Harry Potter contra la API Express + MongoDB.
 // Flujo (diseñado en el PDF del juego):
 //   1. inicio    → el jugador escribe su nick y pulsa "Empezar partida".
 //   2. jugando   → GET /quiz trae las preguntas activas (sin respuestaCorrecta),

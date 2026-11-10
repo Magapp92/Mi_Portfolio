@@ -1,5 +1,5 @@
 // vite.config.js
-// [IA] Config de Vite. Habilita el plugin de React y define el alias `@`
+// Config de Vite. Habilita el plugin de React y define el alias `@`
 // apuntando a /src — cumple la regla C3 (importaciones absolutas).
 
 import { defineConfig } from 'vite'

@@ -1,5 +1,5 @@
 /* pages/formacion/formacion.css
-   [IA] Estilos de formación. Trasladados de css/formacion.css renombrando el
+   Estilos de formación. Trasladados de css/formacion.css renombrando el
    bloque .Main → .Formacion y .flipped → .is-girada. El vídeo pasa a ser fondo
    absoluto y el wrapper vuelve al flujo: la página tiene altura real, hay
    scroll y las tarjetas no quedan cortadas por el footer. Hexágonos reducidos

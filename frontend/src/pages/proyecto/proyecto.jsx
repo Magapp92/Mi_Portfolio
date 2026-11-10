@@ -1,5 +1,5 @@
 // pages/proyecto/proyecto.jsx
-// [IA] Página de detalle de un proyecto (/proyectos/:id). El contenido sale de
+// Página de detalle de un proyecto (/proyectos/:id). El contenido sale de
 // data/proyectos-detalle.js; si el id no existe se vuelve a la lista. Mantiene
 // la estética de Proyectos (caja turquesa y cursor halo) sobre el azul de la
 // huella del logo de PawCare.
@@ -128,6 +128,16 @@ const ProyectoPage = () => {
                             <li key={item.id} className="Proyecto-item">{item.texto}</li>
                         )}
                     </ul>
+                    {reto.extra &&
+                        <>
+                            <p className="Proyecto-p">{reto.extra.intro}</p>
+                            <ul className="Proyecto-lista">
+                                {reto.extra.lista.map(item =>
+                                    <li key={item.id} className="Proyecto-item">{item.texto}</li>
+                                )}
+                            </ul>
+                        </>
+                    }
                     <div className="Proyecto-metricas">
                         {reto.metricas.map(metrica =>
                             <div key={metrica.id} className="Proyecto-metrica">
@@ -308,8 +318,15 @@ const Silla = () => (
     </svg>
 )
 
+// Libro abierto (Ahora Somos Dos): dos páginas y el lomo en el centro.
+const Libro = () => (
+    <svg viewBox="0 0 64 64" className="Recorrido-huellaSvg" aria-hidden="true">
+        <path fillRule="evenodd" d="M32 15C25 10 15 9 5 11v40c10-2 20-1 27 4 7-5 17-6 27-4V11c-10-2-20-1-27 4zM31 18h2v33h-2z" />
+    </svg>
+)
+
 // Icono de los puntos del carrusel según el proyecto.
-const ICONOS = { huella: Huella, rollo: Rollo, diente: Diente, silla: Silla }
+const ICONOS = { huella: Huella, rollo: Rollo, diente: Diente, silla: Silla, libro: Libro }
 
 // Diagrama de flujo: miniatura que abre la imagen completa en otra pestaña.
 const Flujo = (props) => {

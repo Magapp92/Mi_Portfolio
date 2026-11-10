@@ -1,5 +1,5 @@
 // pages/home/home.jsx
-// [IA] Página de inicio. Traslada index.html: vídeo de fondo, especialidades
+// Página de inicio. Traslada index.html: vídeo de fondo, especialidades
 // animadas y frase. El cursor con estela viene del componente Cursor.
 
 import { Link } from 'react-router-dom'

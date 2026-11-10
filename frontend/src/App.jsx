@@ -1,5 +1,5 @@
 // App.jsx
-// [IA] Raíz de la aplicación: delega el enrutado al RouterProvider definido en
+// Raíz de la aplicación: delega el enrutado al RouterProvider definido en
 // router.jsx. Aquí no metemos lógica — solo conecta los dos.
 
 import { RouterProvider } from 'react-router-dom'

@@ -1,5 +1,5 @@
 /* pages/proyecto/proyecto.css
-   [IA] Detalle de proyecto. Fondo en el azul oscuro del header: caja en el azul de la huella del logo de PawCare,
+   Detalle de proyecto. Fondo en el azul oscuro del header: caja en el azul de la huella del logo de PawCare,
    recuadros en el turquesa claro de las huellas (--light-color) y las tipografías
    titulos / negrita / texto. Los huecos rosas marcan dónde van las capturas. */
 
@@ -31,6 +31,11 @@
 /* Turismo Sin Barreras: verde menta de la app. */
 .Proyecto--silla{
     --color-recuadro: var(--color-menta-tsb);
+}
+
+/* Ahora Somos Dos: naranja salmón del libro. */
+.Proyecto--libro{
+    --color-recuadro: var(--color-salmon-asd);
 }
 
 /* PortalDental: azul de la marca con texto claro. */
@@ -348,7 +353,9 @@
 .Recorrido-huella--diente,
 .Recorrido-huella--diente.Recorrido-huella--derecha,
 .Recorrido-huella--silla,
-.Recorrido-huella--silla.Recorrido-huella--derecha{
+.Recorrido-huella--silla.Recorrido-huella--derecha,
+.Recorrido-huella--libro,
+.Recorrido-huella--libro.Recorrido-huella--derecha{
     width: 1.9rem;
     height: 1.9rem;
     transform: none;

@@ -1,5 +1,5 @@
 // const/routes.js
-// [IA] Catálogo central de rutas de la SPA. Cualquier componente que necesite
+// Catálogo central de rutas de la SPA. Cualquier componente que necesite
 // navegar usa una constante de aquí — evita strings sueltos por todo el código.
 
 export const ROUTES = Object.freeze({

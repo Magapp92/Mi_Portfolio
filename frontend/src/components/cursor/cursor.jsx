@@ -1,5 +1,5 @@
 // components/cursor/cursor.jsx
-// [IA] Cursor personalizado. Registra mousemove en document y lo limpia al
+// Cursor personalizado. Registra mousemove en document y lo limpia al
 // desmontar (regla C13: addEventListener siempre con cleanup).
 // La estela ya no usa setTimeout escalonados (se veían saltos entre puntos):
 // ahora un bucle de requestAnimationFrame interpola cada bolita hacia la

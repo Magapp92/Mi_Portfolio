@@ -1,5 +1,5 @@
 // components/ranking-tabla/ranking-tabla.jsx
-// [IA] Tabla del ranking de puntuaciones. Componente presentacional: recibe la
+// Tabla del ranking de puntuaciones. Componente presentacional: recibe la
 // lista ya ordenada por la API (puntuación desc, tiempo asc) y resalta la fila
 // del propio jugador. Patrón de map del profesor (regla C11b): subcomponente
 // FilaRanking + spread + key={item._id}.

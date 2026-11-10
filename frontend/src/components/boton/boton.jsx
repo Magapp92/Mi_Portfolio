@@ -1,5 +1,5 @@
 // components/boton/boton.jsx
-// [IA] Botón presentacional. Cumple regla C15: componentes stateless con
+// Botón presentacional. Cumple regla C15: componentes stateless con
 // Styled Components. Usa las variables CSS de la web original para mantener
 // la identidad visual. Variantes: primario (azul cabecera), claro (turquesa)
 // y fantasma (transparente con borde).

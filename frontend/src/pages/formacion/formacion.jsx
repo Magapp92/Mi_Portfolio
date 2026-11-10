@@ -1,5 +1,5 @@
 // pages/formacion/formacion.jsx
-// [IA] Página de formación. Traslada formacion.html + js/formacion.js: cada
+// Página de formación. Traslada formacion.html + js/formacion.js: cada
 // tarjeta hexagonal gira (flip) al pasar el ratón por encima (CSS :hover).
 
 import { Cursor } from '@/components/cursor/cursor.jsx'

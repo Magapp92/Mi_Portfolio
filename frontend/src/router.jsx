@@ -1,5 +1,5 @@
 // router.jsx
-// [IA] Definición central de rutas. Cumple regla C12: TODAS las páginas se
+// Definición central de rutas. Cumple regla C12: TODAS las páginas se
 // cargan con React.lazy + Suspense (code splitting + loader durante la descarga).
 
 import { lazy, Suspense } from 'react'

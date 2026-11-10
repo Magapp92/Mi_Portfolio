@@ -1,5 +1,5 @@
 // pages/about/about.jsx
-// [IA] Página "Sobre mi". Traslada about.html con su cursor de halo.
+// Página "Sobre mi". Traslada about.html con su cursor de halo.
 
 import { Cursor } from '@/components/cursor/cursor.jsx'
 import './about.css'

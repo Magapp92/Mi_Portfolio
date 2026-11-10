@@ -1,5 +1,5 @@
 /* index.css
-   [IA] Estilos globales: reset + variables + tipografías + keyframes.
+   Estilos globales: reset + variables + tipografías + keyframes.
    Trasladado de la web original (css/reset.css). Las fuentes viven en
    /public/tipografia y los assets en /public/assets. */
 
@@ -71,6 +71,8 @@ button{
     --color-azul-portaldental: #0D76BC;
     /* Verde menta de Turismo Sin Barreras. */
     --color-menta-tsb: #4DC79E;
+    /* Naranja salmón de «Ahora Somos Dos». */
+    --color-salmon-asd: #F0836E;
     --color-primary-text: #EDEDED;
     --color-secondary-text: #092c36;
     --color-sombra-texto: #223950d0;

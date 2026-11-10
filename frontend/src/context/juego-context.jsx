@@ -1,5 +1,5 @@
 // context/juego-context.jsx
-// [IA] Estado global del juego (regla C8: useContext en /context).
+// Estado global del juego (regla C8: useContext en /context).
 // Guarda el nick del jugador y el id de su última puntuación, ambos
 // persistidos en localStorage (regla C19) para sobrevivir a recargas.
 

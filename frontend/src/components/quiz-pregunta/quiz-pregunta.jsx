@@ -1,5 +1,5 @@
 // components/quiz-pregunta/quiz-pregunta.jsx
-// [IA] Tarjeta de una pregunta del quiz. La API ya envía las preguntas SIN
+// Tarjeta de una pregunta del quiz. La API ya envía las preguntas SIN
 // respuestaCorrecta (la valida el backend al final de la partida), así que
 // aquí solo se pinta el enunciado y las opciones.
 // Sigue el patrón de map del profesor (regla C11b): subcomponente extraído,

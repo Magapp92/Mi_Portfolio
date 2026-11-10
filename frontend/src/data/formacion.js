@@ -1,5 +1,5 @@
 // data/formacion.js
-// [IA] Tarjetas flip de la página de formación (antes artículos en formacion.html).
+// Tarjetas flip de la página de formación (antes artículos en formacion.html).
 
 export const FORMACION = [
     {

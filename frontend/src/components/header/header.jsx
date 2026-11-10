@@ -35,10 +35,12 @@ export const Header = () => {
         <header className={`Header${conScroll ? ' is-translucida' : ''}`}>
             <div className="Header-logo">
                 <Link to={ROUTES.HOME} className="Header-a">
+                    {/* El texto en arco va aparte para girar sobre su propio
+                        trazo; el interior queda encima y el texto pasa por
+                        detrás del ordenador. */}
                     <div className="Header-logoCompleto">
-                        <img src="/assets/fondo.webp" alt="logo magas portfolio" className="Header-imgFondo" />
-                        <img src="/assets/circulo.webp" alt="logo magas portfolio" className="Header-imgCirculo" />
-                        <img src="/assets/bombilla.webp" alt="logo magas portfolio" className="Header-imgBombilla" />
+                        <img src="/assets/logo-texto.svg" alt="" className="Header-imgTexto" />
+                        <img src="/assets/logo-interior.svg" alt="logo de Magaly Puente, diseñadora y desarrolladora web" className="Header-imgInterior" />
                     </div>
                 </Link>
                 <h1 className="Header-h1">

@@ -9,7 +9,8 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    padding: .75rem 4rem;
+    height: var(--alto-header);
+    padding: 0 4rem;
 
     position: fixed;
     top: 0;
@@ -35,40 +36,40 @@
     gap: 2rem;
 }
 
-/* El logo ahora es un contenedor en flujo (relative) con tamaño fijo:
-   no puede sobresalir por debajo de la cabecera. */
+/* El logo es un contenedor en flujo (relative) con tamaño fijo: no puede
+   sobresalir por debajo de la cabecera. Sus medidas salen del SVG original
+   (marco de 700 x 770 con el centro del arco de texto en el centro del
+   cuadrado superior). */
 .Header-logoCompleto{
     position: relative;
-    width: 4.5rem;
-    height: 4.5rem;
+    height: calc(var(--alto-header) - .2rem);
+    aspect-ratio: 700 / 770;
+    flex-shrink: 0;
 }
 
-.Header-imgFondo{
-    width: 4.5rem;
+/* Anillo de texto: el SVG es un cuadrado centrado en el arco, así que gira
+   sobre su propio trazo. */
+.Header-imgTexto{
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 3;
+
+    animation: logo360 14s linear infinite;
 }
 
-.Header-imgCirculo{
-    width: 3.8rem;
+.Header-imgInterior{
+    width: 43.23%;
     position: absolute;
-    top: .35rem;
-    left: .35rem;
-    z-index: 5;
-
-    animation: logo360 5s linear infinite;
+    top: 19.61%;
+    left: 24.54%;
+    z-index: 1;
 }
 
-.Header-imgBombilla{
-    width: 2.1rem;
-    position: absolute;
-    top: 1.2rem;
-    left: 1.2rem;
-    z-index: 4;
-
-    animation: bombilla 2s linear infinite;
+@media (prefers-reduced-motion: reduce){
+    .Header-imgTexto{
+        animation: none;
+    }
 }
 
 /* El nombre vuelve al flujo del flex (sin position fixed): ya no puede

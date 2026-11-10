@@ -9,7 +9,7 @@
     overflow: hidden;
     position: relative;
     cursor: none;
-    margin: 6.25rem 0 0;
+    margin: var(--alto-header) 0 0;
     min-height: 30rem;
 }
 

@@ -6,7 +6,7 @@
 .Proyectos{
     width: 100%;
     background-color: black;
-    margin: 6rem 0 0;
+    margin: var(--alto-header) 0 0;
 
     overflow: hidden;
     position: relative;
@@ -166,6 +166,12 @@
     height: 180px;
     background-color: pink;
     object-fit: cover;
+}
+
+/* Imagen que debe verse entera (sin recorte) dentro del hueco. */
+.Proyectos-img--entera{
+    object-fit: contain;
+    background-color: transparent;
 }
 
 .Proyectos-h3{

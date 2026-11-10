@@ -58,9 +58,19 @@ button{
     --header-color: #295072;
     /* Dos tonos más oscuro que header/footer (misma tinta, luminosidad 30% → 23%). */
     --header-color-oscuro: #1a3d5b;
+    /* Alto de la cabecera fija: las páginas lo usan como margen superior. */
+    --alto-header: 6.6rem;
     /* Azul de la huella del logo de PawCare, dos tonos más oscuro. */
     --color-azul-pawcare: #b9caf5;
     --color-azul-pawcare-translucido: #b9caf5b3;
+    /* Verde principal oscuro de PawCare. */
+    --color-verde-pawcare-oscuro: #007219;
+    /* Turquesa de marca de Busca tu peli. */
+    --color-turquesa-buscatupeli: #07c5d6;
+    /* Azul principal de PortalDental. */
+    --color-azul-portaldental: #0D76BC;
+    /* Verde menta de Turismo Sin Barreras. */
+    --color-menta-tsb: #4DC79E;
     --color-primary-text: #EDEDED;
     --color-secondary-text: #092c36;
     --color-sombra-texto: #223950d0;

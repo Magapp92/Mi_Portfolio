@@ -6,12 +6,45 @@
 .Proyecto{
     width: 100%;
     background-color: var(--header-color-oscuro);
-    margin: 6rem 0 0;
+    margin: var(--alto-header) 0 0;
 
     overflow: hidden;
     position: relative;
 
     cursor: none;
+
+    /* Color de los recuadros y de los puntos del carrusel, por proyecto. */
+    --color-recuadro: var(--light-color);
+    --color-texto-recuadro: var(--color-secondary-text);
+}
+
+/* PawCare: verde principal oscuro con texto claro para que se lea. */
+.Proyecto--huella{
+    --color-recuadro: var(--color-verde-pawcare-oscuro);
+    --color-texto-recuadro: var(--color-primary-text);
+}
+
+.Proyecto--rollo{
+    --color-recuadro: var(--color-turquesa-buscatupeli);
+}
+
+/* Turismo Sin Barreras: verde menta de la app. */
+.Proyecto--silla{
+    --color-recuadro: var(--color-menta-tsb);
+}
+
+/* PortalDental: azul de la marca con texto claro. */
+.Proyecto--diente{
+    --color-recuadro: var(--color-azul-portaldental);
+    --color-texto-recuadro: var(--color-primary-text);
+}
+
+.Proyecto-tarjeta .Proyecto-h4,
+.Proyecto-tarjeta .Proyecto-p,
+.Proyecto .Proyecto-metricaValor,
+.Proyecto .Proyecto-metricaTexto,
+.Proyecto .Proyecto-boton{
+    color: var(--color-texto-recuadro);
 }
 
 .Proyecto-wrapper{
@@ -130,7 +163,7 @@
 .Proyecto-boton{
     font-family: "negrita";
     color: var(--color-secondary-text);
-    background-color: var(--light-color);
+    background-color: var(--color-recuadro);
     border: 2px solid var(--color-secondary-text);
     padding: .55rem 1.2rem;
     cursor: none;
@@ -139,7 +172,7 @@
 }
 .Proyecto-boton:hover,
 .Proyecto-boton:focus-visible{
-    color: var(--light-color);
+    color: var(--color-recuadro);
     background-color: var(--color-secondary-text);
 }
 
@@ -164,7 +197,7 @@
 }
 
 .Proyecto-tarjeta{
-    background-color: var(--light-color);
+    background-color: var(--color-recuadro);
     box-shadow: 0 0 8px 5px var(--color-sombra-texto);
 
     display: flex;
@@ -184,6 +217,12 @@
 .Proyecto-imagen--grande{
     aspect-ratio: 16 / 9;
     box-shadow: 0 0 8px 5px var(--color-sombra-texto);
+}
+
+/* Imagen a su proporción original: se ve entera, sin recorte. */
+.Proyecto-imagen--natural{
+    aspect-ratio: auto;
+    height: auto;
 }
 
 /* ---------- Recorrido por la app: carrusel + rastro de huellas ---------- */
@@ -233,8 +272,8 @@
     align-items: center;
     gap: 2rem;
 
-    background-color: var(--light-color);
-    box-shadow: 0 0 1.5rem 1rem var(--light-color);
+    background-color: var(--color-recuadro);
+    box-shadow: 0 0 1.5rem 1rem var(--color-recuadro);
     padding: 1.5rem;
 }
 
@@ -303,6 +342,34 @@
     transform: translateY(.45rem) rotate(100deg);
 }
 
+/* Rollos de película: en fila recta, sin el zigzag de las patas. */
+.Recorrido-huella--rollo,
+.Recorrido-huella--rollo.Recorrido-huella--derecha,
+.Recorrido-huella--diente,
+.Recorrido-huella--diente.Recorrido-huella--derecha,
+.Recorrido-huella--silla,
+.Recorrido-huella--silla.Recorrido-huella--derecha{
+    width: 1.9rem;
+    height: 1.9rem;
+    transform: none;
+}
+
+/* El carrusel toma el azul de los bocadillos de tecnologías, con el texto
+   claro como en ellos. */
+.Recorrido-paso.Recorrido-paso{
+    background-color: var(--header-color);
+    box-shadow: 0 0 1.5rem 1rem var(--header-color);
+}
+
+.Recorrido-paso .Recorrido-h4,
+.Recorrido-paso .Proyecto-p{
+    color: var(--color-primary-text);
+}
+
+.Recorrido-huella.is-pisada .Recorrido-huellaSvg{
+    fill: var(--color-recuadro);
+}
+
 .Recorrido-huellaSvg{
     width: 100%;
     height: 100%;
@@ -325,7 +392,7 @@
 /* La huella del paso actual, en el turquesa claro del portfolio. */
 .Recorrido-huella.is-actual .Recorrido-huellaSvg{
     opacity: 1;
-    fill: var(--light-color);
+    fill: var(--color-recuadro);
     filter: drop-shadow(0 0 .35rem var(--color-sombra-texto));
 }
 
@@ -354,6 +421,16 @@
    respeta el del diagrama original y la altura fija iguala las tarjetas. */
 .Proyecto-grid--flujos{
     grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+/* Diagramas apaisados: dos por fila y a su altura natural. */
+.Proyecto-grid--flujosAnchos{
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+}
+
+.Proyecto-grid--flujosAnchos .Proyecto-flujoImg{
+    height: auto;
+    max-height: 26rem;
 }
 
 /* Reserva dos líneas de título para que las miniaturas queden alineadas. */
@@ -471,7 +548,7 @@
     flex-flow: column nowrap;
     align-items: center;
 
-    background-color: var(--light-color);
+    background-color: var(--color-recuadro);
     box-shadow: 0 0 8px 5px var(--color-sombra-texto);
     padding: .75rem 1.5rem;
 }

@@ -10,21 +10,23 @@ export const PROYECTOS = [
         descripcion: 'Aplicación Full Stack para encontrar y reservar cuidadores de mascotas. Cuenta con login para dueños y cuidadores, buscador de cuidadores, reservas con chat entre dueño y cuidador, y un panel para que el cuidador gestione sus servicios. Desarrollada con React, Express y MongoDB.'
     },
     {
-        id: 'proyecto-2',
-        titulo: 'Proyecto 2',
-        imagen: '',
-        descripcion: 'Explicación e introducción breve al proyecto: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt quos rerum inventore ut similique exercitationem eum provident, delectus aut voluptates beatae eius at odio cupiditate modi incidunt illo laudantium! Ad.'
+        id: 'buscatupeli',
+        titulo: 'Busca tu peli',
+        imagen: '/assets/proyecto-buscatupeli.webp',
+        descripcion: 'Web para saber en qué plataforma de streaming ver cada película, con enlace directo a ella. Catálogo de 140 películas con API propia, noticias que se actualizan solas cada semana, newsletter y panel de administración. Desarrollada con HTML, CSS, JavaScript, Express y MongoDB.'
     },
     {
-        id: 'proyecto-3',
-        titulo: 'Proyecto 3',
-        imagen: '',
-        descripcion: 'Explicación e introducción breve al proyecto: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt quos rerum inventore ut similique exercitationem eum provident, delectus aut voluptates beatae eius at odio cupiditate modi incidunt illo laudantium! Ad.'
+        id: 'portaldental',
+        titulo: 'PortalDental',
+        imagen: '/assets/portaldental-portada.webp',
+        imagenEntera: true,
+        descripcion: 'Proyecto UX/UI: app móvil y landing para encontrar clínica dental por especialidad y cercanía, gestionar citas y llevar siempre contigo tu historial dental. Diseñada con Design Thinking, prototipada en Figma y validada con usuarios en Maze.'
     },
     {
-        id: 'proyecto-4',
-        titulo: 'Proyecto 4',
-        imagen: '',
-        descripcion: 'Explicación e introducción breve al proyecto: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt quos rerum inventore ut similique exercitationem eum provident, delectus aut voluptates beatae eius at odio cupiditate modi incidunt illo laudantium! Ad.'
+        id: 'turismosinbarreras',
+        titulo: 'Turismo Sin Barreras',
+        imagen: '/assets/tsb-portada.webp',
+        imagenEntera: true,
+        descripcion: 'Proyecto UX/UI: app móvil y landing para descubrir los museos de Madrid según su accesibilidad, calcular la ruta más accesible hasta ellos y organizar la visita. Diseñada con Design Thinking a partir de una encuesta a personas con y sin diversidad funcional.'
     }
 ]

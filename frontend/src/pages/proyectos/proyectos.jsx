@@ -94,11 +94,11 @@ const ProyectosPage = () => {
 // Subcomponente de la tarjeta de proyecto (patrón de map del profesor, C11b).
 const ProyectoCard = (props) => {
 
-    const { id, titulo, imagen, descripcion } = props
+    const { id, titulo, imagen, descripcion, imagenEntera = false } = props
 
     const contenido = (
         <>
-            {imagen && <img src={imagen} alt={`imagen ${titulo}`} className="Proyectos-img" />}
+            {imagen && <img src={imagen} alt={`imagen ${titulo}`} className={`Proyectos-img${imagenEntera ? ' Proyectos-img--entera' : ''}`} />}
             {!imagen && <div className="Proyectos-img" aria-hidden="true"></div>}
             <h3 className="Proyectos-h3">{titulo}</h3>
             <p className="Proyectos-p">{descripcion}</p>

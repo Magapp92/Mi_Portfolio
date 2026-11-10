@@ -20,13 +20,13 @@ const ProyectoPage = () => {
 
     const {
         titulo, subtitulo, intro, portada, tecnologias, enlaces, idea, perfiles,
-        recorrido, construccion, flujos, diseno, colores, tipografias, logo,
-        reto, mejoras, metricas, conclusion
+        recorrido, funcionalidades, construccion, flujos, diseno, colores, tipografias, logo,
+        reto, conclusion, icono = 'huella', construccionTitulo = 'Cómo está construido'
     } = proyecto
 
     return (
-        <main className="Proyecto">
-            <Cursor variante="huella" />
+        <main className={`Proyecto Proyecto--${icono}`}>
+            <Cursor variante={icono} />
 
             <div className="Proyecto-wrapper">
                 <Link to={ROUTES.PROYECTOS} className="Proyecto-volver">← Volver a proyectos</Link>
@@ -53,20 +53,33 @@ const ProyectoPage = () => {
                 <section className="Proyecto-section">
                     <h3 className="Proyecto-h3">La idea</h3>
                     <p className="Proyecto-p">{idea}</p>
-                    <div className="Proyecto-grid Proyecto-grid--dos">
-                        {perfiles.map(perfil =>
-                            <Tarjeta key={perfil.id} {...perfil} />
-                        )}
-                    </div>
+                    {perfiles &&
+                        <div className="Proyecto-grid Proyecto-grid--dos">
+                            {perfiles.map(perfil =>
+                                <Tarjeta key={perfil.id} {...perfil} />
+                            )}
+                        </div>
+                    }
                 </section>
 
                 <section className="Proyecto-section">
-                    <h3 className="Proyecto-h3">Recorrido por la app</h3>
-                    <Recorrido pasos={recorrido} />
+                    <h3 className="Proyecto-h3">{recorrido.titulo}</h3>
+                    <Recorrido pasos={recorrido.pasos} icono={icono} />
                 </section>
 
+                {funcionalidades &&
+                    <section className="Proyecto-section">
+                        <h3 className="Proyecto-h3">Qué la hace diferente</h3>
+                        <div className="Proyecto-grid Proyecto-grid--tres">
+                            {funcionalidades.map(funcionalidad =>
+                                <Tarjeta key={funcionalidad.id} {...funcionalidad} />
+                            )}
+                        </div>
+                    </section>
+                }
+
                 <section className="Proyecto-section">
-                    <h3 className="Proyecto-h3">Cómo está construido</h3>
+                    <h3 className="Proyecto-h3">{construccionTitulo}</h3>
                     <div className="Proyecto-grid Proyecto-grid--tres">
                         {construccion.map(parte =>
                             <Tarjeta key={parte.id} {...parte} />
@@ -74,15 +87,17 @@ const ProyectoPage = () => {
                     </div>
                 </section>
 
-                <section className="Proyecto-section">
-                    <h3 className="Proyecto-h3">Flujos de la app</h3>
-                    <p className="Proyecto-p">Así se mueve cada tipo de usuario por la aplicación, desde el login hasta la gestión de reservas y mascotas. Pulsa un diagrama para verlo a tamaño completo.</p>
-                    <div className="Proyecto-grid Proyecto-grid--flujos">
-                        {flujos.map(flujo =>
-                            <Flujo key={flujo.id} {...flujo} />
-                        )}
-                    </div>
-                </section>
+                {flujos &&
+                    <section className="Proyecto-section">
+                        <h3 className="Proyecto-h3">{flujos.titulo}</h3>
+                        <p className="Proyecto-p">{flujos.texto}</p>
+                        <div className={`Proyecto-grid Proyecto-grid--flujos${flujos.anchos ? ' Proyecto-grid--flujosAnchos' : ''}`}>
+                            {flujos.diagramas.map(flujo =>
+                                <Flujo key={flujo.id} {...flujo} />
+                            )}
+                        </div>
+                    </section>
+                }
 
                 <section className="Proyecto-section">
                     <h3 className="Proyecto-h3">Diseño</h3>
@@ -98,29 +113,29 @@ const ProyectoPage = () => {
                                     </li>
                                 )}
                             </ul>
-                            <p className="Proyecto-p">{tipografias}</p>
+                            {tipografias && <p className="Proyecto-p">{tipografias}</p>}
                         </div>
                         <Imagen {...logo} />
                     </div>
                 </section>
 
                 <section className="Proyecto-section">
-                    <h3 className="Proyecto-h3">Retos y segunda versión</h3>
-                    <p className="Proyecto-p">{reto}</p>
-                    <p className="Proyecto-p">Tras la primera evaluación revisé la aplicación a fondo y publiqué una segunda versión más sólida:</p>
+                    <h3 className="Proyecto-h3">{reto.titulo}</h3>
+                    <p className="Proyecto-p">{reto.texto}</p>
+                    <p className="Proyecto-p">{reto.intro}</p>
                     <ul className="Proyecto-lista">
-                        {mejoras.map(mejora =>
-                            <li key={mejora.id} className="Proyecto-item">{mejora.texto}</li>
+                        {reto.lista.map(item =>
+                            <li key={item.id} className="Proyecto-item">{item.texto}</li>
                         )}
                     </ul>
                     <div className="Proyecto-metricas">
-                        {metricas.map(metrica =>
+                        {reto.metricas.map(metrica =>
                             <div key={metrica.id} className="Proyecto-metrica">
                                 <span className="Proyecto-metricaValor">{metrica.valor}</span>
                                 <span className="Proyecto-metricaTexto">{metrica.texto}</span>
                             </div>
                         )}
-                        <p className="Proyecto-p Proyecto-p--nota">Puntuaciones de Lighthouse, gracias a imágenes WebP con carga diferida y tipografías alojadas en local.</p>
+                        <p className="Proyecto-p Proyecto-p--nota">{reto.nota}</p>
                     </div>
                 </section>
 
@@ -136,8 +151,8 @@ const ProyectoPage = () => {
 // Imagen del proyecto o, si aún no hay, hueco reservado con su etiqueta.
 const Imagen = (props) => {
 
-    const { imagen, etiqueta, grande = false } = props
-    const clase = `Proyecto-imagen${grande ? ' Proyecto-imagen--grande' : ''}`
+    const { imagen, etiqueta, grande = false, natural = false } = props
+    const clase = `Proyecto-imagen${grande ? ' Proyecto-imagen--grande' : ''}${natural ? ' Proyecto-imagen--natural' : ''}`
 
     if (imagen) return <img src={imagen} alt={etiqueta} className={clase} loading="lazy" />
 
@@ -158,8 +173,9 @@ const UMBRAL_SWIPE = 50
 
 const Recorrido = (props) => {
 
-    const { pasos } = props
+    const { pasos, icono } = props
     const total = pasos.length
+    const Icono = ICONOS[icono] ?? Huella
     const pista = [pasos[total - 1], ...pasos, pasos[0]]
 
     const [indice, setIndice] = useState(1)
@@ -244,12 +260,12 @@ const Recorrido = (props) => {
                 {pasos.map((paso, i) =>
                     <button
                         key={paso.id}
-                        className={`Recorrido-huella${i % 2 ? ' Recorrido-huella--derecha' : ''}${i <= actual ? ' is-pisada' : ''}${i === actual ? ' is-actual' : ''}`}
+                        className={`Recorrido-huella Recorrido-huella--${icono}${i % 2 ? ' Recorrido-huella--derecha' : ''}${i <= actual ? ' is-pisada' : ''}${i === actual ? ' is-actual' : ''}`}
                         onClick={() => mover(i + 1)}
                         aria-label={`Ir al paso ${i + 1}: ${paso.titulo}`}
                         aria-current={i === actual ? 'step' : undefined}
                     >
-                        <Huella />
+                        <Icono />
                     </button>
                 )}
             </div>
@@ -267,6 +283,33 @@ const Huella = () => (
         <ellipse cx="49" cy="27" rx="5.5" ry="7.5" transform="rotate(25 49 27)" />
     </svg>
 )
+
+// Rollo de película antiguo: disco con cinco ventanas y el eje central
+// (evenodd convierte los círculos interiores en huecos).
+const Rollo = () => (
+    <svg viewBox="0 0 64 64" className="Recorrido-huellaSvg" aria-hidden="true">
+        <path fillRule="evenodd" d="M4 32a28 28 0 1 0 56 0a28 28 0 1 0-56 0zM28 32a4 4 0 1 0 8 0a4 4 0 1 0-8 0zM25 17a7 7 0 1 0 14 0a7 7 0 1 0-14 0zM39.27 27.36a7 7 0 1 0 14 0a7 7 0 1 0-14 0zM33.82 44.14a7 7 0 1 0 14 0a7 7 0 1 0-14 0zM16.18 44.14a7 7 0 1 0 14 0a7 7 0 1 0-14 0zM10.73 27.36a7 7 0 1 0 14 0a7 7 0 1 0-14 0z" />
+    </svg>
+)
+
+// Diente (PortalDental): muela con dos raíces.
+const Diente = () => (
+    <svg viewBox="0 0 64 64" className="Recorrido-huellaSvg" aria-hidden="true">
+        <path d="M20 5C11 5 5 11 5 20c0 7 3 11 5 16 2 6 2 23 9 23 6 0 6-16 13-16s7 16 13 16c7 0 7-17 9-23 2-5 5-9 5-16 0-9-6-15-15-15-5 0-8 3-12 3S25 5 20 5z" />
+    </svg>
+)
+
+// Silla de ruedas (Turismo Sin Barreras), como la del logo del proyecto.
+const Silla = () => (
+    <svg viewBox="0 0 64 64" className="Recorrido-huellaSvg" aria-hidden="true">
+        <circle cx="36" cy="9" r="6" />
+        <path d="M31 17h7l2 14h12l6 18-5 2-5-14H33z" />
+        <path fillRule="evenodd" d="M11 44a16 16 0 1 0 32 0a16 16 0 1 0-32 0zM16 44a11 11 0 1 0 22 0a11 11 0 1 0-22 0z" />
+    </svg>
+)
+
+// Icono de los puntos del carrusel según el proyecto.
+const ICONOS = { huella: Huella, rollo: Rollo, diente: Diente, silla: Silla }
 
 // Diagrama de flujo: miniatura que abre la imagen completa en otra pestaña.
 const Flujo = (props) => {

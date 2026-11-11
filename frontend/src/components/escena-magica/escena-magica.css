@@ -10,3 +10,14 @@
     object-position: center 45%;
     image-rendering: pixelated;
 }
+
+/* En móvil la escena deja de ser fondo y se ve entera arriba, en su proporción */
+@media (max-width: 560px){
+    .EscenaMagica{
+        height: auto;
+
+        aspect-ratio: 16 / 9;
+        position: relative;
+        inset: auto;
+    }
+}

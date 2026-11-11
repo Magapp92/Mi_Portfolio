@@ -162,3 +162,11 @@ entre dos dibujos y va por encima de la copa */
         animation: none;
     }
 }
+
+/* En pantallas táctiles no hay ratón, así que ocultamos el cursor y su estela */
+@media (hover: none), (pointer: coarse){
+    .Cursor,
+    .Cursor-tail{
+        display: none;
+    }
+}

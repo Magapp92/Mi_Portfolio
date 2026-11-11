@@ -107,4 +107,23 @@
         font-size: 1em;
         overflow-wrap: anywhere;
     }
+
+    /* Ponemos las opciones en una rejilla de 2x2 para que la pregunta ocupe menos */
+    .QuizPregunta-opciones{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .QuizPregunta-item,
+    .QuizPregunta-opcion{
+        height: 100%;
+    }
+
+    .QuizPregunta-opcion{
+        padding: .45rem .5rem;
+
+        gap: .45rem;
+
+        font-size: .8em;
+    }
 }

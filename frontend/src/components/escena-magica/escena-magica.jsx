@@ -18,6 +18,15 @@ export const EscenaMagica = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    /* En móvil activamos la vida extra de la escena y la quitamos si la pantalla se agranda */
+    useEffect(() => {
+        const consulta = window.matchMedia('(max-width: 560px)')
+        const actualizar = () => motorRef.current?.ponerMovil(consulta.matches)
+        actualizar()
+        consulta.addEventListener('change', actualizar)
+        return () => consulta.removeEventListener('change', actualizar)
+    }, [])
+
     /* Avisamos al motor cuando cambia el escenario */
     useEffect(() => {
         if (motorRef.current) motorRef.current.cambiar(escena)

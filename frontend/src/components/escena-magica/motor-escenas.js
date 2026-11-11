@@ -607,6 +607,221 @@ export const crearMotorEscenas = (canvas, escenaInicial = 'comedor') => {
         sprite(PALOMA[paso], PAL_PALOMA, x, 112 + (paso ? 0 : -1), Math.cos(f * Math.PI) < 0)
     }
 
+    /* VIDA EXTRA EN MÓVIL */
+    /* En el móvil la escena se ve entera encima de la pregunta, así que le añadimos
+    más detalles en movimiento. En el ordenador no se pintan */
+
+    const MURCIELAGO = [['k.....k', 'kk.k.kk', '.kkrkk.', '..k.k..'], ['.......', '..krk..', 'kkkkkkk', 'k.k.k.k']]
+    const PAL_MURCIELAGO = { k: '#1c1622', r: '#d43a3a' }
+
+    const SOBRE = ['wwwww', 'wWrWw', 'wwwww']
+    const PAL_SOBRE = { w: '#f2e8cf', W: '#cdbd98', r: '#a61c1c' }
+
+    const LIBRO = [['bbbb.bbbb', 'bpppbpppb', 'bpllbpllb', 'bpppbpppb', 'bbbbbbbbb'], ['.bbb.bbb.', 'bpppbpppb', 'bpllbllpb', 'bpppbpppb', 'bbbbbbbbb']]
+    const PAL_LIBRO = { b: '#5a2a1a', p: '#efe3c2', l: '#9a8a6a' }
+
+    const CIERVO = [['.s.s......', '..s.......', '..ss......', '..sssssss.', '...ssssss.', '...s.s.s.s', '...s.s.s.s'],
+                    ['.s.s......', '..s.......', '..ss......', '..sssssss.', '...ssssss.', '..s..s.s..', '..s...s.s.']]
+    const PAL_CIERVO = { s: '#cfe6ff' }
+
+    const LECHUZA = [['w.....w', 'ww...ww', '.wwkww.', '..wew..', '..www..', '...y...'],
+                     ['.......', '..wkw..', 'wwwewww', 'w.www.w', '...y...', '.......']]
+    const PAL_LECHUZA = { w: '#f4f4f0', k: '#9aa0a8', e: '#e8b84a', y: '#e8a33a' }
+
+    /* Personajes en pixel art: el trío y tres profesores */
+    const TUNICA = { k: '#1e1e26', s: '#f0c8a0', d: '#3a2a1a', r: '#ae0001', y: '#eeba30' }
+    const HARRY = ['..hhhh..', '.hhhhhhh', '.hssceh.', '.geggeg.', '.ssssss.', '..ssss..', '.rryyrr.', 'kkkrrkkk', 'kkkkkkkk', 'skkkkkks', '.kkkkkk.', '.kkkkkk.', '.kk..kk.', '.dd..dd.']
+    const PAL_HARRY = { ...TUNICA, h: '#1a1410', g: '#2a2a2a', e: '#3a8a3a', c: '#c0504a' }
+    const HERMIONE = ['.bbbbbb.', 'bbbbbbbb', 'bbssssbb', 'bseesseb', 'bbssssbb', 'bb.ss.bb', '.rryyrr.', 'kkkkkkkk', 'kkkkkkkk', 'skkkkkks', '.kkkkkk.', '.kkkkkk.', '.kk..kk.', '.dd..dd.']
+    const PAL_HERMIONE = { ...TUNICA, b: '#7a4a22', e: '#4a2a10' }
+    const RON = ['..oooo..', '.oooooo.', '.osssso.', '.sesses.', '.ssffss.', '..ssss..', '.rryyrr.', 'kkkkkkkk', 'kkkkkkkk', 'skkkkkks', '.kkkkkk.', '.kkkkkk.', '.kk..kk.', '.dd..dd.']
+    const PAL_RON = { ...TUNICA, o: '#e0672a', e: '#3a6ab0', f: '#d08a5a' }
+    const SNAPE = ['..kkkk..', '.kkkkkk.', 'kkppppkk', 'kpeppepk', 'kkpppnkk', 'kk.pp.kk', '.kkkkkk.', 'kkkkkkkk', 'kkkkkkkk', 'pkkkkkkp', 'kkkkkkkk', 'kkkkkkkk', 'kkkkkkkk', 'kkkkkkkk']
+    const PAL_SNAPE = { k: '#121216', p: '#e8dcc8', e: '#000000', n: '#cdbda5' }
+    const MCGONAGALL = ['....g...', '...gg...', '..ggg...', '.gggggg.', 'gggggggg', '.ssssss.', '.lsslsl.', '.ssssss.', '..ssss..', '.GGGGGG.', 'GGGGGGGG', 'sGGGGGGs', 'GGGGGGGG', 'GGGGGGGG', 'GGGGGGGG']
+    const PAL_MCGONAGALL = { g: '#1f4a2a', G: '#2e6b3c', s: '#f0c8a0', l: '#c8c8d0' }
+    const DUMBLEDORE = ['....p...', '...pp...', '..ppp...', '.pppppp.', 'pppppppp', '.wssssw.', 'wslsslsw', 'wsswwssw', '.wwwwww.', '.wwwwww.', 'pwwwwwwp', 'ppwwwwpp', 'spppwpps', 'pppppppp', 'pppppppp', 'pppppppp']
+    const PAL_DUMBLEDORE = { p: '#5a2a8a', w: '#f0f0f0', s: '#f0c8a0', l: '#c8b45a' }
+
+    /* Estudiantes de las cuatro casas, con pelo y piel variados y la bufanda de su casa */
+    const CHICO = ['..hhhh..', '.hhhhhh.', '.hssssh.', '.sesses.', '.ssssss.', '..ssss..', '.AABBAA.', 'kkkAAkkk', 'kkkkkkkk', 'skkkkkks', '.kkkkkk.', '.kkkkkk.', '.kk..kk.', '.dd..dd.']
+    const CHICA = ['.hhhhhh.', 'hhhhhhhh', 'hhsssshh', 'hseessh.', 'hhssssh.', 'h.ssss.h', '.AABBAA.', 'kkkAAkkk', 'kkkkkkkk', 'skkkkkks', '.kkkkkk.', '.kkkkkk.', '.kk..kk.', '.dd..dd.']
+    const PELOS = ['#1a1410', '#7a4a22', '#e0c068', '#3a2a1a', '#a0522d', '#e0672a']
+    const PIELES = ['#f0c8a0', '#c89870', '#8a5a3a', '#f5d6b8']
+    const BUFANDAS = [['#ae0001', '#eeba30'], ['#1a472a', '#c0c0c0'], ['#222f5b', '#cd7f32'], ['#ecb939', '#372e29']]
+
+    /* Creamos una lista de estudiantes siempre iguales a partir de una semilla */
+    const crearEstudiantes = (semilla, posiciones) => {
+        const a = azar(semilla)
+        return posiciones.map(([x, y]) => {
+            const [A, B] = BUFANDAS[Math.floor(a() * 4)]
+            return {
+                x,
+                y,
+                mapa: a() < .5 ? CHICO : CHICA,
+                pal: { k: '#1e1e26', d: '#3a2a1a', e: '#2a2a2a', h: PELOS[Math.floor(a() * PELOS.length)], s: PIELES[Math.floor(a() * PIELES.length)], A, B },
+                f: a() * 6
+            }
+        })
+    }
+
+    /* Estudiantes sentados a las mesas del comedor (se ve de la bufanda para arriba) */
+    const comensales = crearEstudiantes(707, [
+        ...[10, 21, 32, 74, 85, 96, 142, 153, 164, 175, 197, 208, 219].map((x) => [x, 102]),
+        ...[8, 19, 30, 72, 83, 94, 105, 116, 127, 138, 149, 160, 182, 193, 204, 215, 226].map((x) => [x, 117])
+    ])
+
+    /* Estudiantes de pie en la clase de pociones */
+    const alumnos = crearEstudiantes(808, [[6, 132], [18, 132], [30, 132], [44, 132], [100, 112], [128, 132], [140, 132], [152, 132]])
+
+    /* Pintamos un personaje de pie con un pequeño balanceo; si va andando, también da pasitos */
+    const personaje = (mapa, pal, x, pies, t, f, andando = false, espejo = false) => {
+        const salto = andando ? Math.floor(t / 180 + f) % 2 : (Math.sin(t / 600 + f) > .85 ? 1 : 0)
+        sprite(mapa, pal, x, pies - mapa.length - salto, espejo)
+    }
+
+    /* Luz en la punta de la varita */
+    const varita = (x, y, t) => {
+        punto(m, x, y, '#8a6a44')
+        punto(m, x + 1, y - 1, '#8a6a44')
+        punto(m, x + 2, y - 2, Math.sin(t / 120) > 0 ? '#ffffff' : '#fff6c8')
+        m.fillStyle = 'rgba(255,250,210,.25)'
+        m.fillRect(x + 1, y - 3, 3, 3)
+    }
+
+    /* Destello en cruz que se enciende y se apaga */
+    const destello = (x, y, t, f, color = '#fff6c8') => {
+        const s = Math.sin(t / 400 + f)
+        if (s < .3) return
+        punto(m, x, y, color)
+        if (s > .75) {
+            punto(m, x - 1, y, color)
+            punto(m, x + 1, y, color)
+            punto(m, x, y - 1, color)
+            punto(m, x, y + 1, color)
+        }
+    }
+
+    /* Murciélago que cruza la escena aleteando en zigzag */
+    const murcielago = (t, periodo, desfase, y0, dir) => {
+        const f = ((t + desfase) % periodo) / periodo
+        const x = dir > 0 ? -10 + f * (W + 20) : W + 10 - f * (W + 20)
+        sprite(MURCIELAGO[Math.floor(t / 120) % 2], PAL_MURCIELAGO, x, y0 + Math.sin(t / 220 + desfase) * 4, dir < 0)
+    }
+
+    const cartas = [[30, 0], [85, .35], [140, .7], [190, .2], [215, .55]]
+    const vajilla = [16, 40, 64, 88, 112, 136, 160, 184, 208]
+
+    /* Comedor: vajilla dorada en las mesas, cartas que caen del techo y destellos en los estandartes */
+    const extraComedor = (t) => {
+        vajilla.forEach((x, i) => {
+            for (const y of [109, 123]) {
+                caja(m, x, y, 3, 1, '#d8d8e0')
+                punto(m, x + 5, y - 1, '#eeba30')
+                punto(m, x + 5, y, '#c9962a')
+                if ((i + y) % 3 === 0) punto(m, x + 9, y, '#d14a4a')
+            }
+        })
+        cartas.forEach(([x, f]) => {
+            const p = ((t / 7000) + f) % 1
+            if (p > .8) return
+            sprite(SOBRE, PAL_SOBRE, x + Math.sin(t / 500 + f * 9) * 6, -4 + p * 130, false)
+        })
+        ;[[43, 48], [62, 50], [176, 47], [196, 52]].forEach(([x, y], i) => destello(x, y, t, i * 1.7))
+        comensales.forEach((c) => sprite(c.mapa.slice(0, 8), c.pal, c.x, c.y - (Math.sin(t / 700 + c.f) > .9 ? 1 : 0), false))
+        personaje(DUMBLEDORE, PAL_DUMBLEDORE, 112, 105, t, 0)
+        personaje(MCGONAGALL, PAL_MCGONAGALL, 124, 105, t, 2)
+        sprite(HARRY.slice(0, 8), PAL_HARRY, 43, 102, false)
+        sprite(RON.slice(0, 8), PAL_RON, 53, 102, false)
+        sprite(HERMIONE.slice(0, 8), PAL_HERMIONE, 63, 102, false)
+    }
+
+    const burbujasGrandes = [[206, 0], [214, .3], [222, .6], [210, .8]]
+
+    /* Mazmorra: murciélagos, un libro de pociones que flota y burbujas que suben del caldero */
+    const extraMazmorra = (t) => {
+        murcielago(t, 8000, 0, 22, 1)
+        murcielago(t, 11000, 5000, 40, -1)
+        const y = 50 + Math.sin(t / 700) * 3
+        sprite(LIBRO[Math.floor(t / 900) % 2], PAL_LIBRO, 116, y, false)
+        ;[[110, 0], [131, 2], [120, 4]].forEach(([x, f]) => destello(x, y + Math.sin(t / 300 + f) * 4, t, f))
+        burbujasGrandes.forEach(([x, f]) => {
+            const p = ((t / 2600) + f) % 1
+            const by = 92 - p * 40
+            const c = p < .8 ? '#7cff6e' : '#c8ffc0'
+            punto(m, x + Math.sin(t / 300 + f * 7) * 2, by, c)
+            if (p < .5) punto(m, x + 1 + Math.sin(t / 300 + f * 7) * 2, by, c)
+        })
+        alumnos.forEach((c) => personaje(c.mapa, c.pal, c.x, c.y, t, c.f))
+        personaje(HARRY, PAL_HARRY, 68, 112, t, 0)
+        personaje(RON, PAL_RON, 78, 112, t, 1.5)
+        personaje(HERMIONE, PAL_HERMIONE, 88, 112, t, 3)
+        if (Math.sin(t / 900) > .4) caja(m, 95, 96, 1, 3, '#f0c8a0')
+        const ida = (t % 12000) / 12000
+        const sx = 112 + Math.abs(Math.sin(ida * Math.PI)) * 58
+        personaje(SNAPE, PAL_SNAPE, sx, 112, t, 0, true, Math.cos(ida * Math.PI) < 0)
+    }
+
+    const luciernagasExtra = (() => {
+        const a = azar(909)
+        return Array.from({ length: 12 }, () => ({ x: a() * W, y: 60 + a() * 60, f: a() * 6 }))
+    })()
+
+    /* Bosque: estrella fugaz, murciélagos ante la luna, un ciervo plateado y más luciérnagas */
+    const extraBosque = (t) => {
+        const e = (t % 7000) / 7000
+        if (e < .12) {
+            const k = e / .12
+            for (let i = 0; i < 6; i++) punto(m, 40 + k * 120 - i * 2, 8 + k * 22 - i, i < 2 ? '#ffffff' : '#9fb8e8')
+        }
+        murcielago(t, 9000, 0, 18, -1)
+        murcielago(t, 12000, 4000, 30, 1)
+        const c = (t % 20000) / 20000
+        const cx = -12 + c * (W + 24)
+        sprite(CIERVO[Math.floor(t / 260) % 2], PAL_CIERVO, cx, 100, false)
+        const paseo = (t % 26000) / 26000
+        const px = -40 + paseo * (W + 60)
+        personaje(HERMIONE, PAL_HERMIONE, px, 124, t, 1, true)
+        personaje(RON, PAL_RON, px + 10, 124, t, 2, true)
+        personaje(HARRY, PAL_HARRY, px + 20, 124, t, 0, true)
+        varita(px + 28, 116, t)
+        luciernagasExtra.forEach((l) => {
+            const s = Math.sin(t / 500 + l.f)
+            if (s > 0) punto(m, l.x + Math.sin(t / 1300 + l.f) * 6, l.y + Math.cos(t / 900 + l.f) * 3, s > .6 ? '#e6ff8a' : '#9cc84a')
+        })
+    }
+
+    /* Estación: carrito con baúl y jaula, lechuza blanca volando, cartas al viento y vapor por el andén */
+    const extraEstacion = (t) => {
+        caja(m, 84, 106, 22, 10, '#6e3b1e')
+        caja(m, 84, 106, 22, 1, '#8a5530')
+        caja(m, 86, 109, 18, 1, '#c9962a')
+        caja(m, 82, 116, 26, 2, '#3a3a42')
+        punto(m, 85, 119, '#151518')
+        punto(m, 104, 119, '#151518')
+        caja(m, 108, 104, 1, 13, '#3a3a42')
+        caja(m, 88, 97, 9, 9, '#c9962a')
+        caja(m, 89, 98, 7, 7, '#2a2418')
+        sprite(LECHUZA[0].slice(2, 5), PAL_LECHUZA, 89, 100, false)
+        personaje(HARRY, PAL_HARRY, 112, 122, t, 0)
+        personaje(RON, PAL_RON, 122, 122, t, 1.2)
+        personaje(HERMIONE, PAL_HERMIONE, 132, 122, t, 2.4)
+        const f = (t % 10000) / 10000
+        sprite(LECHUZA[Math.floor(t / 150) % 2], PAL_LECHUZA, W + 10 - f * (W + 20), 30 + Math.sin(t / 280) * 3, true)
+        ;[[0, 70], [.4, 56], [.75, 84]].forEach(([d, y0]) => {
+            const p = ((t / 9000) + d) % 1
+            sprite(SOBRE, PAL_SOBRE, W + 6 - p * (W + 12), y0 + Math.sin(t / 400 + d * 9) * 5, false)
+        })
+        for (let i = 0; i < 4; i++) {
+            const p = ((t / 3000) + i * .25) % 1
+            m.fillStyle = `rgba(235,235,240,${.35 * (1 - p)})`
+            m.fillRect(196 - p * 70, 108 - p * 6, 6 + p * 8, 4 + p * 3)
+        }
+    }
+
+    const EXTRAS = { comedor: extraComedor, mazmorra: extraMazmorra, bosque: extraBosque, estacion: extraEstacion }
+    let conExtras = false
+
     /* MOTOR: ESCENARIO ACTUAL Y TRANSICIÓN */
 
     /* Juntamos el fondo y la vida de cada escenario */
@@ -645,8 +860,14 @@ export const crearMotorEscenas = (canvas, escenaInicial = 'comedor') => {
     const sinMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     /* Pintamos cada fotograma y, si toca, la transición de bloques */
-    const bucle = (t) => {
+    /* Pintamos el escenario actual y, en móvil, su vida extra */
+    const pintar = (t) => {
         ESCENAS[actual](t)
+        if (conExtras) EXTRAS[actual](t)
+    }
+
+    const bucle = (t) => {
+        pintar(t)
         if (siguiente) {
             // De 0 a 1 se cubre la pantalla y de 1 a 2 se descubre
             const p = (t - inicioTrans) / 450
@@ -666,11 +887,17 @@ export const crearMotorEscenas = (canvas, escenaInicial = 'comedor') => {
         if (!ESCENAS[nombre] || nombre === actual) return
         if (sinMovimiento) {
             actual = nombre
-            ESCENAS[actual](0)
+            pintar(0)
             return
         }
         siguiente = nombre
         inicioTrans = performance.now()
+    }
+
+    /* Activamos o quitamos la vida extra del móvil */
+    const ponerMovil = (activo) => {
+        conExtras = activo
+        if (sinMovimiento) pintar(0)
     }
 
     /* Paramos la animación */
@@ -678,8 +905,8 @@ export const crearMotorEscenas = (canvas, escenaInicial = 'comedor') => {
         if (idFrame) cancelAnimationFrame(idFrame)
     }
 
-    if (sinMovimiento) ESCENAS[actual](0)
+    if (sinMovimiento) pintar(0)
     else idFrame = requestAnimationFrame(bucle)
 
-    return { cambiar, destruir }
+    return { cambiar, ponerMovil, destruir }
 }

@@ -307,6 +307,34 @@ el fondo y el contenido va encima en pergaminos */
         width: 100%;
         flex: 0 0 auto;
     }
+
+    /* La escena se ve entera arriba y el contenido va debajo, como una caja de diálogo */
+    .Juego{
+        min-height: 0;
+        background-color: #17131d;
+
+        flex-flow: column nowrap;
+    }
+
+    .Juego-capa{
+        padding: .9rem .6rem 1rem;
+
+        justify-content: flex-start;
+    }
+
+    /* El título se queda encima de la escena */
+    .Juego-titulo{
+        width: 100%;
+
+        position: absolute;
+        top: calc(-56.25vw + .9rem);
+        left: 0;
+    }
+
+    .Juego-pergamino{
+        width: 100%;
+        padding: .85rem .9rem;
+    }
 }
 
 /* En pantallas muy estrechas reducimos un poco más los datos del marcador */

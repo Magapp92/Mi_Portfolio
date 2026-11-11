@@ -188,6 +188,7 @@ const Recorrido = (props) => {
     const [indice, setIndice] = useState(1)
     const [conTransicion, setConTransicion] = useState(true)
     const [moviendo, setMoviendo] = useState(false)
+    const [arrastre, setArrastre] = useState(0)
     const inicioSwipe = useRef(null)
 
     // Paso real que corresponde a la posición de la pista
@@ -224,7 +225,14 @@ const Recorrido = (props) => {
 
     /* Guardamos dónde empieza el arrastre, con el dedo o con el ratón */
     const empezarSwipe = (e) => {
+        if (moviendo) return
         inicioSwipe.current = e.clientX
+    }
+
+    /* En móvil y tablet la tarjeta sigue al dedo mientras se arrastra */
+    const seguirSwipe = (e) => {
+        if (inicioSwipe.current === null || !window.matchMedia('(max-width: 930px)').matches) return
+        setArrastre(e.clientX - inicioSwipe.current)
     }
 
     /* Si el arrastre es lo bastante largo pasamos al paso anterior o al siguiente */
@@ -232,9 +240,16 @@ const Recorrido = (props) => {
         if (inicioSwipe.current === null) return
         const distancia = e.clientX - inicioSwipe.current
         inicioSwipe.current = null
+        setArrastre(0)
         if (Math.abs(distancia) < UMBRAL_SWIPE) return
         if (distancia < 0) siguiente()
         else anterior()
+    }
+
+    /* Si el dedo sale de la ventana soltamos el arrastre */
+    const cancelarSwipe = () => {
+        inicioSwipe.current = null
+        setArrastre(0)
     }
 
     return (
@@ -242,12 +257,12 @@ const Recorrido = (props) => {
             <div className="Recorrido-escenario">
                 <button className="Recorrido-flecha Recorrido-flecha--prev" onClick={anterior} aria-label="Paso anterior"></button>
 
-                <div className="Recorrido-ventana" onPointerDown={empezarSwipe} onPointerUp={terminarSwipe} onPointerLeave={() => { inicioSwipe.current = null }}>
+                <div className="Recorrido-ventana" onPointerDown={empezarSwipe} onPointerMove={seguirSwipe} onPointerUp={terminarSwipe} onPointerCancel={cancelarSwipe} onPointerLeave={cancelarSwipe}>
                     <div
                         className="Recorrido-pista"
                         style={{
-                            transform: `translateX(-${indice * 100}%)`,
-                            transition: conTransicion ? undefined : 'none'
+                            transform: arrastre ? `translateX(calc(-${indice * 100}% + ${arrastre}px))` : `translateX(-${indice * 100}%)`,
+                            transition: conTransicion && !arrastre ? undefined : 'none'
                         }}
                         onTransitionEnd={terminarTransicion}
                     >

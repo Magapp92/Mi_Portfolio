@@ -196,6 +196,11 @@ El padding lateral es grande para que el texto no quede debajo de las flechas */
 
 /* En tablet quitamos el padding grande y bajamos las flechas debajo de las tarjetas */
 @media (max-width: 930px){
+    /* En pantallas táctiles el paso entre tarjetas es rápido, al ritmo del dedo */
+    .Proyectos-container{
+        transition: transform .35s ease-out;
+    }
+
     .Proyectos-wrapper{
         padding: .75rem 1.25rem;
     }

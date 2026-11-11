@@ -27,6 +27,7 @@ export const Proyectos = () => {
     const [conTransicion, setConTransicion] = useState(true)
     const [moviendo, setMoviendo] = useState(false)
     const [pausado, setPausado] = useState(false)
+    const [arrastre, setArrastre] = useState(0)
     const inicioSwipe = useRef(null)
     const haDeslizado = useRef(false)
 
@@ -47,17 +48,27 @@ export const Proyectos = () => {
     const pausarSlider = () => setPausado(true)
     const reanudarSlider = () => setPausado(false)
 
+    // En móvil y tablet las tarjetas siguen al dedo mientras se arrastra
+    const esMovil = () => window.matchMedia('(max-width: 930px)').matches
+
     /* Deslizar con el dedo o arrastrando con el ratón: guardamos dónde empieza
     y al soltar movemos el slider si el arrastre es suficiente */
     const empezarSwipe = (e) => {
+        if (moviendo) return
         inicioSwipe.current = e.clientX
         haDeslizado.current = false
+    }
+
+    const seguirSwipe = (e) => {
+        if (inicioSwipe.current === null || !esMovil()) return
+        setArrastre(e.clientX - inicioSwipe.current)
     }
 
     const terminarSwipe = (e) => {
         if (inicioSwipe.current === null) return
         const distancia = e.clientX - inicioSwipe.current
         inicioSwipe.current = null
+        setArrastre(0)
         if (Math.abs(distancia) < UMBRAL_SWIPE) return
         haDeslizado.current = true
         if (distancia < 0) siguiente()
@@ -66,6 +77,7 @@ export const Proyectos = () => {
 
     const cancelarSwipe = () => {
         inicioSwipe.current = null
+        setArrastre(0)
     }
 
     // Si acabamos de deslizar no abrimos el proyecto de la tarjeta
@@ -109,6 +121,7 @@ export const Proyectos = () => {
                     onMouseOver={pausarSlider}
                     onMouseOut={reanudarSlider}
                     onPointerDown={empezarSwipe}
+                    onPointerMove={seguirSwipe}
                     onPointerUp={terminarSwipe}
                     onPointerCancel={cancelarSwipe}
                     onPointerLeave={cancelarSwipe}
@@ -119,8 +132,8 @@ export const Proyectos = () => {
                         className="Proyectos-container"
                         style={{
                             '--tarjetas': PISTA.length,
-                            transform: `translateX(-${ANCHO_TARJETA * indice}%)`,
-                            transition: conTransicion ? undefined : 'none'
+                            transform: arrastre ? `translateX(calc(-${ANCHO_TARJETA * indice}% + ${arrastre}px))` : `translateX(-${ANCHO_TARJETA * indice}%)`,
+                            transition: conTransicion && !arrastre ? undefined : 'none'
                         }}
                         onTransitionEnd={terminarTransicion}
                     >

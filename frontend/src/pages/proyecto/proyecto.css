@@ -684,6 +684,11 @@ y altura fija para que las tarjetas queden iguales */
 
 /* En pantallas medianas pasamos todo a una columna y achicamos flechas y huellas */
 @media (max-width: 930px){
+    /* En pantallas táctiles el paso entre tarjetas es rápido, al ritmo del dedo */
+    .Recorrido-pista{
+        transition: transform .35s ease-out;
+    }
+
     .Proyecto-wrapper{
         padding: 1.25rem 1.5rem 2rem;
     }

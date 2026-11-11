@@ -1,30 +1,22 @@
-// hooks/use-cronometro.js
-// Cronómetro del juego. Cuenta segundos mientras está activo.
-// El setTimeout se limpia en el return del useEffect (regla C13) y el setter
-// se llama con el valor directo `segundos + 1` (patrón profesor, regla C7).
 
 import { useState, useEffect } from 'react'
 
-/**
- * @returns {{ segundos: number, activo: boolean, iniciarCronometro: Function, pararCronometro: Function }}
- */
+/* Cronómetro de la partida: suma un segundo mientras está activo */
 export const useCronometro = () => {
-
     const [segundos, setSegundos] = useState(0)
     const [activo, setActivo] = useState(false)
 
+    /* Cada vez que cambian los segundos programamos el siguiente y lo limpiamos
+    al parar o al desmontar el componente */
     useEffect(() => {
         if (!activo) return
 
-        // Un tick por segundo; al depender de `segundos` el efecto se re-lanza
-        // en cada cambio y no hay closures obsoletas.
         const timeout = setTimeout(() => setSegundos(segundos + 1), 1000)
 
-        // Cleanup del timeout (regla C13).
         return () => clearTimeout(timeout)
     }, [activo, segundos])
 
-    // Handlers en castellano (regla C7b).
+    /* Empezamos desde cero */
     const iniciarCronometro = () => {
         setSegundos(0)
         setActivo(true)

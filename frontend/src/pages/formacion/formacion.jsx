@@ -1,12 +1,10 @@
-// pages/formacion/formacion.jsx
-// Página de formación. Traslada formacion.html + js/formacion.js: cada
-// tarjeta hexagonal gira (flip) al pasar el ratón por encima (CSS :hover).
+/* Página de formación: cada tarjeta hexagonal gira al pasar el ratón */
 
-import { Cursor } from '@/components/cursor/cursor.jsx'
-import { FORMACION } from '@/data/formacion.js'
+import { Cursor } from '@components/cursor/cursor.jsx'
+import { FORMACION } from '@data/formacion.js'
 import './formacion.css'
 
-const FormacionPage = () => {
+export const Formacion = () => {
     return (
         <main className="Formacion">
             <Cursor variante="halo" />
@@ -26,12 +24,11 @@ const FormacionPage = () => {
     )
 }
 
-// Subcomponente de la tarjeta flip (patrón de map del profesor, C11b).
+/* Tarjeta con el título delante y la descripción detrás, el giro lo hace el CSS */
 const TarjetaFormacion = (props) => {
 
     const { titulo, descripcion } = props
 
-    // El giro lo hace el CSS con :hover.
     return (
         <article className="Formacion-article">
             <div className="Formacion-front">
@@ -43,5 +40,3 @@ const TarjetaFormacion = (props) => {
         </article>
     )
 }
-
-export default FormacionPage

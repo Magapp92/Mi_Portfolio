@@ -1,59 +1,58 @@
-/* components/cursor/cursor.css
-   Estilos del cursor personalizado. Trasladados de css/cursor.css y del
-   .Main-cursor de about.css. Se usa position:fixed (en vez de absolute dentro
-   de .Main) porque el listener usa clientX/clientY del viewport. */
+/* Estilos del cursor personalizado y de cada una de sus variantes */
 
+/* Usamos position fixed porque el cursor se mueve con las coordenadas de la ventana */
 .Cursor{
+    border-radius: 50%;
+
     position: fixed;
     top: 0;
     left: 0;
     z-index: 3;
 
-    border-radius: 50%;
     pointer-events: none;
     mix-blend-mode: screen;
 }
 
-/* Variante home: bolita cian pequeña con brillo. */
+/* Bolita cian con brillo para la página de inicio */
 .Cursor--punto{
     width: 1.25rem;
     height: 1.25rem;
+    margin: -.625rem 0 0 -.625rem;
     background-color: var(--color-cursor);
     box-shadow: 0 0 .725rem var(--color-cursor), 0 0 1rem var(--color-cursor), 0 0 2rem var(--color-cursor);
-    margin: -0.625rem 0 0 -0.625rem;
 }
 
-/* Variante about: círculo difuminado con halo rosa. */
+/* Círculo difuminado con halo rosa */
 .Cursor--halo{
     width: 4rem;
     height: 4rem;
+    margin: -2rem 0 0 -2rem;
     background-color: var(--color-cursor-blur);
     box-shadow: 0 0 .725rem var(--color-cursor-halo), 0 0 1rem var(--color-cursor-halo), 0 0 2rem var(--color-cursor-halo);
-    margin: -2rem 0 0 -2rem;
-    transition: transform 0.01s ease;
+
+    transition: transform .01s ease;
 }
 
-/* Sin transition en transform: el movimiento lo interpola el bucle de
-   requestAnimationFrame del componente — mezclar ambos daba saltos. */
+/* Bolitas de la estela. No llevan transition porque el movimiento
+ya lo hace la animación del componente */
 .Cursor-tail{
     width: 1.25rem;
     height: 1.25rem;
+    margin: -.625rem 0 0 -.625rem;
+    border-radius: 50%;
+    box-shadow: 0 0 .725rem var(--color-cursor), 0 0 1rem var(--color-cursor), 0 0 2rem var(--color-cursor);
 
     position: fixed;
     top: 0;
     left: 0;
     z-index: 3;
 
-    border-radius: 50%;
-    box-shadow: 0 0 .725rem var(--color-cursor), 0 0 1rem var(--color-cursor), 0 0 2rem var(--color-cursor);
     pointer-events: none;
-    margin: -0.625rem 0 0 -0.625rem;
     mix-blend-mode: screen;
 }
 
-/* Variante detalle de proyecto: huella de perro como la del carrusel de
-   PawCare, en turquesa claro con contorno oscuro para verse tanto sobre los
-   recuadros claros como sobre el fondo azul. Inclinada como si caminara. */
+/* Huella de perro para PawCare, con contorno para que se vea
+sobre fondos claros y oscuros */
 .Cursor--huella{
     width: 2rem;
     height: 2rem;
@@ -66,8 +65,7 @@
     background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg transform='rotate(-20 32 32)' fill='%23007219' stroke='%23ededed' stroke-width='2.5'%3E%3Cpath d='M32 34c-9 0-17 8-17 15 0 6 5 9 10 8 3-.5 4.5-2 7-2s4 1.5 7 2c5 1 10-2 10-8 0-7-8-15-17-15z'/%3E%3Cellipse cx='15' cy='27' rx='5.5' ry='7.5' transform='rotate(-25 15 27)'/%3E%3Cellipse cx='25.5' cy='15' rx='5.5' ry='8' transform='rotate(-8 25.5 15)'/%3E%3Cellipse cx='38.5' cy='15' rx='5.5' ry='8' transform='rotate(8 38.5 15)'/%3E%3Cellipse cx='49' cy='27' rx='5.5' ry='7.5' transform='rotate(25 49 27)'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* Variante rollo de película (Busca tu peli): mismo tamaño y colores que la
-   huella, con la forma del punto del carrusel de ese proyecto. */
+/* Rollo de película para Busca tu peli */
 .Cursor--rollo{
     width: 2rem;
     height: 2rem;
@@ -80,8 +78,8 @@
     background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%2307c5d6' stroke='%23092c36' stroke-width='2.5' fill-rule='evenodd' d='M4 32a28 28 0 1 0 56 0a28 28 0 1 0-56 0zM28 32a4 4 0 1 0 8 0a4 4 0 1 0-8 0zM25 17a7 7 0 1 0 14 0a7 7 0 1 0-14 0zM39.27 27.36a7 7 0 1 0 14 0a7 7 0 1 0-14 0zM33.82 44.14a7 7 0 1 0 14 0a7 7 0 1 0-14 0zM16.18 44.14a7 7 0 1 0 14 0a7 7 0 1 0-14 0zM10.73 27.36a7 7 0 1 0 14 0a7 7 0 1 0-14 0z'/%3E%3C/svg%3E");
 }
 
-/* Variante diente (PortalDental): azul de la marca con contorno claro para
-   verse sobre sus recuadros azules. */
+/* Diente azul para PortalDental, con contorno claro para que se vea
+sobre sus recuadros azules */
 .Cursor--diente{
     width: 2rem;
     height: 2rem;
@@ -94,8 +92,7 @@
     background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%230D76BC' stroke='%23ededed' stroke-width='2.5' d='M20 5C11 5 5 11 5 20c0 7 3 11 5 16 2 6 2 23 9 23 6 0 6-16 13-16s7 16 13 16c7 0 7-17 9-23 2-5 5-9 5-16 0-9-6-15-15-15-5 0-8 3-12 3S25 5 20 5z'/%3E%3C/svg%3E");
 }
 
-/* Variante silla de ruedas (Turismo Sin Barreras): verde menta de la app
-   con contorno oscuro, como el logo. */
+/* Silla de ruedas en verde menta para Turismo Sin Barreras */
 .Cursor--silla{
     width: 2rem;
     height: 2rem;
@@ -108,8 +105,7 @@
     background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='%234DC79E' stroke='%23092c36' stroke-width='2.5'%3E%3Ccircle cx='36' cy='9' r='6'/%3E%3Cpath d='M31 17h7l2 14h12l6 18-5 2-5-14H33z'/%3E%3Cpath fill-rule='evenodd' d='M11 44a16 16 0 1 0 32 0a16 16 0 1 0-32 0zM16 44a11 11 0 1 0 22 0a11 11 0 1 0-22 0z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* Variante libro abierto (Ahora Somos Dos): naranja salmón del libro con
-   contorno oscuro. */
+/* Libro abierto en color salmón para Ahora Somos Dos */
 .Cursor--libro{
     width: 2rem;
     height: 2rem;
@@ -120,4 +116,49 @@
     filter: drop-shadow(0 0 .2rem rgba(9, 44, 54, .45));
 
     background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23F0836E' stroke='%23092c36' stroke-width='2.5' fill-rule='evenodd' d='M32 15C25 10 15 9 5 11v40c10-2 20-1 27 4 7-5 17-6 27-4V11c-10-2-20-1-27 4zM31 18h2v33h-2z'/%3E%3C/svg%3E");
+}
+
+/* Calendario magenta para Agenda 2026 */
+.Cursor--calendario{
+    width: 2rem;
+    height: 2rem;
+    margin: -1rem 0 0 -1rem;
+
+    border-radius: 0;
+    mix-blend-mode: normal;
+    filter: drop-shadow(0 0 .2rem rgba(9, 44, 54, .45));
+
+    background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='%23A4358B' stroke='%23ededed' stroke-width='2.5'%3E%3Cpath fill-rule='evenodd' d='M8 12h48v44H8zM12 24h40v28H12zM16 28h6v6h-6zM29 28h6v6h-6zM42 28h6v6h-6zM16 40h6v6h-6zM29 40h6v6h-6z'/%3E%3Cpath d='M18 6h4v12h-4zM42 6h4v12h-4z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Snitch dorada en pixel art para el juego. Las alas aletean cambiando
+entre dos dibujos y va por encima de la copa */
+.Cursor--snitch{
+    width: 3.5rem;
+    height: 2rem;
+    margin: -1.125rem 0 0 -1.75rem;
+
+    z-index: 10;
+
+    border-radius: 0;
+    mix-blend-mode: normal;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 .35rem rgba(255, 210, 90, .65));
+
+    background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 16' shape-rendering='crispEdges'%3E%3Crect x='3' y='0' width='1' height='1' fill='%233a2408'/%3E%3Crect x='25' y='0' width='1' height='1' fill='%233a2408'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%233a2408'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%23c3cad6'/%3E%3Crect x='4' y='1' width='1' height='1' fill='%233a2408'/%3E%3Crect x='6' y='1' width='2' height='1' fill='%233a2408'/%3E%3Crect x='21' y='1' width='2' height='1' fill='%233a2408'/%3E%3Crect x='24' y='1' width='1' height='1' fill='%233a2408'/%3E%3Crect x='25' y='1' width='1' height='1' fill='%23c3cad6'/%3E%3Crect x='26' y='1' width='1' height='1' fill='%233a2408'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%233a2408'/%3E%3Crect x='3' y='2' width='2' height='1' fill='%23c3cad6'/%3E%3Crect x='5' y='2' width='1' height='1' fill='%233a2408'/%3E%3Crect x='6' y='2' width='2' height='1' fill='%23c3cad6'/%3E%3Crect x='8' y='2' width='1' height='1' fill='%233a2408'/%3E%3Crect x='20' y='2' width='1' height='1' fill='%233a2408'/%3E%3Crect x='21' y='2' width='2' height='1' fill='%23c3cad6'/%3E%3Crect x='23' y='2' width='1' height='1' fill='%233a2408'/%3E%3Crect x='24' y='2' width='2' height='1' fill='%23c3cad6'/%3E%3Crect x='26' y='2' width='1' height='1' fill='%233a2408'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%233a2408'/%3E%3Crect x='3' y='3' width='3' height='1' fill='%23c3cad6'/%3E%3Crect x='6' y='3' width='1' height='1' fill='%233a2408'/%3E%3Crect x='7' y='3' width='2' height='1' fill='%23c3cad6'/%3E%3Crect x='9' y='3' width='1' height='1' fill='%233a2408'/%3E%3Crect x='19' y='3' width='1' height='1' fill='%233a2408'/%3E%3Crect x='20' y='3' width='2' height='1' fill='%23c3cad6'/%3E%3Crect x='22' y='3' width='1' height='1' fill='%233a2408'/%3E%3Crect x='23' y='3' width='3' height='1' fill='%23c3cad6'/%3E%3Crect x='26' y='3' width='1' height='1' fill='%233a2408'/%3E%3Crect x='3' y='4' width='2' height='1' fill='%233a2408'/%3E%3Crect x='5' y='4' width='4' height='1' fill='%23c3cad6'/%3E%3Crect x='9' y='4' width='1' height='1' fill='%233a2408'/%3E%3Crect x='13' y='4' width='2' height='1' fill='%233a2408'/%3E%3Crect x='19' y='4' width='1' height='1' fill='%233a2408'/%3E%3Crect x='20' y='4' width='4' height='1' fill='%23c3cad6'/%3E%3Crect x='24' y='4' width='2' height='1' fill='%233a2408'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%233a2408'/%3E%3Crect x='3' y='5' width='4' height='1' fill='%23c3cad6'/%3E%3Crect x='7' y='5' width='3' height='1' fill='%23f6f7fb'/%3E%3Crect x='10' y='5' width='3' height='1' fill='%233a2408'/%3E%3Crect x='13' y='5' width='2' height='1' fill='%23ffe27a'/%3E%3Crect x='15' y='5' width='2' height='1' fill='%233a2408'/%3E%3Crect x='18' y='5' width='1' height='1' fill='%233a2408'/%3E%3Crect x='19' y='5' width='3' height='1' fill='%23f6f7fb'/%3E%3Crect x='22' y='5' width='4' height='1' fill='%23c3cad6'/%3E%3Crect x='26' y='5' width='1' height='1' fill='%233a2408'/%3E%3Crect x='3' y='6' width='1' height='1' fill='%233a2408'/%3E%3Crect x='4' y='6' width='3' height='1' fill='%23c3cad6'/%3E%3Crect x='7' y='6' width='4' height='1' fill='%23f6f7fb'/%3E%3Crect x='11' y='6' width='1' height='1' fill='%23ffe27a'/%3E%3Crect x='12' y='6' width='1' height='1' fill='%23fffbe0'/%3E%3Crect x='13' y='6' width='2' height='1' fill='%23ffe27a'/%3E%3Crect x='15' y='6' width='2' height='1' fill='%23e8b832'/%3E%3Crect x='17' y='6' width='1' height='1' fill='%233a2408'/%3E%3Crect x='18' y='6' width='4' height='1' fill='%23f6f7fb'/%3E%3Crect x='22' y='6' width='3' height='1' fill='%23c3cad6'/%3E%3Crect x='25' y='6' width='1' height='1' fill='%233a2408'/%3E%3Crect x='4' y='7' width='2' height='1' fill='%233a2408'/%3E%3Crect x='6' y='7' width='1' height='1' fill='%23c3cad6'/%3E%3Crect x='7' y='7' width='4' height='1' fill='%23f6f7fb'/%3E%3Crect x='11' y='7' width='3' height='1' fill='%23fffbe0'/%3E%3Crect x='14' y='7' width='3' height='1' fill='%23e8b832'/%3E%3Crect x='17' y='7' width='5' height='1' fill='%23f6f7fb'/%3E%3Crect x='22' y='7' width='1' height='1' fill='%23c3cad6'/%3E%3Crect x='23' y='7' width='2' height='1' fill='%233a2408'/%3E%3Crect x='6' y='8' width='3' height='1' fill='%233a2408'/%3E%3Crect x='9' y='8' width='1' height='1' fill='%23f6f7fb'/%3E%3Crect x='10' y='8' width='2' height='1' fill='%23ffe27a'/%3E%3Crect x='12' y='8' width='2' height='1' fill='%23fffbe0'/%3E%3Crect x='14' y='8' width='3' height='1' fill='%23e8b832'/%3E%3Crect x='17' y='8' width='1' height='1' fill='%23a8741a'/%3E%3Crect x='18' y='8' width='2' height='1' fill='%23f6f7fb'/%3E%3Crect x='20' y='8' width='3' height='1' fill='%233a2408'/%3E%3Crect x='9' y='9' width='1' height='1' fill='%233a2408'/%3E%3Crect x='10' y='9' width='2' height='1' fill='%23ffe27a'/%3E%3Crect x='12' y='9' width='4' height='1' fill='%23e8b832'/%3E%3Crect x='16' y='9' width='2' height='1' fill='%23a8741a'/%3E%3Crect x='18' y='9' width='2' height='1' fill='%233a2408'/%3E%3Crect x='10' y='10' width='1' height='1' fill='%233a2408'/%3E%3Crect x='11' y='10' width='4' height='1' fill='%23e8b832'/%3E%3Crect x='15' y='10' width='2' height='1' fill='%23a8741a'/%3E%3Crect x='17' y='10' width='1' height='1' fill='%233a2408'/%3E%3Crect x='10' y='11' width='1' height='1' fill='%233a2408'/%3E%3Crect x='11' y='11' width='3' height='1' fill='%23e8b832'/%3E%3Crect x='14' y='11' width='3' height='1' fill='%23a8741a'/%3E%3Crect x='17' y='11' width='1' height='1' fill='%233a2408'/%3E%3Crect x='11' y='12' width='2' height='1' fill='%233a2408'/%3E%3Crect x='13' y='12' width='2' height='1' fill='%23a8741a'/%3E%3Crect x='15' y='12' width='2' height='1' fill='%233a2408'/%3E%3Crect x='13' y='13' width='2' height='1' fill='%233a2408'/%3E%3C/svg%3E");
+    animation: snitchAletea .14s steps(1) infinite;
+}
+
+/* Segundo dibujo de la snitch con las alas abajo */
+@keyframes snitchAletea{
+    50%{ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 16' shape-rendering='crispEdges'%3E%3Crect x='13' y='4' width='2' height='1' fill='%233a2408'/%3E%3Crect x='11' y='5' width='2' height='1' fill='%233a2408'/%3E%3Crect x='13' y='5' width='2' height='1' fill='%23ffe27a'/%3E%3Crect x='15' y='5' width='2' height='1' fill='%233a2408'/%3E%3Crect x='3' y='6' width='2' height='1' fill='%233a2408'/%3E%3Crect x='10' y='6' width='1' height='1' fill='%233a2408'/%3E%3Crect x='11' y='6' width='1' height='1' fill='%23ffe27a'/%3E%3Crect x='12' y='6' width='1' height='1' fill='%23fffbe0'/%3E%3Crect x='13' y='6' width='2' height='1' fill='%23ffe27a'/%3E%3Crect x='15' y='6' width='2' height='1' fill='%23e8b832'/%3E%3Crect x='17' y='6' width='1' height='1' fill='%233a2408'/%3E%3Crect x='24' y='6' width='2' height='1' fill='%233a2408'/%3E%3Crect x='2' y='7' width='1' height='1' fill='%233a2408'/%3E%3Crect x='3' y='7' width='2' height='1' fill='%23c3cad6'/%3E%3Crect x='5' y='7' width='6' height='1' fill='%233a2408'/%3E%3Crect x='11' y='7' width='3' height='1' fill='%23fffbe0'/%3E%3Crect x='14' y='7' width='3' height='1' fill='%23e8b832'/%3E%3Crect x='17' y='7' width='7' height='1' fill='%233a2408'/%3E%3Crect x='24' y='7' width='2' height='1' fill='%23c3cad6'/%3E%3Crect x='26' y='7' width='1' height='1' fill='%233a2408'/%3E%3Crect x='2' y='8' width='1' height='1' fill='%233a2408'/%3E%3Crect x='3' y='8' width='4' height='1' fill='%23c3cad6'/%3E%3Crect x='7' y='8' width='3' height='1' fill='%23f6f7fb'/%3E%3Crect x='10' y='8' width='2' height='1' fill='%23ffe27a'/%3E%3Crect x='12' y='8' width='2' height='1' fill='%23fffbe0'/%3E%3Crect x='14' y='8' width='3' height='1' fill='%23e8b832'/%3E%3Crect x='17' y='8' width='1' height='1' fill='%23a8741a'/%3E%3Crect x='18' y='8' width='4' height='1' fill='%23f6f7fb'/%3E%3Crect x='22' y='8' width='4' height='1' fill='%23c3cad6'/%3E%3Crect x='26' y='8' width='1' height='1' fill='%233a2408'/%3E%3Crect x='1' y='9' width='3' height='1' fill='%233a2408'/%3E%3Crect x='4' y='9' width='2' height='1' fill='%23c3cad6'/%3E%3Crect x='6' y='9' width='4' height='1' fill='%23f6f7fb'/%3E%3Crect x='10' y='9' width='2' height='1' fill='%23ffe27a'/%3E%3Crect x='12' y='9' width='4' height='1' fill='%23e8b832'/%3E%3Crect x='16' y='9' width='2' height='1' fill='%23a8741a'/%3E%3Crect x='18' y='9' width='5' height='1' fill='%23f6f7fb'/%3E%3Crect x='23' y='9' width='2' height='1' fill='%23c3cad6'/%3E%3Crect x='25' y='9' width='3' height='1' fill='%233a2408'/%3E%3Crect x='0' y='10' width='1' height='1' fill='%233a2408'/%3E%3Crect x='1' y='10' width='5' height='1' fill='%23c3cad6'/%3E%3Crect x='6' y='10' width='4' height='1' fill='%23f6f7fb'/%3E%3Crect x='10' y='10' width='1' height='1' fill='%233a2408'/%3E%3Crect x='11' y='10' width='4' height='1' fill='%23e8b832'/%3E%3Crect x='15' y='10' width='2' height='1' fill='%23a8741a'/%3E%3Crect x='17' y='10' width='2' height='1' fill='%233a2408'/%3E%3Crect x='19' y='10' width='4' height='1' fill='%23f6f7fb'/%3E%3Crect x='23' y='10' width='5' height='1' fill='%23c3cad6'/%3E%3Crect x='0' y='11' width='1' height='1' fill='%233a2408'/%3E%3Crect x='1' y='11' width='2' height='1' fill='%23c3cad6'/%3E%3Crect x='3' y='11' width='2' height='1' fill='%233a2408'/%3E%3Crect x='5' y='11' width='2' height='1' fill='%23c3cad6'/%3E%3Crect x='7' y='11' width='1' height='1' fill='%23f6f7fb'/%3E%3Crect x='8' y='11' width='3' height='1' fill='%233a2408'/%3E%3Crect x='11' y='11' width='3' height='1' fill='%23e8b832'/%3E%3Crect x='14' y='11' width='3' height='1' fill='%23a8741a'/%3E%3Crect x='17' y='11' width='1' height='1' fill='%233a2408'/%3E%3Crect x='19' y='11' width='2' height='1' fill='%233a2408'/%3E%3Crect x='21' y='11' width='1' height='1' fill='%23f6f7fb'/%3E%3Crect x='22' y='11' width='2' height='1' fill='%23c3cad6'/%3E%3Crect x='24' y='11' width='2' height='1' fill='%233a2408'/%3E%3Crect x='26' y='11' width='2' height='1' fill='%23c3cad6'/%3E%3Crect x='1' y='12' width='2' height='1' fill='%233a2408'/%3E%3Crect x='3' y='12' width='3' height='1' fill='%23c3cad6'/%3E%3Crect x='6' y='12' width='2' height='1' fill='%233a2408'/%3E%3Crect x='11' y='12' width='2' height='1' fill='%233a2408'/%3E%3Crect x='13' y='12' width='2' height='1' fill='%23a8741a'/%3E%3Crect x='15' y='12' width='2' height='1' fill='%233a2408'/%3E%3Crect x='21' y='12' width='2' height='1' fill='%233a2408'/%3E%3Crect x='23' y='12' width='3' height='1' fill='%23c3cad6'/%3E%3Crect x='26' y='12' width='2' height='1' fill='%233a2408'/%3E%3Crect x='2' y='13' width='1' height='1' fill='%233a2408'/%3E%3Crect x='3' y='13' width='1' height='1' fill='%23c3cad6'/%3E%3Crect x='4' y='13' width='2' height='1' fill='%233a2408'/%3E%3Crect x='13' y='13' width='2' height='1' fill='%233a2408'/%3E%3Crect x='23' y='13' width='2' height='1' fill='%233a2408'/%3E%3Crect x='25' y='13' width='1' height='1' fill='%23c3cad6'/%3E%3Crect x='26' y='13' width='1' height='1' fill='%233a2408'/%3E%3Crect x='3' y='14' width='1' height='1' fill='%233a2408'/%3E%3Crect x='25' y='14' width='1' height='1' fill='%233a2408'/%3E%3C/svg%3E"); }
+}
+
+/* MEDIA QUERIES */
+
+/* Si el usuario prefiere menos movimiento, la snitch no aletea */
+@media (prefers-reduced-motion: reduce){
+    .Cursor--snitch{
+        animation: none;
+    }
 }

@@ -1,78 +1,95 @@
-// components/boton/boton.jsx
-// Botón presentacional. Cumple regla C15: componentes stateless con
-// Styled Components. Usa las variables CSS de la web original para mantener
-// la identidad visual. Variantes: primario (azul cabecera), claro (turquesa)
-// y fantasma (transparente con borde).
+/* Botón del portfolio hecho con styled-components, con tres variantes:
+primario, claro y fantasma */
 
 import styled, { css } from 'styled-components'
 
-// Mapa de variantes → estilos.
-const variantes = {
+/* Colores de cada variante del botón */
+const VARIANTES = {
     primario: css`
-        background-color: var(--header-color);
-        color: var(--color-primary-text);
-        &:hover { background-color: #1c3a54; }
+        background-color: var(--color-header);
+
+        color: var(--color-texto-principal);
+
+        &:hover{
+            background-color: #1c3a54;
+        }
     `,
     claro: css`
-        background-color: var(--light-color);
-        color: var(--color-secondary-text);
-        &:hover { background-color: #6fc4bc; }
+        background-color: var(--color-claro);
+
+        color: var(--color-texto-secundario);
+
+        &:hover{
+            background-color: #6fc4bc;
+        }
     `,
     fantasma: css`
         background-color: transparent;
-        color: var(--light-color);
-        border: 1.5px solid var(--light-color);
-        &:hover { background-color: rgba(140, 219, 211, 0.12); }
+        border: 1.5px solid var(--color-claro);
+
+        color: var(--color-claro);
+
+        &:hover{
+            background-color: rgba(140, 219, 211, .12);
+        }
     `
 }
 
-const tamanos = {
-    sm: css` padding: 0.45rem 0.9rem; font-size: 0.9rem; `,
-    md: css` padding: 0.7rem 1.6rem; font-size: 1.05rem; `,
-    lg: css` padding: 0.95rem 2rem; font-size: 1.2rem; `
+/* Padding y tamaño de letra según el tamaño elegido */
+const TAMANOS = {
+    sm: css`
+        padding: .45rem .9rem;
+        font-size: .9rem;
+    `,
+    md: css`
+        padding: .7rem 1.6rem;
+        font-size: 1.05rem;
+    `,
+    lg: css`
+        padding: .95rem 2rem;
+        font-size: 1.2rem;
+    `
 }
 
-// $variante y $tamano con prefijo $ para que styled-components NO los pase al
-// DOM (regla C10: solo atributos HTML válidos llegan al <button>).
+/* Las props llevan $ delante para que no lleguen al <button> del DOM */
 const BotonEstilado = styled.button`
+    border-radius: .5rem;
+    border: none;
+
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+
     font-family: "cabeceras";
     font-weight: 600;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.15s ease, transform 0.15s ease;
     line-height: 1.2;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
 
-    ${({ $variante = 'primario' }) => variantes[$variante]}
-    ${({ $tamano = 'md' }) => tamanos[$tamano]}
+    transition: background-color .15s ease, transform .15s ease;
+    cursor: pointer;
 
-    &:disabled {
-        opacity: 0.5;
+    ${({ $variante = 'primario' }) => VARIANTES[$variante]}
+    ${({ $tamano = 'md' }) => TAMANOS[$tamano]}
+
+    &:disabled{
+        opacity: .5;
         cursor: not-allowed;
     }
 
-    &:not(:disabled):active {
+    &:not(:disabled):active{
         transform: translateY(1px);
     }
 `
 
-/**
- * Botón estándar del portfolio.
- * @param {object} props
- * @param {'primario'|'claro'|'fantasma'} [props.variante]
- * @param {'sm'|'md'|'lg'} [props.tamano]
- * @param {React.ReactNode} props.children
- */
-export const Boton = ({ variante = 'primario', tamano = 'md', children, ...rest }) => {
+/* Pintamos el botón con la variante y el tamaño que nos pasan */
+export const Boton = (props) => {
+
+    const { variante = 'primario', tamano = 'md', children, ...resto } = props
+
     return (
-        <BotonEstilado $variante={variante} $tamano={tamano} {...rest}>
+        <BotonEstilado $variante={variante} $tamano={tamano} {...resto}>
             {children}
         </BotonEstilado>
     )
 }
-
-export default Boton

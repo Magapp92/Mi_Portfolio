@@ -1,16 +1,16 @@
-/* components/header/header.css
-   Estilos de la cabecera. Trasladados de css/header.css sin cambios. */
+/* Estilos de la cabecera */
 
+/* Cabecera fija arriba con el logo a un lado y el menú al otro */
 .Header{
-    background-color: var(--header-color);
     width: 100%;
+    height: var(--alto-header);
+    padding: 0 4rem;
+    background-color: var(--color-header);
 
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    height: var(--alto-header);
-    padding: 0 4rem;
 
     position: fixed;
     top: 0;
@@ -20,10 +20,9 @@
     transition: background-color .4s ease, backdrop-filter .4s ease;
 }
 
-/* Con scroll: mismo azul con transparencia y un leve desenfoque, para que el
-   contenido se vea a través sin perder legibilidad del menú. */
-.Header.is-translucida{
-    background-color: rgba(41, 80, 114, 0.55);
+/* Al hacer scroll dejamos el mismo azul con transparencia y un poco de desenfoque */
+.Header.isTranslucida{
+    background-color: rgba(41, 80, 114, .55);
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
 }
@@ -36,21 +35,21 @@
     gap: 2rem;
 }
 
-/* El logo es un contenedor en flujo (relative) con tamaño fijo: no puede
-   sobresalir por debajo de la cabecera. Sus medidas salen del SVG original
-   (marco de 700 x 770 con el centro del arco de texto en el centro del
-   cuadrado superior). */
+/* El logo tiene tamaño fijo para que no se salga por debajo de la cabecera.
+Las proporciones salen del SVG original */
 .Header-logoCompleto{
-    position: relative;
     height: calc(var(--alto-header) - .2rem);
     aspect-ratio: 700 / 770;
+
     flex-shrink: 0;
+
+    position: relative;
 }
 
-/* Anillo de texto: el SVG es un cuadrado centrado en el arco, así que gira
-   sobre su propio trazo. */
+/* El anillo de texto gira sobre sí mismo */
 .Header-imgTexto{
     width: 100%;
+
     position: absolute;
     top: 0;
     left: 0;
@@ -58,27 +57,21 @@
     animation: logo360 14s linear infinite;
 }
 
+/* Colocamos el dibujo del centro encima del anillo */
 .Header-imgInterior{
     width: 43.23%;
+
     position: absolute;
     top: 19.61%;
     left: 24.54%;
     z-index: 1;
 }
 
-@media (prefers-reduced-motion: reduce){
-    .Header-imgTexto{
-        animation: none;
-    }
-}
-
-/* El nombre vuelve al flujo del flex (sin position fixed): ya no puede
-   solaparse con la navegación. */
 .Header-h1{
     font-family: "nombre";
-    color: var(--color-primary-text);
     font-weight: 600;
     font-size: 1.6em;
+    color: var(--color-texto-principal);
     white-space: nowrap;
 }
 
@@ -94,15 +87,27 @@
     gap: 2rem;
 }
 
+/* Damos estilo a los enlaces del menú y los agrandamos al pasar por encima */
 .Header-li{
     font-family: "cabeceras";
-    color: var(--color-primary-text);
     font-size: 1.3em;
+    color: var(--color-texto-principal);
 
     transition: transform 1s ease, color .8s ease, text-shadow .6s ease;
 }
+
 .Header-li:hover{
-    color: var(--light-color);
     transform: scale(1.2);
+
+    color: var(--color-claro);
     text-shadow: .1rem .1rem .25rem #001d27;
+}
+
+/* MEDIA QUERIES */
+
+/* Si el usuario prefiere menos movimiento, el logo no gira */
+@media (prefers-reduced-motion: reduce){
+    .Header-imgTexto{
+        animation: none;
+    }
 }

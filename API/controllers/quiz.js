@@ -1,9 +1,12 @@
 
+/* Controlador de las preguntas del quiz. Al leer nunca mandamos la respuesta
+correcta ni el feedback para que no se vean desde el navegador */
 const { Quiz } = require('../models')
 
-const getQuestions = async ( req, res, next ) => {
+/* Pedimos todas las preguntas activas sin la respuesta correcta */
+const getPreguntas = async ( req, res, next ) => {
     try {
-         const data = await Quiz.find(
+        const data = await Quiz.find(
             { activa: true },
             {
                 respuestaCorrecta: 0,
@@ -21,20 +24,23 @@ const getQuestions = async ( req, res, next ) => {
     }
 }
 
-const getQuestionsById = async ( req, res, next ) => {
-    try{
+/* Una pregunta concreta por su _id */
+const getPreguntaById = async ( req, res, next ) => {
+    try {
         const { _id } = req.params
 
-        const data = await Quiz.findById(_id,   {
-                respuestaCorrecta: 0,
-                'feedback.fallo': 0,
-                'feedback.acierto': 0
-            })
+        const data = await Quiz.findById(_id, {
+            respuestaCorrecta: 0,
+            'feedback.fallo': 0,
+            'feedback.acierto': 0
+        })
+
+        /* 404 si el id no existe */
         if (!data) {
             return res.status(404).json({
                 message: `No existe la pregunta con id ${_id}`,
                 data: null
-        })
+            })
         }
 
         res.status(200).json({
@@ -46,7 +52,8 @@ const getQuestionsById = async ( req, res, next ) => {
     }
 }
 
-const postQuestion = async ( req, res, next ) => {
+/* Creamos una pregunta nueva con lo que llega en el body */
+const postPregunta = async ( req, res, next ) => {
     try {
         const { body } = req
 
@@ -56,13 +63,13 @@ const postQuestion = async ( req, res, next ) => {
             message: 'Pregunta creada correctamente',
             data: nuevaPregunta
         })
-
     } catch (error) {
         next(error)
     }
 }
 
-const putQuestion = async ( req, res, next ) => {
+/* Sustituimos la pregunta entera por la que llega en el body */
+const putPregunta = async ( req, res, next ) => {
     try {
         const { _id } = req.params
         const { body } = req
@@ -87,18 +94,18 @@ const putQuestion = async ( req, res, next ) => {
             message: `Pregunta ${_id} actualizada correctamente`,
             data: actualizada
         })
-
     } catch (error) {
         next(error)
     }
 }
 
-const patchQuestion = async ( req, res, next ) => {
+/* Cambiamos solo los campos que vienen en el body */
+const patchPregunta = async ( req, res, next ) => {
     try {
         const { _id } = req.params
         const { body } = req
 
-        const actualizada = await Quiz.findByIdAndUpdate( _id, 
+        const actualizada = await Quiz.findByIdAndUpdate( _id,
             { $set: body },
             {
                 returnDocument: 'after',
@@ -117,13 +124,13 @@ const patchQuestion = async ( req, res, next ) => {
             message: `Pregunta ${_id} modificada correctamente`,
             data: actualizada
         })
-
     } catch (error) {
         next(error)
     }
 }
 
-const deleteQuestion = async ( req, res, next ) => {
+/* Borramos la pregunta y devolvemos la que se ha eliminado */
+const deletePregunta = async ( req, res, next ) => {
     try {
         const { _id } = req.params
 
@@ -140,19 +147,17 @@ const deleteQuestion = async ( req, res, next ) => {
             message: `Pregunta ${_id} eliminada correctamente`,
             data: eliminada
         })
-
     } catch (error) {
         next(error)
     }
 }
 
-
+/* Exportamos los controllers para el router */
 module.exports = {
-    getQuestions, 
-    getQuestionsById,
-    postQuestion, 
-    putQuestion,
-    patchQuestion,
-    deleteQuestion  
-
+    getPreguntas,
+    getPreguntaById,
+    postPregunta,
+    putPregunta,
+    patchPregunta,
+    deletePregunta
 }

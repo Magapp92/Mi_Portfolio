@@ -1,0 +1,134 @@
+/* Estilos de la página "Sobre mi" */
+
+/* Centramos el contenido en vertical cuando sobra alto de ventana */
+.SobreMi{
+    width: 100%;
+    margin: var(--alto-header) 0 0;
+    background-color: black;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    position: relative;
+
+    cursor: none;
+}
+
+/* El vídeo hace de fondo y cubre todo el alto de la página */
+.SobreMi-video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Damos estilo a la caja que va encima del vídeo */
+.SobreMi-wrapper{
+    width: 95%;
+    margin: .75rem auto;
+    padding: 1rem 3rem;
+    background-color: var(--color-fondo-seccion);
+    box-shadow: 0 0 1rem 1rem var(--color-fondo-seccion);
+
+    position: relative;
+    z-index: 1;
+}
+
+.SobreMi-section{
+    padding: .5rem 0 0;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: .75rem;
+}
+
+.SobreMi-content{
+    width: 100%;
+    padding: .75rem;
+    background-color: var(--color-sombra-texto);
+    box-shadow: 0 0 2rem 2rem var(--color-sombra-texto);
+    overflow: hidden;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+
+    position: relative;
+}
+
+/* La frase entra desde la izquierda */
+.SobreMi-h3{
+    background-color: transparent;
+
+    display: flex;
+    flex-flow: row nowrap;
+
+    z-index: 2;
+
+    font-family: "texto";
+    font-size: 1.5em;
+    font-weight: 800;
+    color: var(--color-texto-principal);
+    text-transform: uppercase;
+    text-align: center;
+
+    animation: translateRight 4s ease;
+}
+
+.SobreMi-article{
+    padding: .75rem 1.25rem;
+    background-color: var(--color-sombra-texto);
+    box-shadow: 0 0 2rem 2.5rem var(--color-sombra-texto);
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .75rem;
+}
+
+.SobreMi-h2{
+    background-color: transparent;
+
+    font-family: "titulos";
+    font-size: 2em;
+    font-weight: 800;
+    color: var(--color-texto-principal);
+}
+
+.SobreMi-p{
+    background-color: transparent;
+
+    font-family: "texto";
+    font-size: 1em;
+    color: var(--color-texto-principal);
+    line-height: 1.5;
+}
+
+.SobreMi-link{
+    font-weight: 700;
+    color: var(--color-claro);
+    text-decoration: underline;
+    cursor: none;
+}
+
+.SobreMi-bottom{
+    margin: 1.25rem 0 .5rem;
+    padding: .75rem 1.25rem;
+    background-color: var(--color-sombra-texto);
+    box-shadow: 0 0 2rem 2.5rem var(--color-sombra-texto);
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: .75rem;
+}

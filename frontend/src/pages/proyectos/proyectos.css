@@ -1,26 +1,24 @@
-/* pages/proyectos/proyectos.css
-   Estilos de proyectos. Trasladados de css/proyectos.css renombrando el
-   bloque .Main → .Proyectos. Las flechas usan los SVG de /public/assets en vez
-   de los paths inline del HTML original. */
+/* Estilos de la página de proyectos */
 
+/* Centramos el contenido en vertical cuando sobra alto de ventana */
 .Proyectos{
+    --color-cursor-halo: #8cdbd3b3;
+
     width: 100%;
-    background-color: black;
     margin: var(--alto-header) 0 0;
-
+    background-color: black;
     overflow: hidden;
-    position: relative;
 
-    /* Contenido centrado en vertical cuando sobra alto de ventana. */
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
 
+    position: relative;
+
     cursor: none;
-    --color-cursor-halo: #8cdbd3b3;
 }
 
-/* Vídeo como fondo: cubre todo el alto real de la página (igual que Formación). */
+/* El vídeo hace de fondo y cubre todo el alto de la página */
 .Proyectos-video{
     width: 100%;
     height: 100%;
@@ -31,53 +29,56 @@
     left: 0;
 }
 
+/* Damos estilo a la caja que va encima del vídeo */
 .Proyectos-wrapper{
     width: 95%;
-    background-color: var(--light-color-fondo);
-
-    padding: .75rem 5rem;
     margin: 1.25rem auto;
+    padding: .75rem 5rem;
+    background-color: var(--color-claro-fondo);
+    box-shadow: 0 0 1rem 1rem var(--color-claro-fondo);
+
     position: relative;
     z-index: 1;
-    box-shadow: 0 0 1rem 1rem var(--light-color-fondo);
 }
 
 .Proyectos-section{
+    margin: 0 0 1rem;
+
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    margin: 0 0 1rem;
 }
 
 .Proyectos-h2{
+    background-color: transparent;
+
     font-family: "titulos";
-    color: var(--color-secondary-text);
     font-size: 2.5em;
     font-weight: 800;
-    background-color: transparent;
+    color: var(--color-texto-secundario);
 
     animation: translateLeft 3s ease;
 }
 
+/* SLIDER */
 .Proyectos-slider{
     width: 100%;
     max-width: 150rem;
-    background-color: var(--color-cajas);
     margin: auto;
+    background-color: var(--color-cajas);
     box-shadow: 0 0 1rem 1rem var(--color-cajas);
+    overflow: hidden;
 
     position: relative;
-    overflow: hidden;
 }
 
-/* --tarjetas llega desde el JSX (proyectos × 3 copias del bucle infinito);
-   cada tarjeta ocupa media pantalla del slider. */
+/* --tarjetas nos llega desde el JSX y cada tarjeta ocupa la mitad del slider */
 .Proyectos-container{
     width: calc(var(--tarjetas) * 50%);
-    background-color: var(--color-cajas);
     padding: 1rem 0;
+    background-color: var(--color-cajas);
     box-shadow: 0 0 3rem 3rem var(--color-cajas);
 
     display: flex;
@@ -86,21 +87,23 @@
     transition: transform 4s ease;
 }
 
+/* Damos estilo a las flechas, que son SVG de fondo */
 .Slider-arrow{
     width: 5rem;
     height: 5rem;
+    background: center / contain no-repeat;
 
     position: absolute;
     top: calc(50% - 1.5rem);
-    cursor: none;
 
-    background: center / contain no-repeat;
+    cursor: none;
 }
 
-/* En hover/foco se cargan las variantes con relleno y borde invertidos. */
+/* Al pasar el ratón o con el foco cambiamos a la flecha con los colores invertidos */
 .Slider-arrow--next{
-    right: 0;
     background-image: url('/assets/next.svg');
+
+    right: 0;
 }
 
 .Slider-arrow--next:hover,
@@ -109,8 +112,9 @@
 }
 
 .Slider-arrow--prev{
-    left: 0;
     background-image: url('/assets/prev.svg');
+
+    left: 0;
 }
 
 .Slider-arrow--prev:hover,
@@ -118,12 +122,13 @@
     background-image: url('/assets/prev-hover.svg');
 }
 
-/* Cada tarjeta ocupa 1/--tarjetas del contenedor (= media pantalla del
-   slider): así las dos visibles nunca quedan cortadas. La separación va en
-   margin (restada del flex-basis) en vez de gap, que descuadraba el reparto. */
+/* Cada tarjeta ocupa media pantalla del slider para que las dos visibles no se corten.
+Separamos con margin restado del flex-basis porque con gap se descuadraba.
+El padding lateral es grande para que el texto no quede debajo de las flechas */
 .Proyectos-article{
     flex: 0 0 calc(100% / var(--tarjetas) - 1.5rem);
     margin: 0 .75rem;
+    padding: 1.25rem 4.5rem;
     background-color: #1e9180;
     box-shadow: 0 0 8px 5px var(--color-sombra-texto);
 
@@ -132,19 +137,15 @@
     justify-content: center;
     align-items: center;
     gap: .75rem;
-
-    /* Lateral amplio para que el texto no quede bajo las flechas. */
-    padding: 1.25rem 4.5rem;
 }
 
-/* Tarjeta con página de detalle: toda la tarjeta es el enlace y se eleva un
-   poco al pasar el ratón para que se entienda que es clicable. */
+/* Si la tarjeta tiene detalle la subimos un poco al pasar el ratón para que se vea que es clicable */
 .Proyectos-article--enlace{
     transition: transform .4s ease, box-shadow .4s ease;
 }
 .Proyectos-article--enlace:hover{
-    transform: translateY(-.35rem);
     box-shadow: 0 0 14px 8px var(--color-sombra-texto);
+    transform: translateY(-.35rem);
 }
 
 .Proyectos-enlace{
@@ -168,22 +169,22 @@
     object-fit: cover;
 }
 
-/* Imagen que debe verse entera (sin recorte) dentro del hueco. */
+/* Para las imágenes que tienen que verse enteras sin recortar */
 .Proyectos-img--entera{
-    object-fit: contain;
     background-color: transparent;
+    object-fit: contain;
 }
 
 .Proyectos-h3{
     font-family: "negrita";
-    color: var(--color-secondary-text);
     font-size: 1.7em;
     font-weight: 800;
+    color: var(--color-texto-secundario);
 }
 
 .Proyectos-p{
     font-family: "texto";
-    color: var(--color-secondary-text);
     font-size: 1em;
     font-weight: 600;
+    color: var(--color-texto-secundario);
 }

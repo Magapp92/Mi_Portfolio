@@ -1,6 +1,5 @@
-// data/formacion.js
-// Tarjetas flip de la página de formación (antes artículos en formacion.html).
 
+/* Tarjetas que se giran en la página de formación */
 export const FORMACION = [
     {
         id: 'diseno-web',

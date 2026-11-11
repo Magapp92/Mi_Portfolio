@@ -1,8 +1,6 @@
-/* index.css
-   Estilos globales: reset + variables + tipografías + keyframes.
-   Trasladado de la web original (css/reset.css). Las fuentes viven en
-   /public/tipografia y los assets en /public/assets. */
+/* Estilos generales: reset, variables, tipografías y animaciones */
 
+/* RESET */
 *{
     margin: 0;
     padding: 0;
@@ -22,81 +20,84 @@ a{
     display: block;
 }
 
-p a {
+/* Los enlaces dentro de un párrafo siguen en línea con el texto */
+p a{
     display: inline;
 }
 
-img , svg{
-    display: block;
+img, svg{
     width: 100%;
     height: initial;
+
+    display: block;
 }
 
-h1 , h2 , h3 , h4 , h5 , h6 , p , strong , em , mark , a{
+/* Los textos heredan el estilo del padre */
+h1, h2, h3, h4, h5, h6, p, strong, em, mark, a{
+    background-color: inherit;
+
     font-size: inherit;
     font-style: inherit;
     font-weight: inherit;
     color: inherit;
     text-decoration: none;
-    background-color: inherit;
 }
 
 button{
-    display: block;
     background-color: transparent;
+
+    display: block;
+
     font-family: inherit;
     font-size: inherit;
 }
 
+/* VARIABLES */
 :root{
     font-size: 100%;
-    --bg-color-section:#764160c0;
-    --light-color:#8cdbd3;
-    --light-color-fondo:#8cdbd36f;
-    --color-fondo-green:#54d5504c;
-    --bg-main-color:#0d1b28;
-    --header-color: #295072;
-    /* Dos tonos más oscuro que header/footer (misma tinta, luminosidad 30% → 23%). */
-    --header-color-oscuro: #1a3d5b;
-    /* Alto de la cabecera fija: las páginas lo usan como margen superior. */
+    --color-fondo-seccion: #764160c0;
+    --color-claro: #8cdbd3;
+    --color-claro-fondo: #8cdbd36f;
+    --color-fondo-verde: #54d5504c;
+    --color-fondo-principal: #0d1b28;
+    --color-header: #295072;
+    /* Mismo tono que el header pero dos puntos más oscuro */
+    --color-header-oscuro: #1a3d5b;
+    /* Alto del header fijo, las páginas lo usan como margen de arriba */
     --alto-header: 6.6rem;
-    /* Azul de la huella del logo de PawCare, dos tonos más oscuro. */
+    /* Colores de cada proyecto para sus páginas de detalle */
     --color-azul-pawcare: #b9caf5;
     --color-azul-pawcare-translucido: #b9caf5b3;
-    /* Verde principal oscuro de PawCare. */
     --color-verde-pawcare-oscuro: #007219;
-    /* Turquesa de marca de Busca tu peli. */
     --color-turquesa-buscatupeli: #07c5d6;
-    /* Azul principal de PortalDental. */
     --color-azul-portaldental: #0D76BC;
-    /* Verde menta de Turismo Sin Barreras. */
     --color-menta-tsb: #4DC79E;
-    /* Naranja salmón de «Ahora Somos Dos». */
     --color-salmon-asd: #F0836E;
-    --color-primary-text: #EDEDED;
-    --color-secondary-text: #092c36;
+    --color-magenta-agenda: #A4358B;
+    --color-texto-principal: #EDEDED;
+    --color-texto-secundario: #092c36;
     --color-sombra-texto: #223950d0;
-    --color-cursor:#0ff;
-    --color-cursor-blur: rgba(255, 255, 255, 0.122);
-    --color-cursor-halo: rgba(255, 39, 230, 0.7);
-    --color-cajas:rgba(0, 141, 139, 0.601);
-    --color-hexagonos:rgba(20, 42, 15, 0.581);
-    --color-acierto:#54d550;
-    --color-fallo:#e05252;
+    --color-cursor: #0ff;
+    --color-cursor-blur: rgba(255, 255, 255, .122);
+    --color-cursor-halo: rgba(255, 39, 230, .7);
+    --color-cajas: rgba(0, 141, 139, .601);
+    --color-hexagonos: rgba(20, 42, 15, .581);
+    --color-acierto: #54d550;
+    --color-fallo: #e05252;
 }
 
-/* El fondo global evita destellos blancos entre páginas lazy. */
+/* Ponemos el fondo oscuro en el body para que no salga un destello blanco al cambiar de página */
 body{
-    background-color: var(--bg-main-color);
+    background-color: var(--color-fondo-principal);
 }
 
-/* Sin rebote elástico al llegar arriba/abajo del scroll. */
+/* Quitamos el rebote al llegar arriba o abajo del scroll */
 html, body{
     overscroll-behavior: none;
 }
 
-/* Header + main + footer ocupan al menos toda la ventana: el main crece y el
-   footer queda siempre pegado abajo, sin franja vacía debajo. */
+/* Hacemos que el header, el main y el footer ocupen al menos toda la ventana
+para que el footer quede siempre abajo */
 #root{
     min-height: 100vh;
     min-height: 100dvh;
@@ -109,42 +110,56 @@ html, body{
     flex: 1 0 auto;
 }
 
-@font-face {
+/* TIPOGRAFÍAS */
+@font-face{
     font-family: "nombre";
     src: url(/tipografia/SyneVariableFontwght.ttf);
     font-display: swap;
 }
-@font-face {
+@font-face{
     font-family: "cabeceras";
     src: url(/tipografia/SyneSemiBold.ttf);
     font-display: swap;
 }
-@font-face {
+@font-face{
     font-family: "titulos";
     src: url(/tipografia/SyneMedium.ttf);
     font-display: swap;
 }
-@font-face {
+@font-face{
     font-family: "negrita";
     src: url(/tipografia/REMMedium.ttf);
     font-display: swap;
 }
-@font-face {
+@font-face{
     font-family: "texto";
     src: url(/tipografia/REMLight.ttf);
     font-display: swap;
 }
-
-@keyframes logo360 {
-    from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
+/* Tipografías pixel del juego, una para títulos y números y otra para los textos */
+@font-face{
+    font-family: "pixel-titulos";
+    src: url(/tipografia/PressStart2P.woff2) format("woff2");
+    font-display: swap;
+}
+@font-face{
+    font-family: "pixel-texto";
+    src: url(/tipografia/PixelifySans.woff2) format("woff2");
+    font-weight: 400 700;
+    font-display: swap;
 }
 
-@keyframes bombilla {
+/* ANIMACIONES */
+@keyframes logo360{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes bombilla{
     0%{
         transform: scale(1);
     }
@@ -156,25 +171,25 @@ html, body{
     }
 }
 
-@keyframes disolve {
+@keyframes disolve{
     0%{
         opacity: 0;
     }
     25%{
-        opacity: 0.25;
+        opacity: .25;
     }
     50%{
-        opacity: 0.5;
+        opacity: .5;
     }
     75%{
-        opacity: 0.75;
+        opacity: .75;
     }
     100%{
         opacity: 1;
     }
 }
 
-@keyframes appear {
+@keyframes appear{
     from{
         transform: translateY(500px);
     }
@@ -183,29 +198,29 @@ html, body{
     }
 }
 
-@keyframes translateLeft {
+@keyframes translateLeft{
     from{
-        transform: translateX(1800px)
+        transform: translateX(1800px);
     }
     to{
         transform: translateX(0);
     }
 }
 
-@keyframes translateRight {
+@keyframes translateRight{
     from{
-        transform: translateX(-1800px)
+        transform: translateX(-1800px);
     }
     to{
         transform: translateX(0);
     }
 }
 
-@keyframes rotateScale {
-    from {
-        transform: scale(0.2) rotate(720deg);
+@keyframes rotateScale{
+    from{
+        transform: scale(.2) rotate(720deg);
     }
-    to {
+    to{
         transform: scale(1) rotate(0deg);
     }
 }

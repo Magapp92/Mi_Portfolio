@@ -1,7 +1,7 @@
 {
   "name": "portfolio-maga-web",
   "version": "1.0.0",
-  "description": "Portfolio de Magaly Puente — SPA Vite + React + JS con el juego Quiz Harry Potter",
+  "description": "Portfolio de Magaly Puente hecho con React y Vite, con un quiz de Harry Potter",
   "private": true,
   "type": "module",
   "scripts": {

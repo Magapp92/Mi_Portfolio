@@ -1,46 +1,45 @@
-// pages/proyectos/proyectos.jsx
-// Página de proyectos. Traslada proyectos.html + js/proyectos.js: slider
-// automático e infinito cada 8 s, pausa al pasar el ratón y flechas manuales.
-// El setInterval se limpia en el return del useEffect (regla C13). El estado
-// sigue el patrón profesor: un useState por variable y setter directo (C6/C7).
+/* Página de proyectos con un slider infinito que avanza solo cada 8 segundos,
+se para al pasar el ratón y también se mueve con las flechas */
 
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Cursor } from '@/components/cursor/cursor.jsx'
-import { ROUTES } from '@/const/routes.js'
-import { PROYECTOS } from '@/data/proyectos.js'
-import { PROYECTOS_DETALLE } from '@/data/proyectos-detalle.js'
+import { Cursor } from '@components/cursor/cursor.jsx'
+import { RUTAS } from '@const/rutas.js'
+import { PROYECTOS } from '@data/proyectos.js'
+import { PROYECTOS_DETALLE } from '@data/proyectos-detalle.js'
 import './proyectos.css'
 
-// Bucle infinito: la pista repite los proyectos 3 veces y se trabaja en la copia
-// central. Al acabar una animación fuera de ella se salta sin transición a la
-// tarjeta equivalente de la copia central, así que el salto no se ve.
+/* Para que el slider no se acabe repetimos los proyectos tres veces y nos movemos
+por la copia del medio. Si salimos de ella saltamos sin transición a la tarjeta
+igual de la copia central y así no se nota el salto */
 const PASO = 2
 const TOTAL = PROYECTOS.length
 const PISTA = [...PROYECTOS, ...PROYECTOS, ...PROYECTOS]
-// translateX en % es relativo al propio contenedor, que mide toda la pista.
+// El translateX en % va sobre el propio contenedor, que mide toda la pista
 const ANCHO_TARJETA = 100 / PISTA.length
 
-const ProyectosPage = () => {
+export const Proyectos = () => {
 
     const [indice, setIndice] = useState(TOTAL)
     const [conTransicion, setConTransicion] = useState(true)
     const [moviendo, setMoviendo] = useState(false)
     const [pausado, setPausado] = useState(false)
 
-    // Handlers en castellano (regla C7b). Se ignoran clics durante la animación
-    // para no salir de la pista.
+    /* Movemos el slider, pero ignoramos los clics mientras dura la animación
+    para no salirnos de la pista */
     const mover = (paso) => {
         if (moviendo) return
         setConTransicion(true)
         setMoviendo(true)
         setIndice(indice + paso)
     }
+
     const siguiente = () => mover(PASO)
     const anterior = () => mover(-PASO)
     const pausarSlider = () => setPausado(true)
     const reanudarSlider = () => setPausado(false)
 
+    /* Al acabar la animación, si estamos fuera de la copia central volvemos a ella */
     const terminarTransicion = (e) => {
         if (e.target !== e.currentTarget || e.propertyName !== 'transform') return
         setMoviendo(false)
@@ -50,8 +49,8 @@ const ProyectosPage = () => {
         }
     }
 
-    // Avance automático. Depende de `indice` para que cada tick programe el
-    // siguiente sin closures obsoletas; cleanup obligatorio (regla C13).
+    /* Avanzamos solos cada 8 segundos. Volvemos a crear el intervalo cuando cambia
+    el índice para que siempre use el valor actual, y lo limpiamos al salir */
     useEffect(() => {
         if (pausado) return
 
@@ -80,7 +79,7 @@ const ProyectosPage = () => {
                         onTransitionEnd={terminarTransicion}
                     >
                         {PISTA.map((proyecto, i) =>
-                            <ProyectoCard key={`${i}-${proyecto.id}`} {...proyecto} />
+                            <TarjetaProyecto key={`${i}-${proyecto.id}`} {...proyecto} />
                         )}
                     </div>
                     <button className="Slider-arrow Slider-arrow--next" onClick={siguiente} aria-label="Proyecto siguiente"></button>
@@ -91,8 +90,8 @@ const ProyectosPage = () => {
     )
 }
 
-// Subcomponente de la tarjeta de proyecto (patrón de map del profesor, C11b).
-const ProyectoCard = (props) => {
+/* Tarjeta de cada proyecto, solo enlaza si el proyecto tiene página de detalle */
+const TarjetaProyecto = (props) => {
 
     const { id, titulo, imagen, descripcion, imagenEntera = false } = props
 
@@ -105,16 +104,13 @@ const ProyectoCard = (props) => {
         </>
     )
 
-    // Solo los proyectos con página de detalle llevan enlace.
     if (!PROYECTOS_DETALLE[id]) return <article className="Proyectos-article">{contenido}</article>
 
     return (
         <article className="Proyectos-article Proyectos-article--enlace">
-            <Link to={`${ROUTES.PROYECTOS}/${id}`} className="Proyectos-enlace" title={`ver el proyecto ${titulo}`}>
+            <Link to={`${RUTAS.PROYECTOS}/${id}`} className="Proyectos-enlace" title={`ver el proyecto ${titulo}`}>
                 {contenido}
             </Link>
         </article>
     )
 }
-
-export default ProyectosPage

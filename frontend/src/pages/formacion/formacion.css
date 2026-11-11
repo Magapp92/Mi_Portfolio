@@ -1,26 +1,23 @@
-/* pages/formacion/formacion.css
-   Estilos de formación. Trasladados de css/formacion.css renombrando el
-   bloque .Main → .Formacion y .flipped → .is-girada. El vídeo pasa a ser fondo
-   absoluto y el wrapper vuelve al flujo: la página tiene altura real, hay
-   scroll y las tarjetas no quedan cortadas por el footer. Hexágonos reducidos
-   un 20% para que quepan mejor en pantalla. */
+/* Estilos de la página de formación */
 
+/* Centramos el contenido en vertical cuando sobra alto de ventana */
 .Formacion{
+    --color-cursor-halo: #54d550b3;
+
     width: 100%;
-    background-color: black;
     margin: var(--alto-header) 0 0;
+    background-color: black;
 
-    position: relative;
-
-    /* Contenido centrado en vertical cuando sobra alto de ventana. */
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
+
+    position: relative;
+
     cursor: none;
-    --color-cursor-halo: #54d550b3;
 }
 
-/* Vídeo como fondo: cubre todo el alto real de la página. */
+/* El vídeo hace de fondo y cubre todo el alto de la página */
 .Formacion-video{
     width: 100%;
     height: 100%;
@@ -31,15 +28,16 @@
     left: 0;
 }
 
+/* Damos estilo a la caja verde que va encima del vídeo */
 .Formacion-wrapper{
     width: 95%;
-    background-color: var(--color-fondo-green);
-
-    padding: 1rem 3rem;
     margin: 1.25rem auto;
+    padding: 1rem 3rem;
+    background-color: var(--color-fondo-verde);
+    box-shadow: 0 0 1rem 1rem var(--color-fondo-verde);
+
     position: relative;
     z-index: 1;
-    box-shadow: 0 0 1rem 1rem var(--color-fondo-green);
 }
 
 .Formacion-section{
@@ -51,31 +49,32 @@
 }
 
 .Formacion-h2{
+    background-color: transparent;
+
     font-family: "titulos";
-    color: var(--color-primary-text);
     font-size: 2.5em;
     font-weight: 800;
-    background-color: transparent;
+    color: var(--color-texto-principal);
 
     animation: translateLeft 3s ease;
 }
 
 .Formacion-pSection{
+    margin: 0 0 .5rem;
+    background-color: transparent;
+
     font-family: "texto";
     font-size: 1.5em;
-    color: var(--color-primary-text);
     font-weight: 800;
+    color: var(--color-texto-principal);
     text-transform: uppercase;
     text-align: center;
-    background-color: transparent;
-    margin: 0 0 .5rem;
 
     animation: translateRight 3s ease;
 }
 
-/* Los 4 hexágonos en una fila: --ancho se adapta al ancho disponible (95vw
-   del wrapper − padding − huecos) con tope de 20rem. En pantallas estrechas
-   llega al mínimo y la fila se parte en varias. */
+/* Ponemos los cuatro hexágonos en fila. --ancho se adapta al espacio libre
+con un máximo de 20rem y en pantallas estrechas la fila se parte */
 .Formacion-bottom{
     --ancho: clamp(13rem, calc((95vw - 16rem) / 4), 20rem);
 
@@ -86,9 +85,13 @@
     column-gap: 2rem;
 }
 
-/* Hexágono: cuerpo + triángulos generados con bordes. Todas las medidas
-   derivan de --ancho para mantener la proporción a cualquier tamaño. */
+/* Hacemos el hexágono con un rectángulo y dos triángulos de borde,
+todas las medidas salen de --ancho para que no pierda la proporción */
 .Formacion-article{
+    width: var(--ancho);
+    height: calc(var(--ancho) * .5775);
+    margin: calc(var(--ancho) * .29) 0;
+    background-color: var(--color-hexagonos);
     perspective: 62.5rem;
 
     display: flex;
@@ -97,95 +100,99 @@
     align-items: center;
 
     position: relative;
-    width: var(--ancho);
-    height: calc(var(--ancho) * 0.5775);
-    background-color: var(--color-hexagonos);
-    margin: calc(var(--ancho) * 0.29) 0;
 
     animation: rotateScale 4s ease;
 }
 
-.Formacion-article:before, .Formacion-article:after {
+.Formacion-article:before, .Formacion-article:after{
     content: "";
-    position: absolute;
     width: 0;
     border-left: calc(var(--ancho) / 2) solid transparent;
     border-right: calc(var(--ancho) / 2) solid transparent;
-}
 
-.Formacion-article:before {
-    border-bottom: calc(var(--ancho) * 0.288) solid var(--color-hexagonos);
-    top: calc(var(--ancho) * -0.2875);
-}
-
-.Formacion-article:after {
-    border-top: calc(var(--ancho) * 0.28875) solid var(--color-hexagonos);
-    bottom: calc(var(--ancho) * -0.2875);
-}
-
-.Formacion-front, .Formacion-back {
     position: absolute;
+}
+
+.Formacion-article:before{
+    border-bottom: calc(var(--ancho) * .288) solid var(--color-hexagonos);
+
+    top: calc(var(--ancho) * -.2875);
+}
+
+.Formacion-article:after{
+    border-top: calc(var(--ancho) * .28875) solid var(--color-hexagonos);
+
+    bottom: calc(var(--ancho) * -.2875);
+}
+
+/* Las dos caras se superponen y ocultamos la que queda de espaldas */
+.Formacion-front, .Formacion-back{
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    transition: transform 0.8s ease;
+
+    position: absolute;
+
+    transition: transform .8s ease;
 }
 
 .Formacion-front{
+    padding: 0 1.5rem;
+
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-
-    padding: 0 1.5rem;
 }
 
-.Formacion-back {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-
+.Formacion-back{
     padding: 0 1rem;
 
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
     transform: rotateY(180deg);
 }
 
-.Formacion-article:hover .Formacion-front {
+/* Al pasar el ratón giramos la tarjeta */
+.Formacion-article:hover .Formacion-front{
     transform: rotateY(180deg);
 }
 
-.Formacion-article:hover .Formacion-back {
+.Formacion-article:hover .Formacion-back{
     transform: rotateY(0deg);
 }
 
 .Formacion-h3{
+    margin: 0 0 1rem;
+    background-color: transparent;
+
     font-family: "negrita";
-    color: var(--color-primary-text);
     font-size: 1.3em;
+    color: var(--color-texto-principal);
     text-align: center;
     text-transform: capitalize;
-
-    background-color: transparent;
-    margin: 0 0 1rem;
 
     transition: transform 1.2s ease, text-shadow 1s ease;
 }
 .Formacion-h3:hover{
+    text-shadow: 2px 2px 2px rgba(88, 88, 88, .859);
     transform: scale(1.1);
-    text-shadow: 2px 2px 2px rgba(88, 88, 88, 0.859);
 }
 
 .Formacion-p{
-    font-family: "texto";
-    color: var(--color-primary-text);
-    font-size: 1em;
-    text-align: center;
-
     background-color: transparent;
+
+    font-family: "texto";
+    font-size: 1em;
+    color: var(--color-texto-principal);
+    text-align: center;
 }
 
 .Formacion-h3--front{
-    font-size: 1.5em;
     margin: 0;
+
+    font-size: 1.5em;
 }

@@ -1,16 +1,9 @@
-// components/ranking-tabla/ranking-tabla.jsx
-// Tabla del ranking de puntuaciones. Componente presentacional: recibe la
-// lista ya ordenada por la API (puntuación desc, tiempo asc) y resalta la fila
-// del propio jugador. Patrón de map del profesor (regla C11b): subcomponente
-// FilaRanking + spread + key={item._id}.
-
+import { CASAS } from '@data/casas.js'
+import { EscudoCasa } from '@components/escudo-casa/escudo-casa.jsx'
 import './ranking-tabla.css'
 
-/**
- * @param {object} props
- * @param {Array<object>} props.puntuaciones   Partidas ordenadas por la API.
- * @param {string|null} props.idPropia         _id de la puntuación del jugador.
- */
+/* Tabla del ranking. Las puntuaciones ya vienen ordenadas de la API
+y marcamos la fila del propio jugador */
 export const RankingTabla = (props) => {
 
     const { puntuaciones, idPropia } = props
@@ -24,6 +17,7 @@ export const RankingTabla = (props) => {
             <thead className="RankingTabla-cabecera">
                 <tr>
                     <th className="RankingTabla-th">#</th>
+                    <th className="RankingTabla-th"><span className="RankingTabla-oculto">Casa</span></th>
                     <th className="RankingTabla-th">Nick</th>
                     <th className="RankingTabla-th">Puntos</th>
                     <th className="RankingTabla-th">Aciertos</th>
@@ -44,14 +38,18 @@ export const RankingTabla = (props) => {
     )
 }
 
-// Subcomponente de la fila. Recibe props con spread y destructura dentro.
+/* Fila de cada jugador con el escudo y el color de su casa */
 const FilaRanking = (props) => {
 
-    const { nick, puntuacion, aciertos, preguntasTotales, tiempoTotalSegundos, posicion, propia } = props
+    const { nick, casa, puntuacion, aciertos, preguntasTotales, tiempoTotalSegundos, posicion, propia } = props
 
     return (
-        <tr className={`RankingTabla-fila ${propia ? 'is-propia' : ''}`}>
-            <td className="RankingTabla-td">{posicion}</td>
+        <tr
+            className={`RankingTabla-fila ${propia ? 'isPropia' : ''}`}
+            style={{ '--casa-color': CASAS[casa]?.color ?? '#6b6b74' }}
+        >
+            <td className="RankingTabla-td RankingTabla-td--posicion">{posicion}</td>
+            <td className="RankingTabla-td RankingTabla-td--escudo"><EscudoCasa casa={casa} /></td>
             <td className="RankingTabla-td">{nick}</td>
             <td className="RankingTabla-td">{puntuacion}</td>
             <td className="RankingTabla-td">{aciertos}/{preguntasTotales}</td>
@@ -59,5 +57,3 @@ const FilaRanking = (props) => {
         </tr>
     )
 }
-
-export default RankingTabla

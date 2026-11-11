@@ -1,0 +1,93 @@
+/* Aviso de primer puesto: fondo oscurecido y caja azul noche con brillo */
+
+/* Oscurecemos todo el juego y centramos la caja */
+.CopaTresMagos{
+    background-color: rgba(5, 5, 12, .72);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+
+    animation: copaAparece .3s steps(4);
+}
+
+/* Damos estilo a la caja con su doble borde y el brillo azul */
+.CopaTresMagos-caja{
+    padding: 1.4rem 2rem 1.2rem;
+    background-color: #1b2238;
+    box-shadow: 0 0 0 4px #c8d4e4, 0 0 0 8px #3a6fd8, 0 0 30px 10px rgba(80, 150, 255, .45);
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: .6rem;
+
+    color: #e9f2ff;
+    text-align: center;
+
+    animation: copaCrece .5s steps(5);
+}
+
+/* Ampliamos la copa sin suavizarla */
+.CopaTresMagos-copa{
+    width: 144px;
+    height: 168px;
+    image-rendering: pixelated;
+}
+
+.CopaTresMagos-titulo{
+    font-family: "pixel-titulos";
+    font-size: 1.2em;
+    color: #9ad4ff;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px #3a8bff;
+}
+
+.CopaTresMagos-texto{
+    font-family: "pixel-titulos";
+    font-size: .8em;
+    line-height: 1.7;
+}
+
+/* Botón de continuar con sombra de bloque */
+.CopaTresMagos-boton{
+    margin-top: .4rem;
+    padding: .8rem 1.2rem;
+    background-color: #3a6fd8;
+    border: none;
+    box-shadow: 0 4px 0 #1d3f8a;
+
+    font-family: "pixel-titulos";
+    font-size: .8em;
+    text-transform: uppercase;
+    color: #fff4d6;
+
+    cursor: pointer;
+}
+
+.CopaTresMagos-boton:hover,
+.CopaTresMagos-boton:focus-visible{
+    filter: brightness(1.15);
+}
+
+/* ANIMACIONES */
+
+@keyframes copaAparece{
+    from{ opacity: 0; }
+}
+
+@keyframes copaCrece{
+    from{ transform: scale(.4); }
+}
+
+/* Sin animaciones si el usuario prefiere reducir el movimiento */
+@media (prefers-reduced-motion: reduce){
+    .CopaTresMagos,
+    .CopaTresMagos-caja{
+        animation: none;
+    }
+}

@@ -1,78 +1,86 @@
-/* components/quiz-pregunta/quiz-pregunta.css
-   Estilos de la tarjeta de pregunta del quiz. Mantiene la identidad de la
-   web (cajas con sombra difusa y paleta de variables globales). */
+/* Pregunta del quiz en pixel art, va dentro del pergamino del juego */
 
 .QuizPregunta{
     width: 100%;
-    max-width: 50rem;
 
     display: flex;
     flex-flow: column nowrap;
-    gap: 0.75rem;
-
-    padding: 1.25rem 2rem;
-    background-color: var(--color-sombra-texto);
-    box-shadow: 0 0 2rem 1rem var(--color-sombra-texto);
+    gap: .5rem;
 }
 
-.QuizPregunta-progreso{
-    font-family: "cabeceras";
-    color: var(--light-color);
-    font-size: 1.1em;
+/* Colocamos con flex el progreso a un lado y el tiempo al otro */
+.QuizPregunta-cabecera{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.QuizPregunta-progreso,
+.QuizPregunta-tiempo{
+    font-family: "pixel-titulos";
+    font-size: .6em;
+    color: #6b4423;
+    text-transform: uppercase;
 }
 
 .QuizPregunta-pelicula{
-    font-family: "texto";
-    color: var(--color-primary-text);
-    font-size: 1em;
-    opacity: 0.7;
+    font-family: "pixel-texto";
+    font-size: .9em;
+    color: #8a6a44;
     text-transform: uppercase;
 }
 
 .QuizPregunta-enunciado{
-    font-family: "negrita";
-    color: var(--color-primary-text);
-    font-size: 1.4em;
-    font-weight: 800;
+    font-family: "pixel-texto";
+    font-weight: 600;
+    font-size: 1.25em;
+    color: #3b2410;
+    line-height: 1.3;
 }
 
 .QuizPregunta-opciones{
+    margin-top: .25rem;
+
     display: flex;
     flex-flow: column nowrap;
-    gap: 0.5rem;
+    gap: .5rem;
 }
 
+/* Damos estilo a los botones de las opciones con un borde pixelado */
 .QuizPregunta-opcion{
     width: 100%;
+    padding: .5rem .9rem;
+    background-color: #f4e8c4;
+    border: none;
+    box-shadow: inset 0 0 0 3px #5a3a1e;
 
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    gap: 1rem;
+    gap: .9rem;
 
-    padding: 0.6rem 1.25rem;
-    font-family: "texto";
+    font-family: "pixel-texto";
     font-size: 1.05em;
+    color: #3b2410;
     text-align: left;
-    color: var(--color-primary-text);
-    background-color: var(--header-color);
-    border-radius: 0.5rem;
+
     cursor: pointer;
-
-    transition: background-color .3s ease, transform .3s ease;
-}
-.QuizPregunta-opcion:hover{
-    background-color: var(--color-cajas);
-    transform: scale(1.02);
 }
 
-.QuizPregunta-opcion.is-seleccionada{
-    background-color: var(--light-color);
-    color: var(--color-secondary-text);
+.QuizPregunta-opcion:hover,
+.QuizPregunta-opcion:focus-visible{
+    background-color: #fff4d6;
+}
+
+/* Opción elegida por el jugador */
+.QuizPregunta-opcion.isSeleccionada{
+    background-color: #c0662a;
+    color: #fff4d6;
 }
 
 .QuizPregunta-letra{
-    font-family: "cabeceras";
-    font-weight: 800;
-    font-size: 1.1em;
+    font-family: "pixel-titulos";
+    font-size: .7em;
 }

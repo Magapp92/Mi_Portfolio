@@ -1,12 +1,9 @@
-/* components/footer/footer.css
-   Estilos del pie. Trasladados de css/footer.css con el alto y las
-   letras reducidos para que ocupe menos pantalla. */
+/* Estilos del pie de página */
 
+/* Colocamos con flex el contacto a un lado y la autoría al otro */
 .Footer{
-    background-color: var(--header-color);
-    font-family: "cabeceras";
-    color: var(--color-primary-text);
-    font-size: .95em;
+    padding: 1.25rem 4rem;
+    background-color: var(--color-header);
 
     display: flex;
     flex-flow: row nowrap;
@@ -14,16 +11,20 @@
     align-items: center;
     gap: 2rem;
 
-    padding: 1.25rem 4rem;
     position: relative;
     z-index: 2;
+
+    font-family: "cabeceras";
+    font-size: .95em;
+    color: var(--color-texto-principal);
 }
 
 .Footer-h4{
-    font-size: 1.15em;
     margin: 0 0 .3rem;
+    font-size: 1.15em;
 }
 
+/* Ponemos en fila el nombre y el año */
 .Footer-autor{
     display: flex;
     flex-flow: row nowrap;

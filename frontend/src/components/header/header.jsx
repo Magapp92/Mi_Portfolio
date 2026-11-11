@@ -1,27 +1,23 @@
-// components/header/header.jsx
-// Cabecera fija con logo animado y navegación. Traslada el <header> de la
-// web original a React Router (Link en vez de <a href="*.html">), añadiendo el
-// enlace nuevo a la sección del juego.
-
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ROUTES } from '@/const/routes.js'
+import { RUTAS } from '@const/rutas.js'
 import './header.css'
 
-// Enlaces de navegación centralizados para el map (regla C11: key estable, no índice).
+/* Enlaces del menú de navegación */
 const ENLACES = [
-    { id: 'sobre-mi', ruta: ROUTES.SOBRE_MI, texto: 'Sobre mi', titulo: 'ir a sobre mi' },
-    { id: 'proyectos', ruta: ROUTES.PROYECTOS, texto: 'Proyectos', titulo: 'ir a proyectos' },
-    { id: 'formacion', ruta: ROUTES.FORMACION, texto: 'Formación', titulo: 'ir a formación' },
-    { id: 'juego', ruta: ROUTES.JUEGO, texto: 'Juego', titulo: 'ir al quiz de Harry Potter' }
+    { id: 'sobre-mi', ruta: RUTAS.SOBRE_MI, texto: 'Sobre mi', titulo: 'ir a sobre mi' },
+    { id: 'proyectos', ruta: RUTAS.PROYECTOS, texto: 'Proyectos', titulo: 'ir a proyectos' },
+    { id: 'formacion', ruta: RUTAS.FORMACION, texto: 'Formación', titulo: 'ir a formación' },
+    { id: 'juego', ruta: RUTAS.JUEGO, texto: 'Juego', titulo: 'ir al quiz de Harry Potter' }
 ]
 
+/* Cabecera fija con el logo animado, el nombre y el menú */
 export const Header = () => {
 
     const [conScroll, setConScroll] = useState(false)
 
-    // Al bajar, la cabecera pasa a translúcida para dejar ver el contenido que
-    // queda debajo. Listener con cleanup (regla C13).
+    /* Al hacer scroll la cabecera se vuelve translúcida para que se vea
+    el contenido de debajo */
     useEffect(() => {
         const comprobarScroll = () => setConScroll(window.scrollY > 0)
 
@@ -32,19 +28,18 @@ export const Header = () => {
     }, [])
 
     return (
-        <header className={`Header${conScroll ? ' is-translucida' : ''}`}>
+        <header className={`Header${conScroll ? ' isTranslucida' : ''}`}>
             <div className="Header-logo">
-                <Link to={ROUTES.HOME} className="Header-a">
-                    {/* El texto en arco va aparte para girar sobre su propio
-                        trazo; el interior queda encima y el texto pasa por
-                        detrás del ordenador. */}
+                <Link to={RUTAS.INICIO} className="Header-a">
+                    {/* El texto en arco va en otra imagen para que gire solo
+                    y pase por detrás del ordenador */}
                     <div className="Header-logoCompleto">
                         <img src="/assets/logo-texto.svg" alt="" className="Header-imgTexto" />
                         <img src="/assets/logo-interior.svg" alt="logo de Magaly Puente, diseñadora y desarrolladora web" className="Header-imgInterior" />
                     </div>
                 </Link>
                 <h1 className="Header-h1">
-                    <Link to={ROUTES.HOME} title="ir a inicio" className="Header-a">Magaly Puente</Link>
+                    <Link to={RUTAS.INICIO} title="ir a inicio" className="Header-a">Magaly Puente</Link>
                 </h1>
             </div>
             <nav className="Header-nav">
@@ -58,8 +53,7 @@ export const Header = () => {
     )
 }
 
-// Subcomponente del enlace (patrón de map del profesor, regla C11b):
-// recibe props con spread y las destructura dentro del cuerpo.
+/* Cada enlace del menú */
 const EnlaceNav = (props) => {
 
     const { ruta, texto, titulo } = props
@@ -70,5 +64,3 @@ const EnlaceNav = (props) => {
         </li>
     )
 }
-
-export default Header

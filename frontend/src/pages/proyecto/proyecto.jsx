@@ -1,22 +1,20 @@
-// pages/proyecto/proyecto.jsx
-// Página de detalle de un proyecto (/proyectos/:id). El contenido sale de
-// data/proyectos-detalle.js; si el id no existe se vuelve a la lista. Mantiene
-// la estética de Proyectos (caja turquesa y cursor halo) sobre el azul de la
-// huella del logo de PawCare.
+/* Página de detalle de cada proyecto. Si el id no existe volvemos a la lista */
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { Cursor } from '@/components/cursor/cursor.jsx'
-import { ROUTES } from '@/const/routes.js'
-import { PROYECTOS_DETALLE } from '@/data/proyectos-detalle.js'
+import { Cursor } from '@components/cursor/cursor.jsx'
+import { RUTAS } from '@const/rutas.js'
+import { PROYECTOS_DETALLE } from '@data/proyectos-detalle.js'
 import './proyecto.css'
 
-const ProyectoPage = () => {
+/* Buscamos el proyecto por el id de la ruta y pintamos todas sus secciones */
+export const Proyecto = () => {
 
     const { id } = useParams()
     const proyecto = PROYECTOS_DETALLE[id]
 
-    if (!proyecto) return <Navigate to={ROUTES.PROYECTOS} replace />
+    if (!proyecto) return <Navigate to={RUTAS.PROYECTOS} replace />
 
     const {
         titulo, subtitulo, intro, portada, tecnologias, enlaces, idea, perfiles,
@@ -29,7 +27,7 @@ const ProyectoPage = () => {
             <Cursor variante={icono} />
 
             <div className="Proyecto-wrapper">
-                <Link to={ROUTES.PROYECTOS} className="Proyecto-volver">← Volver a proyectos</Link>
+                <Link to={RUTAS.PROYECTOS} className="Proyecto-volver">← Volver a proyectos</Link>
 
                 <section className="Proyecto-cabecera">
                     <div className="Proyecto-presentacion">
@@ -158,7 +156,8 @@ const ProyectoPage = () => {
     )
 }
 
-// Imagen del proyecto o, si aún no hay, hueco reservado con su etiqueta.
+/* Mostramos la imagen del proyecto o, si todavía no la tenemos,
+un hueco con su etiqueta */
 const Imagen = (props) => {
 
     const { imagen, etiqueta, grande = false, natural = false } = props
@@ -173,14 +172,12 @@ const Imagen = (props) => {
     )
 }
 
-// Recorrido por la app: carrusel infinito con flechas, swipe y un rastro de
-// huellas que hace de "dots" (cada paso visitado deja una huella, alternando
-// pata izquierda y derecha).
-// Bucle infinito como el slider de Proyectos: la pista lleva un clon del último
-// paso delante y del primero detrás; al terminar la animación sobre un clon se
-// salta sin transición al paso real equivalente, así el salto no se ve.
+/* Distancia mínima en píxeles para que un arrastre cuente como swipe */
 const UMBRAL_SWIPE = 50
 
+/* Carrusel infinito del recorrido por la app, con flechas, swipe y un rastro de huellas
+como puntos. La pista lleva un clon del último paso delante y del primero detrás,
+y al llegar a un clon saltamos sin transición al paso real para que no se note */
 const Recorrido = (props) => {
 
     const { pasos, icono } = props
@@ -193,14 +190,14 @@ const Recorrido = (props) => {
     const [moviendo, setMoviendo] = useState(false)
     const inicioSwipe = useRef(null)
 
-    // Paso real (0..total-1) que corresponde a la posición en la pista.
+    // Paso real que corresponde a la posición de la pista
     const actual = (indice - 1 + total) % total
 
+    /* Movemos la pista hasta el paso que nos pidan */
     const mover = (destino) => {
         if (moviendo || destino === indice) return
 
-        // Sin animaciones (preferencia del sistema) no hay transitionend:
-        // se va directo al paso real.
+        // Si el sistema pide menos animaciones no llega el transitionend, así que vamos directos
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             setConTransicion(false)
             setIndice(((destino - 1 + total) % total) + 1)
@@ -215,6 +212,7 @@ const Recorrido = (props) => {
     const anterior = () => mover(indice - 1)
     const siguiente = () => mover(indice + 1)
 
+    /* Al acabar la animación, si estamos en un clon saltamos al paso real */
     const terminarTransicion = (e) => {
         if (e.target !== e.currentTarget || e.propertyName !== 'transform') return
         setMoviendo(false)
@@ -224,8 +222,12 @@ const Recorrido = (props) => {
         }
     }
 
-    // Swipe con dedo o ratón: basta un arrastre corto en horizontal.
-    const empezarSwipe = (e) => { inicioSwipe.current = e.clientX }
+    /* Guardamos dónde empieza el arrastre, con el dedo o con el ratón */
+    const empezarSwipe = (e) => {
+        inicioSwipe.current = e.clientX
+    }
+
+    /* Si el arrastre es lo bastante largo pasamos al paso anterior o al siguiente */
     const terminarSwipe = (e) => {
         if (inicioSwipe.current === null) return
         const distancia = e.clientX - inicioSwipe.current
@@ -270,7 +272,7 @@ const Recorrido = (props) => {
                 {pasos.map((paso, i) =>
                     <button
                         key={paso.id}
-                        className={`Recorrido-huella Recorrido-huella--${icono}${i % 2 ? ' Recorrido-huella--derecha' : ''}${i <= actual ? ' is-pisada' : ''}${i === actual ? ' is-actual' : ''}`}
+                        className={`Recorrido-huella Recorrido-huella--${icono}${i % 2 ? ' Recorrido-huella--derecha' : ''}${i <= actual ? ' isPisada' : ''}${i === actual ? ' isActual' : ''}`}
                         onClick={() => mover(i + 1)}
                         aria-label={`Ir al paso ${i + 1}: ${paso.titulo}`}
                         aria-current={i === actual ? 'step' : undefined}
@@ -283,7 +285,7 @@ const Recorrido = (props) => {
     )
 }
 
-// Huella de perro: almohadilla y cuatro dedos, apuntando hacia arriba.
+/* Huella de perro con la almohadilla y cuatro dedos */
 const Huella = () => (
     <svg viewBox="0 0 64 64" className="Recorrido-huellaSvg" aria-hidden="true">
         <path d="M32 34c-9 0-17 8-17 15 0 6 5 9 10 8 3-.5 4.5-2 7-2s4 1.5 7 2c5 1 10-2 10-8 0-7-8-15-17-15z" />
@@ -294,22 +296,22 @@ const Huella = () => (
     </svg>
 )
 
-// Rollo de película antiguo: disco con cinco ventanas y el eje central
-// (evenodd convierte los círculos interiores en huecos).
+/* Rollo de película antiguo con cinco ventanas y el eje central,
+evenodd hace que los círculos de dentro queden huecos */
 const Rollo = () => (
     <svg viewBox="0 0 64 64" className="Recorrido-huellaSvg" aria-hidden="true">
         <path fillRule="evenodd" d="M4 32a28 28 0 1 0 56 0a28 28 0 1 0-56 0zM28 32a4 4 0 1 0 8 0a4 4 0 1 0-8 0zM25 17a7 7 0 1 0 14 0a7 7 0 1 0-14 0zM39.27 27.36a7 7 0 1 0 14 0a7 7 0 1 0-14 0zM33.82 44.14a7 7 0 1 0 14 0a7 7 0 1 0-14 0zM16.18 44.14a7 7 0 1 0 14 0a7 7 0 1 0-14 0zM10.73 27.36a7 7 0 1 0 14 0a7 7 0 1 0-14 0z" />
     </svg>
 )
 
-// Diente (PortalDental): muela con dos raíces.
+/* Muela con dos raíces para PortalDental */
 const Diente = () => (
     <svg viewBox="0 0 64 64" className="Recorrido-huellaSvg" aria-hidden="true">
         <path d="M20 5C11 5 5 11 5 20c0 7 3 11 5 16 2 6 2 23 9 23 6 0 6-16 13-16s7 16 13 16c7 0 7-17 9-23 2-5 5-9 5-16 0-9-6-15-15-15-5 0-8 3-12 3S25 5 20 5z" />
     </svg>
 )
 
-// Silla de ruedas (Turismo Sin Barreras), como la del logo del proyecto.
+/* Silla de ruedas de Turismo Sin Barreras, como la de su logo */
 const Silla = () => (
     <svg viewBox="0 0 64 64" className="Recorrido-huellaSvg" aria-hidden="true">
         <circle cx="36" cy="9" r="6" />
@@ -318,32 +320,94 @@ const Silla = () => (
     </svg>
 )
 
-// Libro abierto (Ahora Somos Dos): dos páginas y el lomo en el centro.
+/* Libro abierto de Ahora Somos Dos, con dos páginas y el lomo en medio */
 const Libro = () => (
     <svg viewBox="0 0 64 64" className="Recorrido-huellaSvg" aria-hidden="true">
         <path fillRule="evenodd" d="M32 15C25 10 15 9 5 11v40c10-2 20-1 27 4 7-5 17-6 27-4V11c-10-2-20-1-27 4zM31 18h2v33h-2z" />
     </svg>
 )
 
-// Icono de los puntos del carrusel según el proyecto.
-const ICONOS = { huella: Huella, rollo: Rollo, diente: Diente, silla: Silla, libro: Libro }
+/* Calendario de Agenda 2026, con las anillas y algunos días marcados */
+const Calendario = () => (
+    <svg viewBox="0 0 64 64" className="Recorrido-huellaSvg" aria-hidden="true">
+        <path fillRule="evenodd" d="M8 12h48v44H8zM12 24h40v28H12zM16 28h6v6h-6zM29 28h6v6h-6zM42 28h6v6h-6zM16 40h6v6h-6zM29 40h6v6h-6z" />
+        <path d="M18 6h4v12h-4zM42 6h4v12h-4z" />
+    </svg>
+)
 
-// Diagrama de flujo: miniatura que abre la imagen completa en otra pestaña.
+/* Elegimos el icono de los puntos del carrusel según el proyecto */
+const ICONOS = {
+    huella: Huella,
+    rollo: Rollo,
+    diente: Diente,
+    silla: Silla,
+    libro: Libro,
+    calendario: Calendario
+}
+
+/* Miniatura del diagrama de flujo que se abre ampliada en el visor */
 const Flujo = (props) => {
 
-    const { titulo, imagen } = props
+    const { titulo, imagen, ampliable = true } = props
+    const [abierto, setAbierto] = useState(false)
+    const alt = `Diagrama de flujo: ${titulo}`
+
+    if (!ampliable) return (
+        <article className="Proyecto-tarjeta">
+            <h4 className="Proyecto-h4 Proyecto-h4--flujo">{titulo}</h4>
+            <div className="Proyecto-flujo Proyecto-flujo--fijo">
+                <img src={imagen} alt={alt} className="Proyecto-flujoImg" loading="lazy" />
+            </div>
+        </article>
+    )
 
     return (
         <article className="Proyecto-tarjeta">
             <h4 className="Proyecto-h4 Proyecto-h4--flujo">{titulo}</h4>
-            <a href={imagen} target="_blank" rel="noopener noreferrer" className="Proyecto-flujo" title={`ver diagrama: ${titulo}`}>
-                <img src={imagen} alt={`Diagrama de flujo: ${titulo}`} className="Proyecto-flujoImg" loading="lazy" />
-            </a>
+            <button type="button" className="Proyecto-flujo" onClick={() => setAbierto(true)} aria-label={`Ampliar diagrama: ${titulo}`}>
+                <img src={imagen} alt={alt} className="Proyecto-flujoImg" loading="lazy" />
+            </button>
+            {abierto && <Visor imagen={imagen} alt={alt} onCerrar={() => setAbierto(false)} />}
         </article>
     )
 }
 
-// Tarjeta turquesa como las del carrusel de Proyectos (C11b).
+/* Visor a pantalla completa con la página desenfocada detrás. Lo metemos en un portal
+al body para que quede encima del header, y se cierra con Escape, la X o clic fuera */
+const Visor = (props) => {
+
+    const { imagen, alt, onCerrar } = props
+    const botonCerrar = useRef(null)
+
+    useEffect(() => {
+        const previo = document.activeElement
+        const overflow = document.body.style.overflow
+        document.body.style.overflow = 'hidden'
+        botonCerrar.current?.focus()
+
+        const alPulsar = (e) => {
+            if (e.key === 'Escape') onCerrar()
+        }
+        document.addEventListener('keydown', alPulsar)
+
+        // Al cerrar devolvemos el scroll y el foco como estaban
+        return () => {
+            document.removeEventListener('keydown', alPulsar)
+            document.body.style.overflow = overflow
+            previo?.focus()
+        }
+    }, [onCerrar])
+
+    return createPortal(
+        <div className="Visor" role="dialog" aria-modal="true" aria-label={alt} onClick={onCerrar}>
+            <button ref={botonCerrar} type="button" className="Visor-cerrar" onClick={onCerrar} aria-label="Cerrar">×</button>
+            <img src={imagen} alt={alt} className="Visor-imagen" onClick={e => e.stopPropagation()} />
+        </div>,
+        document.body
+    )
+}
+
+/* Tarjeta de color como las del carrusel de Proyectos */
 const Tarjeta = (props) => {
 
     const { titulo, texto } = props
@@ -355,5 +419,3 @@ const Tarjeta = (props) => {
         </article>
     )
 }
-
-export default ProyectoPage

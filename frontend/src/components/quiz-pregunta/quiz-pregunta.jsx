@@ -1,29 +1,17 @@
-// components/quiz-pregunta/quiz-pregunta.jsx
-// Tarjeta de una pregunta del quiz. La API ya envía las preguntas SIN
-// respuestaCorrecta (la valida el backend al final de la partida), así que
-// aquí solo se pinta el enunciado y las opciones.
-// Sigue el patrón de map del profesor (regla C11b): subcomponente extraído,
-// spread del item, key estable (opcion.id) y destructuring dentro del cuerpo.
-
 import './quiz-pregunta.css'
 
-/**
- * @param {object} props
- * @param {string} props.pregunta              Enunciado.
- * @param {string} props.pelicula              Película a la que pertenece.
- * @param {Array<{id: string, texto: string}>} props.opciones
- * @param {number} props.numero                Número de pregunta actual (1..n).
- * @param {number} props.total                 Total de preguntas.
- * @param {string|null} props.opcionSeleccionada  Id de la opción marcada.
- * @param {Function} props.onSeleccionar       Recibe el id de la opción pulsada.
- */
+/* Tarjeta con una pregunta del quiz. La respuesta correcta no llega
+al front, la comprueba la API al terminar la partida */
 export const QuizPregunta = (props) => {
 
-    const { pregunta, pelicula, opciones, numero, total, opcionSeleccionada, onSeleccionar } = props
+    const { pregunta, pelicula, opciones, numero, total, tiempo, opcionSeleccionada, onSeleccionar } = props
 
     return (
         <article className="QuizPregunta">
-            <p className="QuizPregunta-progreso">Pregunta {numero} de {total}</p>
+            <div className="QuizPregunta-cabecera">
+                <p className="QuizPregunta-progreso">Pregunta {numero}/{total}</p>
+                {tiempo && <p className="QuizPregunta-tiempo" aria-label={`Tiempo: ${tiempo}`}>⌛ {tiempo}</p>}
+            </div>
             <p className="QuizPregunta-pelicula">{pelicula}</p>
             <h3 className="QuizPregunta-enunciado">{pregunta}</h3>
 
@@ -41,19 +29,18 @@ export const QuizPregunta = (props) => {
     )
 }
 
-// Subcomponente de la opción. Recibe props con spread y destructura dentro.
+/* Botón de cada opción, marcado si es la que ha elegido el jugador */
 const OpcionQuiz = (props) => {
 
     const { id, texto, seleccionada, onSeleccionar } = props
 
-    // Handler en castellano (regla C7b).
     const elegirOpcion = () => onSeleccionar(id)
 
     return (
         <li className="QuizPregunta-item">
             <button
                 type="button"
-                className={`QuizPregunta-opcion ${seleccionada ? 'is-seleccionada' : ''}`}
+                className={`QuizPregunta-opcion ${seleccionada ? 'isSeleccionada' : ''}`}
                 onClick={elegirOpcion}
             >
                 <span className="QuizPregunta-letra">{id.toUpperCase()}</span>
@@ -62,5 +49,3 @@ const OpcionQuiz = (props) => {
         </li>
     )
 }
-
-export default QuizPregunta

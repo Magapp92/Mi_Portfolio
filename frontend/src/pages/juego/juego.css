@@ -1,144 +1,205 @@
-/* pages/juego/juego.css
-   Estilos de la sección del quiz. Página nueva: mantiene la identidad de
-   la web (fondo oscuro, cajas con sombra difusa, tipografías propias). */
+/* Estilos del quiz con aspecto de videojuego pixel art: la escena ocupa todo
+el fondo y el contenido va encima en pergaminos */
 
+/* Damos estilo al contenedor del juego */
 .Juego{
     width: 100%;
-    background-color: var(--bg-main-color);
+    min-height: 30rem;
     margin: var(--alto-header) 0 0;
-
+    background-color: #0c0c14;
     overflow: hidden;
+
+    display: flex;
+    flex-flow: row nowrap;
+
     position: relative;
 
-    padding: 5rem 0;
+    cursor: none;
 }
 
-.Juego--jugando{
-    padding: 2rem 0;
-}
+/* Colocamos el contenido encima de la escena y lo centramos */
+.Juego-capa{
+    flex: 1;
+    padding: 1.5rem 1rem;
 
-.Juego--jugando .Juego-panel{
-    gap: 1.25rem;
-}
-
-.Juego-wrapper{
-    width: 95%;
-    max-width: 70rem;
-    margin: 0 auto;
-
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    gap: 3rem;
-}
-
-.Juego-cabecera{
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
+
+    position: relative;
+    z-index: 1;
 }
 
-.Juego-h2{
-    font-family: "titulos";
-    color: var(--color-primary-text);
-    font-size: 4em;
-    font-weight: 800;
-
-    animation: translateLeft 3s ease;
-}
-
-.Juego-pSection{
-    font-family: "texto";
-    font-size: 1.8em;
-    color: var(--color-primary-text);
-    font-weight: 800;
-    text-transform: uppercase;
+.Juego-titulo{
+    font-family: "pixel-titulos";
+    font-size: 1.6em;
+    color: #eeba30;
     text-align: center;
-
-    animation: translateRight 3s ease;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 0 #3b1d0a, 0 0 12px rgba(255, 170, 60, .45);
+    line-height: 1.4;
 }
 
-.Juego-panel{
-    width: 100%;
+.Juego-titulo--resultado{
+    font-size: 1.25em;
+}
+
+/* El pergamino lleva un borde de madera escalonado hecho con sombras */
+.Juego-pergamino{
+    width: 38rem;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 1.1rem 1.4rem;
+    background-color: #e8d7a9;
+    box-shadow:
+        0 -4px 0 #c9b07a, 0 4px 0 #a88a52, -4px 0 0 #c9b07a, 4px 0 0 #a88a52,
+        0 0 0 8px #5a3a1e, 8px 8px 0 8px rgba(0, 0, 0, .45);
+    overflow-y: auto;
+    scrollbar-color: #8a6a3a #e8d7a9;
 
     display: flex;
     flex-flow: column nowrap;
-    align-items: center;
-    gap: 2rem;
+    gap: .6rem;
+
+    font-family: "pixel-texto";
+    font-size: 1.05rem;
+    color: #3b2410;
 }
 
-.Juego-label{
-    font-family: "cabeceras";
-    color: var(--light-color);
-    font-size: 1.3em;
+.Juego-pergamino--resultado{
+    width: 44rem;
+    max-height: calc(100dvh - var(--alto-header) - 12rem);
 }
 
+.Juego-etiqueta{
+    margin-top: .3rem;
+
+    font-family: "pixel-titulos";
+    font-size: .6em;
+    color: #6b4423;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+/* Damos estilo a los campos de texto */
 .Juego-input{
     width: 100%;
-    max-width: 25rem;
-
-    padding: 1rem 1.5rem;
-    font-family: "texto";
-    font-size: 1.2em;
-    color: var(--color-secondary-text);
-    background-color: var(--color-primary-text);
-    border-radius: 0.5rem;
+    padding: .55rem .7rem;
+    background-color: #f6ecd0;
+    border: none;
+    box-shadow: inset 0 0 0 3px #5a3a1e;
     outline: none;
+
+    font-family: "pixel-texto";
+    font-size: 1.05rem;
+    color: #3b2410;
+}
+.Juego-input:focus-visible{
+    box-shadow: inset 0 0 0 3px #c0662a;
 }
 
-.Juego-cronometro{
-    font-family: "cabeceras";
-    color: var(--light-color);
-    font-size: 1.6em;
+.Juego-input--nick{
+    width: auto;
+    flex: 1 1 12rem;
 }
 
-.Juego-resultado{
+/* Colocamos las casas en una rejilla de cuatro columnas */
+.Juego-casas{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: .5rem;
+}
+
+.Juego-casa{
+    padding: .5rem .25rem;
+    background-color: #f6ecd0;
+    border: none;
+    box-shadow: inset 0 0 0 3px #a88a52;
+
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    gap: 1.5rem;
+    gap: .25rem;
 
-    padding: 2.5rem 4rem;
-    background-color: var(--color-sombra-texto);
-    box-shadow: 0 0 2rem 1rem var(--color-sombra-texto);
+    font-family: "pixel-texto";
+    font-size: .9rem;
+    color: #3b2410;
+
+    cursor: pointer;
+}
+.Juego-casa:hover,
+.Juego-casa:focus-visible{
+    background-color: #fff7dc;
 }
 
-.Juego-h3{
-    font-family: "negrita";
-    color: var(--color-primary-text);
-    font-size: 2em;
-    font-weight: 800;
-    text-align: center;
+/* La casa elegida se marca con sus propios colores */
+.Juego-casa.isSeleccionada{
+    background-color: #fff7dc;
+    box-shadow: inset 0 0 0 3px var(--casa-color), 0 0 0 3px var(--casa-borde);
 }
 
-.Juego-puntos{
-    font-family: "titulos";
-    color: var(--light-color);
-    font-size: 3.5em;
-    font-weight: 800;
+/* Damos estilo a los botones con una sombra que parece que se pisa al pulsar */
+.Juego-boton{
+    padding: .75rem 1rem;
+    background-color: #c0662a;
+    border: none;
+    box-shadow: 0 4px 0 #6b3412, inset 0 -3px 0 rgba(0, 0, 0, .25);
+
+    align-self: center;
+
+    font-family: "pixel-titulos";
+    font-size: .7rem;
+    color: #fff4d6;
+    text-transform: uppercase;
+
+    cursor: pointer;
+}
+.Juego-boton:hover:not(:disabled),
+.Juego-boton:focus-visible{
+    filter: brightness(1.1);
+}
+.Juego-boton:active:not(:disabled){
+    box-shadow: 0 2px 0 #6b3412;
+    transform: translateY(2px);
+}
+.Juego-boton:disabled{
+    opacity: .5;
+    cursor: not-allowed;
 }
 
-.Juego-detalle{
+.Juego-boton--secundario{
+    background-color: #d8c08a;
+    box-shadow: 0 4px 0 #8a6a3a, inset 0 -3px 0 rgba(0, 0, 0, .15);
+
+    color: #3b2410;
+}
+
+/* RESULTADO */
+.Juego-marcador{
     display: flex;
-    flex-flow: row wrap;
     justify-content: center;
     gap: 2rem;
+
+    text-align: center;
 }
 
 .Juego-dato{
-    font-family: "texto";
-    color: var(--color-primary-text);
-    font-size: 1.3em;
+    font-family: "pixel-titulos";
+    font-size: .6em;
+    color: #6b4423;
+    text-transform: uppercase;
 }
 
-.Juego-dato--acierto{
-    color: var(--color-acierto);
-}
+.Juego-dato b{
+    margin-top: .5rem;
 
-.Juego-dato--fallo{
-    color: var(--color-fallo);
+    display: block;
+
+    font-size: 2.2em;
+    font-weight: 400;
+    color: #7a1f10;
 }
 
 .Juego-acciones{
@@ -146,28 +207,37 @@
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: .6rem;
 }
 
-.Juego-input--nick{
-    max-width: 18rem;
-    padding: .6rem 1rem;
-    font-size: 1em;
-}
-
+/* Si falla la API mostramos el error en un recuadro rojo */
 .Juego-error{
-    font-family: "texto";
-    color: var(--color-fallo);
-    font-size: 1.2em;
-    text-align: center;
+    padding: .6rem 1.2rem;
+    background-color: rgba(120, 20, 10, .85);
+    box-shadow: 0 0 0 3px #3b0a04;
 
-    padding: 1rem 2rem;
-    background-color: rgba(224, 82, 82, 0.15);
-    border-radius: 0.5rem;
+    font-family: "pixel-texto";
+    font-size: 1.05rem;
+    color: #ffe1dc;
+    text-align: center;
 }
 
 .Juego-cargando{
-    font-family: "texto";
-    color: var(--color-primary-text);
-    font-size: 1.2em;
+    font-family: "pixel-texto";
+    font-size: 1.05rem;
+    text-align: center;
+}
+
+/* Ocultamos el cursor del sistema en todo el juego porque lo sustituye la snitch */
+.Juego button,
+.Juego input,
+.Juego button:disabled{
+    cursor: none;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 600px){
+    .Juego-casas{
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

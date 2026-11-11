@@ -1,8 +1,6 @@
-// components/footer/footer.jsx
-// Pie de página común. Traslada el <footer> de la web original.
-
 import './footer.css'
 
+/* Pie de página con el contacto y la autoría */
 export const Footer = () => {
     return (
         <footer className="Footer">
@@ -19,5 +17,3 @@ export const Footer = () => {
         </footer>
     )
 }
-
-export default Footer

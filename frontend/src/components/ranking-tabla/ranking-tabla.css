@@ -1,52 +1,69 @@
-/* components/ranking-tabla/ranking-tabla.css
-   Estilos de la tabla de ranking del quiz. */
+/* Ranking del quiz en pixel art: cada fila se tiñe con el color de la casa
+del jugador y lleva su escudo */
 
+/* Separamos las filas un poco entre sí con border-spacing */
 .RankingTabla{
     width: 100%;
-    max-width: 50rem;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0 5px;
 
-    font-family: "texto";
-    color: var(--color-primary-text);
-    font-size: 1.1em;
-
-    background-color: var(--color-sombra-texto);
-    box-shadow: 0 0 2rem 1rem var(--color-sombra-texto);
-}
-
-.RankingTabla-cabecera{
-    font-family: "cabeceras";
-    background-color: var(--header-color);
+    font-family: "pixel-texto";
+    font-size: 1em;
+    color: #3b2410;
 }
 
 .RankingTabla-th{
-    padding: 1rem;
+    padding: 0 .6rem;
+
+    font-family: "pixel-titulos";
+    font-size: .55em;
+    font-weight: 400;
+    color: #6b4423;
     text-align: left;
+    text-transform: uppercase;
 }
 
+/* Mezclamos el color de la casa con el del pergamino para el fondo de la celda */
 .RankingTabla-td{
-    padding: .8rem 1rem;
+    padding: .2rem .6rem;
+    background-color: color-mix(in srgb, var(--casa-color) 18%, #f6ecd0);
+    vertical-align: middle;
 }
 
-.RankingTabla-fila{
-    border-top: 1px solid var(--header-color);
-    transition: background-color .3s ease;
-}
-.RankingTabla-fila:hover{
-    background-color: rgba(140, 219, 211, 0.08);
+/* La celda de la posición lleva una franja con el color de la casa */
+.RankingTabla-td--posicion{
+    width: 2.5rem;
+    box-shadow: inset 5px 0 0 var(--casa-color);
+
+    font-family: "pixel-titulos";
+    font-size: .7em;
 }
 
-/* Fila del propio jugador resaltada en turquesa. */
-.RankingTabla-fila.is-propia{
-    background-color: var(--light-color);
-    color: var(--color-secondary-text);
-    font-weight: 800;
+.RankingTabla-td--escudo{
+    width: 3.4rem;
+}
+
+/* Resaltamos la fila del propio jugador */
+.RankingTabla-fila.isPropia .RankingTabla-td{
+    background-color: color-mix(in srgb, var(--casa-color) 38%, #fff4d6);
+    font-weight: 700;
+}
+
+/* Ocultamos el texto a la vista pero lo dejamos para los lectores de pantalla */
+.RankingTabla-oculto{
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+
+    position: absolute;
 }
 
 .RankingTabla-vacio{
-    font-family: "texto";
-    color: var(--color-primary-text);
-    font-size: 1.2em;
+    padding: 1rem;
+
+    font-family: "pixel-texto";
+    font-size: 1.05em;
+    color: #3b2410;
     text-align: center;
-    padding: 2rem;
 }

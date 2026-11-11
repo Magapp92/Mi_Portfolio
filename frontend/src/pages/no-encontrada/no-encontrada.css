@@ -1,41 +1,41 @@
-/* pages/not-found/not-found.css
-   Estilos de la página 404. */
+/* Estilos de la página 404 */
 
-.NotFound{
+/* Centramos con flex el número, el texto y el enlace */
+.NoEncontrada{
     width: 100%;
-    background-color: var(--bg-main-color);
     margin: var(--alto-header) 0 0;
+    padding: 5rem 2rem;
+    background-color: var(--color-fondo-principal);
 
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
     gap: 2rem;
-
-    padding: 5rem 2rem;
 }
 
-.NotFound-h2{
+.NoEncontrada-h2{
     font-family: "titulos";
-    color: var(--light-color);
     font-size: 8em;
     font-weight: 800;
+    color: var(--color-claro);
 }
 
-.NotFound-p{
+.NoEncontrada-p{
     font-family: "texto";
-    color: var(--color-primary-text);
     font-size: 1.5em;
+    color: var(--color-texto-principal);
     text-align: center;
 }
 
-.NotFound-enlace{
+/* Agrandamos un poco el enlace al pasar el ratón */
+.NoEncontrada-enlace{
     font-family: "cabeceras";
-    color: var(--light-color);
     font-size: 1.3em;
+    color: var(--color-claro);
 
     transition: transform .5s ease;
 }
-.NotFound-enlace:hover{
+.NoEncontrada-enlace:hover{
     transform: scale(1.1);
 }

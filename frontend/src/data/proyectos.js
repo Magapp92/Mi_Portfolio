@@ -1,7 +1,5 @@
-// data/proyectos.js
-// Proyectos del slider (antes artículos duplicados en proyectos.html).
-// Sustituir imagen y texto cuando haya contenido real de cada proyecto.
 
+/* Proyectos que se muestran en el slider */
 export const PROYECTOS = [
     {
         id: 'pawcare',
@@ -35,5 +33,12 @@ export const PROYECTOS = [
         imagen: '/assets/asd-portada.webp',
         imagenEntera: true,
         descripcion: 'Diseño editorial: cuento infantil ilustrado sobre la llegada de una nueva hermana, inspirado en mis dos perras. Escribí el texto, creé las ilustraciones y maqueté el libro completo en InDesign, listo para imprenta.'
+    },
+    {
+        id: 'agenda2026',
+        titulo: 'Agenda 2026',
+        imagen: '/assets/ag-portada.webp',
+        imagenEntera: true,
+        descripcion: 'Producción gráfica: agenda A5 que dedica cada mes a una vanguardia artística, del Impresionismo al Pop Art, con una ilustración propia y una breve introducción. Diseñada y preparada para imprenta con Wire-O, foil dorado, golpe seco y marcapáginas desprendibles.'
     }
 ]

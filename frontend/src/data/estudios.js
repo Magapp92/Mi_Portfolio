@@ -1,7 +1,6 @@
-// data/estudios.js
-// Especialidades que se muestran en la home (antes h2 sueltos en index.html).
-// Cada una lleva su modificador CSS para conservar la animación escalonada.
 
+/* Especialidades que se muestran en la página de inicio. Cada una lleva su
+modificador CSS para que la animación salga escalonada */
 export const ESTUDIOS = [
     { id: 'front', texto: 'Front end' },
     { id: 'fullstack', texto: 'Full stack' },

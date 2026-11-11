@@ -1,49 +1,57 @@
-/* pages/proyecto/proyecto.css
-   Detalle de proyecto. Fondo en el azul oscuro del header: caja en el azul de la huella del logo de PawCare,
-   recuadros en el turquesa claro de las huellas (--light-color) y las tipografías
-   titulos / negrita / texto. Los huecos rosas marcan dónde van las capturas. */
+/* Estilos de la página de detalle de cada proyecto */
 
+/* PROYECTO */
+
+/* Fondo azul oscuro como el header. Cada proyecto cambia el color de sus recuadros */
 .Proyecto{
     width: 100%;
-    background-color: var(--header-color-oscuro);
+    background-color: var(--color-header-oscuro);
     margin: var(--alto-header) 0 0;
-
     overflow: hidden;
+
     position: relative;
 
     cursor: none;
 
-    /* Color de los recuadros y de los puntos del carrusel, por proyecto. */
-    --color-recuadro: var(--light-color);
-    --color-texto-recuadro: var(--color-secondary-text);
+    /* Color de los recuadros y de los puntos del carrusel */
+    --color-recuadro: var(--color-claro);
+    --color-texto-recuadro: var(--color-texto-secundario);
 }
 
-/* PawCare: verde principal oscuro con texto claro para que se lea. */
+/* PawCare usa su verde oscuro con el texto claro para que se lea bien */
 .Proyecto--huella{
     --color-recuadro: var(--color-verde-pawcare-oscuro);
-    --color-texto-recuadro: var(--color-primary-text);
+    --color-texto-recuadro: var(--color-texto-principal);
 }
 
+/* Busca tu peli usa su turquesa */
 .Proyecto--rollo{
     --color-recuadro: var(--color-turquesa-buscatupeli);
 }
 
-/* Turismo Sin Barreras: verde menta de la app. */
+/* Turismo Sin Barreras usa el verde menta de la app */
 .Proyecto--silla{
     --color-recuadro: var(--color-menta-tsb);
 }
 
-/* Ahora Somos Dos: naranja salmón del libro. */
+/* Ahora Somos Dos usa el naranja salmón del libro */
 .Proyecto--libro{
     --color-recuadro: var(--color-salmon-asd);
 }
 
-/* PortalDental: azul de la marca con texto claro. */
-.Proyecto--diente{
-    --color-recuadro: var(--color-azul-portaldental);
-    --color-texto-recuadro: var(--color-primary-text);
+/* Agenda 2026 usa el magenta de la agenda con texto claro */
+.Proyecto--calendario{
+    --color-recuadro: var(--color-magenta-agenda);
+    --color-texto-recuadro: var(--color-texto-principal);
 }
 
+/* PortalDental usa el azul de la marca con texto claro */
+.Proyecto--diente{
+    --color-recuadro: var(--color-azul-portaldental);
+    --color-texto-recuadro: var(--color-texto-principal);
+}
+
+/* El texto de los recuadros toma el color que toque según el proyecto */
 .Proyecto-tarjeta .Proyecto-h4,
 .Proyecto-tarjeta .Proyecto-p,
 .Proyecto .Proyecto-metricaValor,
@@ -52,37 +60,42 @@
     color: var(--color-texto-recuadro);
 }
 
+/* Caja central en el azul de la huella de PawCare */
 .Proyecto-wrapper{
     width: 95%;
     max-width: 90rem;
     background-color: var(--color-azul-pawcare-translucido);
+    padding: 1.5rem 4rem 3rem;
+    margin: 1.25rem auto 2rem;
+    box-shadow: 0 0 1rem 1rem var(--color-azul-pawcare-translucido);
 
     display: flex;
     flex-flow: column nowrap;
     gap: 2.5rem;
 
-    padding: 1.5rem 4rem 3rem;
-    margin: 1.25rem auto 2rem;
     position: relative;
     z-index: 1;
-    box-shadow: 0 0 1rem 1rem var(--color-azul-pawcare-translucido);
 }
 
+/* Enlace para volver que se mueve un poco a la izquierda al pasar el ratón */
 .Proyecto-volver{
-    align-self: flex-start;
     background-color: transparent;
-    font-family: "negrita";
-    color: var(--color-secondary-text);
-    font-size: 1em;
-    cursor: none;
 
+    align-self: flex-start;
+
+    font-family: "negrita";
+    color: var(--color-texto-secundario);
+    font-size: 1em;
+
+    cursor: none;
     transition: transform .3s ease;
 }
+
 .Proyecto-volver:hover{
     transform: translateX(-.4rem);
 }
 
-/* Cabecera: presentación a la izquierda y portada a la derecha. */
+/* Colocamos la presentación a la izquierda y la portada a la derecha */
 .Proyecto-cabecera{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -99,9 +112,10 @@
     animation: translateLeft 3s ease;
 }
 
+/* Damos estilo a los títulos y textos */
 .Proyecto-h2{
     font-family: "titulos";
-    color: var(--color-secondary-text);
+    color: var(--color-texto-secundario);
     font-size: 3em;
     font-weight: 800;
     line-height: 1;
@@ -109,7 +123,7 @@
 
 .Proyecto-subtitulo{
     font-family: "texto";
-    color: var(--color-secondary-text);
+    color: var(--color-texto-secundario);
     font-size: 1.3em;
     font-weight: 800;
     text-transform: uppercase;
@@ -117,21 +131,21 @@
 
 .Proyecto-h3{
     font-family: "titulos";
-    color: var(--color-secondary-text);
+    color: var(--color-texto-secundario);
     font-size: 2em;
     font-weight: 800;
 }
 
 .Proyecto-h4{
     font-family: "negrita";
-    color: var(--color-secondary-text);
+    color: var(--color-texto-secundario);
     font-size: 1.3em;
     font-weight: 800;
 }
 
 .Proyecto-p{
     font-family: "texto";
-    color: var(--color-secondary-text);
+    color: var(--color-texto-secundario);
     font-size: 1em;
     font-weight: 600;
     line-height: 1.5;
@@ -142,6 +156,7 @@
     font-size: .9em;
 }
 
+/* Etiquetas de las tecnologías en fila */
 .Proyecto-tags{
     display: flex;
     flex-flow: row wrap;
@@ -149,12 +164,13 @@
 }
 
 .Proyecto-tag{
-    font-family: "negrita";
-    color: var(--color-primary-text);
-    font-size: .85em;
-    background-color: var(--header-color);
+    background-color: var(--color-header);
     padding: .3rem .8rem;
     border-radius: 1rem;
+
+    font-family: "negrita";
+    color: var(--color-texto-principal);
+    font-size: .85em;
 }
 
 .Proyecto-enlaces{
@@ -163,22 +179,24 @@
     gap: .75rem;
 }
 
-/* Botones con el mismo gesto que las flechas del slider: relleno y borde se
-   invierten en hover para que se entienda que son clicables. */
+/* Igual que las flechas del slider, el relleno y el borde se invierten
+en hover para que se vea que se puede hacer clic */
 .Proyecto-boton{
-    font-family: "negrita";
-    color: var(--color-secondary-text);
     background-color: var(--color-recuadro);
-    border: 2px solid var(--color-secondary-text);
+    border: 2px solid var(--color-texto-secundario);
     padding: .55rem 1.2rem;
-    cursor: none;
 
+    font-family: "negrita";
+    color: var(--color-texto-secundario);
+
+    cursor: none;
     transition: background-color .3s ease, color .3s ease;
 }
+
 .Proyecto-boton:hover,
 .Proyecto-boton:focus-visible{
     color: var(--color-recuadro);
-    background-color: var(--color-secondary-text);
+    background-color: var(--color-texto-secundario);
 }
 
 .Proyecto-section{
@@ -187,6 +205,7 @@
     gap: 1rem;
 }
 
+/* Rejillas de tarjetas que se adaptan al ancho */
 .Proyecto-grid{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
@@ -204,15 +223,14 @@
 .Proyecto-tarjeta{
     background-color: var(--color-recuadro);
     box-shadow: 0 0 8px 5px var(--color-sombra-texto);
+    padding: 1.25rem;
 
     display: flex;
     flex-flow: column nowrap;
     gap: .6rem;
-
-    padding: 1.25rem;
 }
 
-/* Imagen del proyecto o hueco reservado (rosa, como en el carrusel). */
+/* Imagen del proyecto o hueco rosa reservado, como en el carrusel */
 .Proyecto-imagen{
     width: 100%;
     aspect-ratio: 16 / 10;
@@ -224,13 +242,13 @@
     box-shadow: 0 0 8px 5px var(--color-sombra-texto);
 }
 
-/* Imagen a su proporción original: se ve entera, sin recorte. */
+/* Dejamos la imagen con su proporción original para que se vea entera */
 .Proyecto-imagen--natural{
     aspect-ratio: auto;
     height: auto;
 }
 
-/* ---------- Recorrido por la app: carrusel + rastro de huellas ---------- */
+/* RECORRIDO */
 
 .Recorrido{
     display: flex;
@@ -238,7 +256,7 @@
     gap: 1.25rem;
 }
 
-/* Flecha | pista | flecha: las flechas nunca tapan el contenido. */
+/* Las flechas van en sus propias columnas para no tapar el contenido */
 .Recorrido-escenario{
     display: grid;
     grid-template-columns: 3.5rem minmax(0, 1fr) 3.5rem;
@@ -246,8 +264,8 @@
     gap: .75rem;
 }
 
-/* Ventana del carrusel: los laterales se funden con el fondo, así los slides
-   entran y salen difuminados en vez de cortarse en seco. */
+/* Fundimos los laterales con el fondo para que los slides entren
+y salgan difuminados en vez de cortarse */
 .Recorrido-ventana{
     overflow: hidden;
     touch-action: pan-y;
@@ -257,29 +275,30 @@
     mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
 }
 
-/* Paso lento y fluido: arranca y frena con suavidad. */
+/* La pista se mueve despacio, arrancando y frenando con suavidad */
 .Recorrido-pista{
     display: flex;
+    flex-flow: row nowrap;
+
     transition: transform 1.2s cubic-bezier(.65, .05, .35, 1);
 }
 
-/* Margen interior para que el resplandor difuso de la tarjeta quepa. */
+/* Dejamos margen para que quepa el resplandor de la tarjeta */
 .Recorrido-slide{
     flex: 0 0 100%;
     padding: 2rem 2.5rem;
 }
 
-/* Bordes difusos: un resplandor del mismo turquesa que la tarjeta hace que
-   el borde se disuelva en lugar de marcarse como una caja. */
+/* Con una sombra del mismo color que la tarjeta el borde se difumina */
 .Recorrido-paso{
+    background-color: var(--color-recuadro);
+    box-shadow: 0 0 1.5rem 1rem var(--color-recuadro);
+    padding: 1.5rem;
+
     display: grid;
     grid-template-columns: 1.3fr 1fr;
     align-items: center;
     gap: 2rem;
-
-    background-color: var(--color-recuadro);
-    box-shadow: 0 0 1.5rem 1rem var(--color-recuadro);
-    padding: 1.5rem;
 }
 
 .Recorrido-texto{
@@ -290,20 +309,21 @@
 
 .Recorrido-h4{
     font-family: "titulos";
-    color: var(--color-secondary-text);
+    color: var(--color-texto-secundario);
     font-size: 1.8em;
     font-weight: 800;
 }
 
-/* Mismas flechas que el slider de Proyectos, con su hover invertido. */
+/* Usamos las mismas flechas que el slider de Proyectos */
 .Recorrido-flecha{
     width: 3.5rem;
     height: 3.5rem;
-    cursor: none;
-
     background: center / contain no-repeat;
+
+    cursor: none;
     transition: transform .3s ease;
 }
+
 .Recorrido-flecha:hover{
     transform: scale(1.1);
 }
@@ -311,6 +331,7 @@
 .Recorrido-flecha--prev{
     background-image: url('/assets/prev.svg');
 }
+
 .Recorrido-flecha--prev:hover,
 .Recorrido-flecha--prev:focus-visible{
     background-image: url('/assets/prev-hover.svg');
@@ -319,35 +340,38 @@
 .Recorrido-flecha--next{
     background-image: url('/assets/next.svg');
 }
+
 .Recorrido-flecha--next:hover,
 .Recorrido-flecha--next:focus-visible{
     background-image: url('/assets/next-hover.svg');
 }
 
-/* Rastro de huellas: caminan hacia la derecha alternando pata izquierda
-   (arriba) y derecha (abajo). Las pisadas quedan marcadas; las que faltan
-   se insinúan apenas. */
+/* Rastro de huellas que camina a la derecha alternando pata izquierda arriba
+y derecha abajo. Las pisadas quedan marcadas y las que faltan casi no se ven */
 .Recorrido-huellas{
+    padding: .75rem 0;
+
     display: flex;
+    flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
     gap: 1.1rem;
-    padding: .75rem 0;
 }
 
 .Recorrido-huella{
     width: 2.3rem;
     height: 2.3rem;
-    cursor: none;
 
     transform: translateY(-.45rem) rotate(80deg);
+
+    cursor: none;
 }
 
 .Recorrido-huella--derecha{
     transform: translateY(.45rem) rotate(100deg);
 }
 
-/* Rollos de película: en fila recta, sin el zigzag de las patas. */
+/* Los iconos que no son patas van en fila recta, sin zigzag */
 .Recorrido-huella--rollo,
 .Recorrido-huella--rollo.Recorrido-huella--derecha,
 .Recorrido-huella--diente,
@@ -355,32 +379,34 @@
 .Recorrido-huella--silla,
 .Recorrido-huella--silla.Recorrido-huella--derecha,
 .Recorrido-huella--libro,
-.Recorrido-huella--libro.Recorrido-huella--derecha{
+.Recorrido-huella--libro.Recorrido-huella--derecha,
+.Recorrido-huella--calendario,
+.Recorrido-huella--calendario.Recorrido-huella--derecha{
     width: 1.9rem;
     height: 1.9rem;
     transform: none;
 }
 
-/* El carrusel toma el azul de los bocadillos de tecnologías, con el texto
-   claro como en ellos. */
+/* El carrusel toma el azul de las etiquetas de tecnologías, con el texto claro */
 .Recorrido-paso.Recorrido-paso{
-    background-color: var(--header-color);
-    box-shadow: 0 0 1.5rem 1rem var(--header-color);
+    background-color: var(--color-header);
+    box-shadow: 0 0 1.5rem 1rem var(--color-header);
 }
 
 .Recorrido-paso .Recorrido-h4,
 .Recorrido-paso .Proyecto-p{
-    color: var(--color-primary-text);
+    color: var(--color-texto-principal);
 }
 
-.Recorrido-huella.is-pisada .Recorrido-huellaSvg{
+.Recorrido-huella.isPisada .Recorrido-huellaSvg{
     fill: var(--color-recuadro);
 }
 
 .Recorrido-huellaSvg{
     width: 100%;
     height: 100%;
-    fill: var(--color-secondary-text);
+
+    fill: var(--color-texto-secundario);
     opacity: .18;
 
     transition: opacity .4s ease, fill .4s ease;
@@ -391,19 +417,19 @@
     opacity: .45;
 }
 
-.Recorrido-huella.is-pisada .Recorrido-huellaSvg{
+.Recorrido-huella.isPisada .Recorrido-huellaSvg{
     opacity: .85;
     animation: pisada .45s ease-out;
 }
 
-/* La huella del paso actual, en el turquesa claro del portfolio. */
-.Recorrido-huella.is-actual .Recorrido-huellaSvg{
+/* Resaltamos la huella del paso en el que estamos */
+.Recorrido-huella.isActual .Recorrido-huellaSvg{
     opacity: 1;
     fill: var(--color-recuadro);
     filter: drop-shadow(0 0 .35rem var(--color-sombra-texto));
 }
 
-/* La pata "cae" sobre el suelo: llega grande y transparente y se asienta. */
+/* La pata cae grande y transparente y se asienta en el suelo */
 @keyframes pisada{
     from{
         transform: scale(1.6);
@@ -414,23 +440,15 @@
     }
 }
 
-@media (prefers-reduced-motion: reduce){
-    .Recorrido-pista{
-        transition: none;
-    }
+/* FLUJOS */
 
-    .Recorrido-huella.is-pisada .Recorrido-huellaSvg{
-        animation: none;
-    }
-}
-
-/* Flujos: 4 diagramas en fila (2 en pantallas medianas). El fondo blanco
-   respeta el del diagrama original y la altura fija iguala las tarjetas. */
+/* Cuatro diagramas por fila, con fondo blanco como el diagrama original
+y altura fija para que las tarjetas queden iguales */
 .Proyecto-grid--flujos{
     grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
 }
 
-/* Diagramas apaisados: dos por fila y a su altura natural. */
+/* Los diagramas apaisados van de dos en dos y a su altura natural */
 .Proyecto-grid--flujosAnchos{
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
 }
@@ -440,22 +458,31 @@
     max-height: 26rem;
 }
 
-/* Reserva dos líneas de título para que las miniaturas queden alineadas. */
+/* Reservamos dos líneas de título para que las miniaturas queden alineadas */
 .Proyecto-h4--flujo{
     min-height: 2.5em;
     line-height: 1.25;
 }
 
 .Proyecto-flujo{
+    width: 100%;
     background-color: #fff;
     padding: .5rem;
-    cursor: none;
+    border: none;
 
+    display: block;
+
+    cursor: none;
     transition: transform .4s ease;
 }
+
 .Proyecto-flujo:hover,
 .Proyecto-flujo:focus-visible{
     transform: scale(1.03);
+}
+
+.Proyecto-flujo--fijo:hover{
+    transform: none;
 }
 
 .Proyecto-flujoImg{
@@ -463,24 +490,29 @@
     object-fit: contain;
 }
 
+/* Hueco rosa con la etiqueta centrada mientras no hay captura */
 .Proyecto-imagen--hueco{
     background-color: pink;
+    padding: 1rem;
 
     display: flex;
+    flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
 }
 
 .Proyecto-etiqueta{
     font-family: "texto";
-    color: var(--color-secondary-text);
+    color: var(--color-texto-secundario);
     font-size: .9em;
     font-weight: 600;
     text-align: center;
     opacity: .7;
 }
 
+/* DISEÑO */
+
+/* Texto y colores a la izquierda y el logo a la derecha */
 .Proyecto-diseno{
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -500,6 +532,7 @@
     gap: .75rem;
 }
 
+/* Cada color con su muestra a la izquierda y el nombre y el código al lado */
 .Proyecto-color{
     display: grid;
     grid-template-columns: 2.25rem 1fr;
@@ -509,40 +542,45 @@
 }
 
 .Proyecto-muestra{
-    grid-row: span 2;
     width: 2.25rem;
     height: 2.25rem;
-    border: 2px solid var(--color-secondary-text);
+    border: 2px solid var(--color-texto-secundario);
+
+    grid-row: span 2;
 }
 
 .Proyecto-colorNombre{
     font-family: "negrita";
-    color: var(--color-secondary-text);
+    color: var(--color-texto-secundario);
     font-size: .9em;
 }
 
 .Proyecto-colorHex{
     font-family: "texto";
-    color: var(--color-secondary-text);
+    color: var(--color-texto-secundario);
     font-size: .85em;
     font-weight: 600;
 }
 
+/* RETO */
+
 .Proyecto-lista{
+    padding: 0 0 0 1.25rem;
+
     display: flex;
     flex-flow: column nowrap;
     gap: .4rem;
-    padding: 0 0 0 1.25rem;
 }
 
 .Proyecto-item{
     font-family: "texto";
-    color: var(--color-secondary-text);
+    color: var(--color-texto-secundario);
     font-weight: 600;
     line-height: 1.5;
     list-style: disc;
 }
 
+/* Colocamos las métricas en fila junto a la nota */
 .Proyecto-metricas{
     display: flex;
     flex-flow: row wrap;
@@ -551,28 +589,100 @@
 }
 
 .Proyecto-metrica{
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-
     background-color: var(--color-recuadro);
     box-shadow: 0 0 8px 5px var(--color-sombra-texto);
     padding: .75rem 1.5rem;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 }
 
 .Proyecto-metricaValor{
     font-family: "titulos";
-    color: var(--color-secondary-text);
+    color: var(--color-texto-secundario);
     font-size: 2.2em;
     font-weight: 800;
 }
 
 .Proyecto-metricaTexto{
     font-family: "negrita";
-    color: var(--color-secondary-text);
+    color: var(--color-texto-secundario);
     font-size: .85em;
 }
 
+/* VISOR */
+
+/* Fondo que cubre toda la pantalla y desenfoca la página de detrás */
+.Visor{
+    padding: 2rem;
+    background-color: rgb(0 0 0 / .45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+
+    cursor: none;
+    animation: Visor-entrar .25s ease;
+}
+
+.Visor-imagen{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    background-color: #fff;
+    padding: .75rem;
+    box-shadow: 0 0 2rem rgb(0 0 0 / .5);
+
+    animation: Visor-ampliar .3s ease;
+}
+
+/* Damos estilo al botón de cerrar en la esquina */
+.Visor-cerrar{
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background-color: rgb(0 0 0 / .4);
+
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+
+    color: #fff;
+    font-size: 1.75rem;
+    line-height: 1;
+
+    cursor: none;
+}
+
+.Visor-cerrar:hover,
+.Visor-cerrar:focus-visible{
+    background-color: rgb(0 0 0 / .7);
+}
+
+@keyframes Visor-entrar{
+    from{
+        opacity: 0;
+    }
+}
+
+@keyframes Visor-ampliar{
+    from{
+        transform: scale(.9);
+    }
+}
+
+/* MEDIA QUERIES */
+
+/* En pantallas medianas pasamos todo a una columna y achicamos flechas y huellas */
 @media (max-width: 900px){
     .Proyecto-wrapper{
         padding: 1.25rem 1.5rem 2rem;
@@ -601,5 +711,20 @@
     .Recorrido-huella{
         width: 1.8rem;
         height: 1.8rem;
+    }
+}
+
+/* Si el sistema pide menos movimiento quitamos las animaciones */
+@media (prefers-reduced-motion: reduce){
+    .Recorrido-pista{
+        transition: none;
+    }
+
+    .Recorrido-huella.isPisada .Recorrido-huellaSvg{
+        animation: none;
+    }
+
+    .Visor, .Visor-imagen{
+        animation: none;
     }
 }

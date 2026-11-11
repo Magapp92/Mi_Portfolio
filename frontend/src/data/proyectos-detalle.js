@@ -1,14 +1,12 @@
-// data/proyectos-detalle.js
-// Contenido de la página de detalle de cada proyecto, indexado por el id
-// de data/proyectos.js. `imagen: ''` deja un hueco reservado para la captura
-// que corresponde (la `etiqueta` indica cuál).
 
+/* Contenido de la página de detalle de cada proyecto, por el mismo id que
+en proyectos.js. Si imagen está vacía dejamos el hueco para la captura que indica la etiqueta */
 export const PROYECTOS_DETALLE = {
     pawcare: {
         titulo: 'PawCare',
         subtitulo: 'Plataforma de reservas para el cuidado de mascotas',
         intro: 'PawCare conecta a dueños de mascotas con cuidadores particulares y profesionales para guardería de día, estancias largas, paseos o peluquería. Es una aplicación Full Stack completa: la diseñé, la desarrollé de principio a fin y la publiqué en producción.',
-        portada: { imagen: '', etiqueta: 'Captura: página de inicio de PawCare' },
+        portada: { imagen: '/assets/pawcare-portada.webp', etiqueta: 'Captura: página de inicio de PawCare' },
         tecnologias: ['React', 'Vite', 'React Router', 'Node.js', 'Express', 'MongoDB', 'Mongoose', 'JWT', 'Vercel'],
         enlaces: [
             { id: 'web', texto: 'Ver la web', url: 'https://paw-care-react.vercel.app' },
@@ -22,12 +20,12 @@ export const PROYECTOS_DETALLE = {
         ],
         recorrido: { titulo: 'Recorrido por la app', pasos: [
             { id: 'login', titulo: 'Login', texto: 'Acceso con correo, contraseña y tipo de perfil. La sesión se guarda con un token JWT y cada rol entra en su propio espacio.', imagen: '/assets/proyecto-pawcare.webp', etiqueta: 'Captura: login' },
-            { id: 'buscador', titulo: 'Buscador', texto: 'Filtros por ubicación, servicio y tipo de animal. Desde cada tarjeta se puede reservar sin salir de la página.', imagen: '', etiqueta: 'Captura: buscador de cuidadores' },
-            { id: 'cuidador', titulo: 'Perfil del cuidador', texto: 'Información, servicios con precios y un carrusel con las opiniones de otros usuarios.', imagen: '', etiqueta: 'Captura: perfil público del cuidador' },
-            { id: 'reserva', titulo: 'Reserva', texto: 'Un modal para elegir mascotas, servicio y fechas. No admite días pasados y avisa si falta la mascota.', imagen: '', etiqueta: 'Captura: modal de reserva' },
-            { id: 'perfil', titulo: 'Mi perfil', texto: 'Datos personales y gestión completa de mascotas, cada una con su foto, especie, raza y vacunación.', imagen: '', etiqueta: 'Captura: perfil de usuario' },
-            { id: 'reservas', titulo: 'Mis reservas', texto: 'Editar, cancelar o valorar cada reserva, con un hilo de mensajes con el cuidador que se actualiza solo.', imagen: '', etiqueta: 'Captura: mis reservas' },
-            { id: 'panel', titulo: 'Panel del cuidador', texto: 'Solicitudes pendientes y confirmadas, edición del perfil, servicios y tarifas, y bandeja de mensajes.', imagen: '', etiqueta: 'Captura: panel del cuidador' }
+            { id: 'buscador', titulo: 'Buscador', texto: 'Filtros por ubicación, servicio y tipo de animal. Desde cada tarjeta se puede reservar sin salir de la página.', imagen: '/assets/pawcare-buscador.webp', etiqueta: 'Captura: buscador de cuidadores' },
+            { id: 'cuidador', titulo: 'Perfil del cuidador', texto: 'Información, servicios con precios y un carrusel con las opiniones de otros usuarios.', imagen: '/assets/pawcare-cuidador.webp', etiqueta: 'Captura: perfil público del cuidador' },
+            { id: 'reserva', titulo: 'Reserva', texto: 'Un modal para elegir mascotas, servicio y fechas. No admite días pasados y avisa si falta la mascota.', imagen: '/assets/pawcare-reserva.webp', etiqueta: 'Captura: modal de reserva' },
+            { id: 'perfil', titulo: 'Mi perfil', texto: 'Datos personales y gestión completa de mascotas, cada una con su foto, especie, raza y vacunación.', imagen: '/assets/pawcare-perfil.webp', etiqueta: 'Captura: perfil de usuario' },
+            { id: 'reservas', titulo: 'Mis reservas', texto: 'Editar, cancelar o valorar cada reserva, con un hilo de mensajes con el cuidador que se actualiza solo.', imagen: '/assets/pawcare-reservas.webp', etiqueta: 'Captura: mis reservas' },
+            { id: 'panel', titulo: 'Panel del cuidador', texto: 'Solicitudes pendientes y confirmadas, edición del perfil, servicios y tarifas, y bandeja de mensajes.', imagen: '/assets/pawcare-panel.webp', etiqueta: 'Captura: panel del cuidador' }
         ] },
         construccion: [
             { id: 'front', titulo: 'Frontend', texto: 'SPA en React con Vite y React Router. La sesión vive en un Context, todas las peticiones pasan por una función común que comprueba la respuesta y las rutas privadas se protegen según el rol.' },
@@ -54,7 +52,7 @@ export const PROYECTOS_DETALLE = {
             { id: 'texto', nombre: 'Texto', hex: '#3e4547' }
         ],
         tipografias: 'Plus Jakarta Sans para títulos y Work Sans para el texto, alojadas en local.',
-        logo: { imagen: '', etiqueta: 'Logo de PawCare' },
+        logo: { imagen: '/assets/pawcare-logo.webp', etiqueta: 'Logo de PawCare' },
         reto: {
             titulo: 'Retos y segunda versión',
             texto: 'El mayor reto fue crear una reserva desde un único endpoint manteniendo sincronizadas las colecciones de reservas, perfiles y cuidadores.',
@@ -107,9 +105,9 @@ export const PROYECTOS_DETALLE = {
         ],
         flujos: {
             titulo: 'Arquitectura',
-            texto: 'El navegador carga las páginas y pide los datos a la API. La API y la función de los lunes leen y guardan en MongoDB Atlas, consultan TMDB y envían los correos con Brevo. Pulsa el diagrama para verlo a tamaño completo.',
+            texto: 'El navegador carga las páginas y pide los datos a la API. La API y la función de los lunes leen y guardan en MongoDB Atlas, consultan TMDB y envían los correos con Brevo.',
             diagramas: [
-                { id: 'arquitectura', titulo: 'La web, su API y los servicios externos', imagen: '/assets/buscatupeli-arquitectura.webp' }
+                { id: 'arquitectura', titulo: 'La web, su API y los servicios externos', imagen: '/assets/buscatupeli-arquitectura.webp', ampliable: false }
             ]
         },
         diseno: 'Un diseño oscuro y cinematográfico, como el de las propias plataformas de streaming, con el turquesa de la marca como acento en botones, enlaces y elementos activos. Los colores se definen como custom properties comunes a todas las páginas.',
@@ -304,7 +302,7 @@ export const PROYECTOS_DETALLE = {
                 { id: 'sinapp', valor: '88,9 %', texto: 'No usa ninguna app de ayuda' },
                 { id: 'talleres', valor: '38,9 %', texto: 'Valora más la información de talleres y jornadas' }
             ],
-            nota: 'Encuesta en Google Forms, diciembre de 2024, con 52 respuestas.'
+            nota: 'Encuesta en Google Forms.'
         },
         conclusion: 'Turismo Sin Barreras me enseñó a diseñar empezando por las personas: escuchar a quienes viven las barreras cambia lo que parece importante. La accesibilidad no es un añadido, es la base del producto, y prototipar en Figma me permitió comprobar que cada pantalla responde a una necesidad real.'
     },
@@ -313,24 +311,21 @@ export const PROYECTOS_DETALLE = {
         titulo: 'Ahora Somos Dos',
         subtitulo: 'Cuento infantil ilustrado sobre la llegada de una hermana',
         icono: 'libro',
-        intro: 'Ahora Somos Dos es un cuento ilustrado para primeros lectores, basado en una historia real: cómo se conocieron mis dos perras, Luna y Nube. Es un proyecto académico de diseño editorial en el que escribí el texto, creé las ilustraciones y maqueté el libro completo, preparado para imprenta.',
+        intro: 'Ahora Somos Dos es un cuento ilustrado para primeros lectores, basado en una historia real: mi interpretación de cómo se conocieron mis dos perras y su evolución. Es un proyecto académico de diseño editorial en el que escribí el texto, creé las ilustraciones y maqueté el libro completo, preparado para imprenta.',
         portada: { imagen: '/assets/asd-portada.webp', etiqueta: 'Mockup de la portada de Ahora Somos Dos', natural: true },
         tecnologias: ['Illustrator', 'Photoshop', 'InDesign', 'Ilustración vectorial', 'Diseño editorial', 'Maquetación'],
         enlaces: [],
-        idea: 'Luna, una chihuahua mimada, vive feliz hasta que un día llega a casa Nube, una bichón maltés a la que confunde con un conejo. Lo que empieza con celos acaba en complicidad: el cuento habla de la llegada de un hermano y refuerza valores de hermandad, tolerancia y amistad. Los dos personajes se diseñaron para transmitir su carácter:',
+        idea: 'Luna, una chihuahua acostumbrada a tener toda la atención de sus dueños, vive feliz hasta que un día llega a casa Nube, una cachorra de bichón maltés que viene para cambiar la dinámica del hogar. Lo que empieza con celos acaba en complicidad: el cuento habla de la llegada de un hermano y refuerza valores de hermandad, tolerancia y amistad. Los dos personajes se diseñaron para transmitir su carácter:',
         perfiles: [
             { id: 'luna', titulo: 'Luna', texto: 'Representa la fuerza, el carácter y la independencia: formas más definidas, orejas grandes y erguidas y una postura orgullosa.' },
             { id: 'nube', titulo: 'Nube', texto: 'Representa la ternura, la inocencia y la adaptabilidad: formas redondeadas, pelo esponjoso y ojos grandes.' }
         ],
         recorrido: { titulo: 'Recorrido por el libro', pasos: [
-            { id: 'portada', titulo: 'Portada', texto: 'Tapa dura con acabado plastificado mate. El título, en Marhey Bold blanco, se curva en arco sobre una línea de puntos salmón en el tercio superior, con la autora debajo. Cielo azul pastel con nubes de acuarela, un árbol con búho que enmarca la escena por la derecha y, abajo, Luna y Nube jugando sobre el césped verde; una mariposa con trazo punteado guía la mirada. El lomo, en naranja salmón, repite título y autora.', imagen: '/assets/asd-mockup-portada.webp', etiqueta: 'Mockup de la portada' },
-            { id: 'contraportada', titulo: 'Contraportada', texto: 'Continúa el cielo y las nubes de la portada para que la cubierta se lea como una sola ilustración. La sinopsis, en Coming Soon, va dentro de un recuadro de puntos salmón, el mismo marco que el interior. Abajo, Luna y Nube de espaldas a la izquierda se equilibran con un arbusto a la derecha, y la mariposa enlaza con la portada.', imagen: '/assets/asd-mockup-contraportada.webp', etiqueta: 'Mockup de la contraportada' },
-            { id: 'interior', titulo: 'El libro abierto', texto: 'Cada página repite la misma estructura: marco punteado, cenefa de huellitas, texto y una escena ilustrada con borde rasgado.', imagen: '/assets/asd-mockup-interior.webp', etiqueta: 'Mockup del libro abierto' },
-            { id: 'inicio', titulo: 'Empieza la historia', texto: 'Luna se presenta en su casa. Una página, una escena: el texto cuenta lo que muestra la ilustración.', imagen: '/assets/asd-pag-inicio.webp', etiqueta: 'Primera página del cuento' },
-            { id: 'llegada', titulo: 'La llegada de Nube', texto: 'Un bocadillo de pensamiento resume la duda de Luna: ¿un helado, un juguete o un conejo?', imagen: '/assets/asd-pag-llegada.webp', etiqueta: 'Doble página de la llegada de Nube' },
-            { id: 'parque', titulo: 'Paseos en el parque', texto: 'Al salir de casa, la paleta cálida del interior se abre a los verdes del exterior.', imagen: '/assets/asd-pag-parque.webp', etiqueta: 'Doble página en el parque' },
-            { id: 'playa', titulo: 'Rumbo a la playa', texto: 'El viaje en coche y el primer día de playa llenan las páginas de azules.', imagen: '/assets/asd-pag-playa.webp', etiqueta: 'Doble página de la playa' },
-            { id: 'final', titulo: 'Juntas', texto: 'El cuento cierra con las dos hermanas frente a un atardecer en el campo.', imagen: '/assets/asd-pag-final.webp', etiqueta: 'Página final del cuento' }
+            { id: 'portada', titulo: 'Portada', texto: 'La tapa dura con plastificado mate busca un libro resistente para manos pequeñas. Para el título elegí Marhey Bold, una tipografía divertida y expresiva que llama la atención de los niños. El azul del cielo transmite calma y seguridad y el verde invita a la aventura, y presentar a Luna y Nube jugando juntas anticipa de qué va la historia.', imagen: '/assets/asd-mockup-portada.webp', etiqueta: 'Mockup de la portada' },
+            { id: 'contraportada', titulo: 'Contraportada', texto: 'Pensé portada y contraportada como una sola escena continua. La sinopsis va en Coming Soon, la misma letra redondeada y amigable del interior, y dentro del marco punteado que acompaña cada página, para dar unidad a todo el libro. Cerrar con las dos perritas juntas de espaldas resume el mensaje de hermandad.', imagen: '/assets/asd-mockup-contraportada.webp', etiqueta: 'Mockup de la contraportada' },
+            { id: 'interior', titulo: 'Estructura de página', texto: 'Todas las páginas comparten la misma estructura: marco punteado, cenefa de huellitas, texto arriba e ilustración abajo. Ese orden constante da seguridad a los primeros lectores, y que el texto cuente justo lo que muestra la escena hace la historia fácil de seguir. La Coming Soon a 14 pt y los márgenes amplios facilitan la lectura.', imagen: '/assets/asd-mockup-interior.webp', etiqueta: 'Mockup del libro abierto' },
+            { id: 'llegada', titulo: 'Los celos', texto: 'La llegada de Nube es el nudo de la historia. El bocadillo de pensamiento de Luna convierte una emoción difícil, los celos ante un nuevo hermano, en algo que un niño entiende de un vistazo. Los ojos grandes y las cejas móviles de los personajes transmiten lo que sienten incluso sin leer el texto.', imagen: '/assets/asd-pag-llegada.webp', etiqueta: 'Doble página de la llegada de Nube' },
+            { id: 'playa', titulo: 'De rivales a hermanas', texto: 'A medida que Luna y Nube se hacen amigas, las escenas salen de casa: la paleta cálida del interior se abre a los verdes de la aventura y los azules de la calma. El cambio de color acompaña el mensaje del libro: aceptar a quien llega y compartir abre la puerta a nuevas aventuras juntos.', imagen: '/assets/asd-pag-playa.webp', etiqueta: 'Doble página de la playa' }
         ] },
         funcionalidades: [
             { id: 'escena', titulo: 'Una página, una escena', texto: 'Cada página es una unidad narrativa y visual: el texto coincide con la ilustración para que la historia sea fácil de seguir.' },
@@ -346,13 +341,13 @@ export const PROYECTOS_DETALLE = {
         ],
         flujos: {
             titulo: 'Proceso de diseño',
-            texto: 'Del personaje a la página: las ilustraciones de Luna y Nube, la construcción de una escena y las bases tipográficas y de color del libro. Pulsa una imagen para verla a tamaño completo.',
+            texto: 'Del personaje a la página: las ilustraciones de Luna y Nube, la construcción de una escena y las bases tipográficas y de color del libro.',
             anchos: true,
             diagramas: [
-                { id: 'personajes', titulo: 'Luna y Nube', imagen: '/assets/asd-personajes.webp' },
-                { id: 'elementos', titulo: 'Elementos de la escena', imagen: '/assets/asd-elementos.webp' },
-                { id: 'escena', titulo: 'Escena montada', imagen: '/assets/asd-escena.webp' },
-                { id: 'tipografias', titulo: 'Tipografías', imagen: '/assets/asd-tipografias.webp' }
+                { id: 'personajes', titulo: 'Luna y Nube', imagen: '/assets/asd-personajes.webp', ampliable: false },
+                { id: 'elementos', titulo: 'Elementos de la escena', imagen: '/assets/asd-elementos.webp', ampliable: false },
+                { id: 'escena', titulo: 'Escena montada', imagen: '/assets/asd-escena.webp', ampliable: false },
+                { id: 'tipografias', titulo: 'Tipografías', imagen: '/assets/asd-tipografias.webp', ampliable: false }
             ]
         },
         diseno: 'Ilustración plana con líneas suaves, colores cálidos y composiciones sencillas. Cada color tiene una intención: el salmón aporta calidez y ternura, el azul calma, el verde invita a la aventura y el blanco roto transmite inocencia. Detalles como la cenefa de huellitas y el marco punteado dan unidad a todo el libro.',
@@ -378,11 +373,83 @@ export const PROYECTOS_DETALLE = {
             ],
             metricas: [
                 { id: 'formato', valor: '220 mm', texto: 'Formato cuadrado' },
-                { id: 'paginas', valor: '30', texto: 'Páginas de contenido' },
-                { id: 'ppp', valor: '300 ppp', texto: 'Archivo final en CMYK' }
+                { id: 'paginas', valor: '30', texto: 'Páginas de contenido' }
             ],
             nota: 'Proyecto académico: el libro no se ha impreso ni publicado.'
         },
         conclusion: 'Ahora Somos Dos me permitió recorrer todo el proceso editorial: escribir una historia, darle forma con ilustraciones propias y convertirla en un libro listo para imprenta. Combinar Illustrator, Photoshop e InDesign, alejándome de mi estilo habitual, me enseñó a que cada decisión de diseño sirva a la historia y a sus lectores.'
+    },
+
+    agenda2026: {
+        titulo: 'Agenda 2026',
+        subtitulo: 'Una agenda que acerca la historia del arte, mes a mes',
+        icono: 'calendario',
+        intro: 'La Agenda 2026 es un proyecto editorial: una agenda multifuncional para organizar todo el año. Quise ir más allá de su función organizativa y convertirla en un objeto con valor creativo: cada mes lo protagoniza una vanguardia artística con una ilustración propia y una breve introducción al estilo.',
+        portada: { imagen: '/assets/ag-portada.webp', etiqueta: 'Mockup de la cubierta y la contracubierta de la Agenda 2026', natural: true },
+        tecnologias: ['Illustrator', 'InDesign', 'Photoshop', 'Ilustración vectorial', 'Diseño editorial', 'Producción gráfica', 'Preimpresión'],
+        enlaces: [],
+        idea: 'Pensada para un público joven o adulto, la agenda tenía que ser posible, funcional y cumplir los requisitos de producción del proyecto, sin renunciar a una identidad visual propia. Se apoya en dos ideas:',
+        perfiles: [
+            { id: 'funcional', titulo: 'Funcional', texto: 'Formato A5 manejable, calendario mensual, semana vista con espacio para escribir y páginas de anotaciones para el uso diario.' },
+            { id: 'inspiradora', titulo: 'Inspiradora', texto: 'Doce ilustraciones, una por vanguardia, con su introducción, marcapáginas de regalo y un pasatiempo final para los tiempos muertos.' }
+        ],
+        recorrido: { titulo: 'Recorrido por la agenda', pasos: [
+            { id: 'cubierta', titulo: 'Cubierta', texto: 'Elegí cartulina gráfica de 350 g con laminado soft touch mate, agradable al tacto y resistente al uso diario. El foil dorado y el golpe seco en elementos seleccionados aportan brillo y relieve sin recargar. El marco de esquinas achaflanadas, de inspiración Art Déco, y las citas de Paul Klee y Picasso en portada y contraportada anuncian la idea: una agenda que acerca el arte.', imagen: '/assets/ag-mockup-cubiertas.webp', etiqueta: 'Mockup de la cubierta y la contracubierta' },
+            { id: 'marcapaginas', titulo: 'Marcapáginas de regalo', texto: 'Al inicio van seis marcapáginas desprendibles a modo de regalo, impresos a doble cara en cartulina de 300 g con laminado mate. El microperforado, indicado con capas y líneas específicas en el archivo de producción, permite separarlos fácilmente, y sus motivos retoman las vanguardias con colores más vivos.', imagen: '/assets/ag-mockup-marcapaginas.webp', etiqueta: 'Mockup de los marcapáginas' },
+            { id: 'vanguardias', titulo: 'Doce vanguardias', texto: 'Cada mes lo protagoniza una vanguardia de la primera mitad del siglo XX, del Impresionismo al Pop Art. Diseñé y dibujé cada ilustración en Illustrator, reinterpretando sus rasgos visuales de forma personal y, en muchos meses, con un guiño a la fecha: San Valentín en febrero, Halloween en octubre o la Navidad en diciembre.', imagen: '/assets/ag-vanguardias.webp', etiqueta: 'Las doce ilustraciones mensuales' },
+            { id: 'ilustracion', titulo: 'Separador y lámina', texto: 'Cada mes se abre con una breve introducción al estilo que inspira su ilustración, para acercar la historia del arte al usuario. Las láminas van en papel couché mate, que reproduce mejor el color y el detalle, mientras el texto mantiene la misma tipografía sobria para dar todo el protagonismo a la imagen.', imagen: '/assets/ag-mockup-ilustracion.webp', etiqueta: 'Mockup del separador y la lámina de noviembre' },
+            { id: 'semana', titulo: 'Semana vista', texto: 'El interior, en papel offset de 100 g, está pensado para escribir: una semana en doble página con espacio para cada día. La encuadernación Wire-O permite abrir la agenda 360° y que quede plana sobre la mesa, y la jerarquía en magenta y ciruela ayuda a orientarse de un vistazo.', imagen: '/assets/ag-mockup-semana.webp', etiqueta: 'Mockup de la semana vista' }
+        ] },
+        funcionalidades: [
+            { id: 'arte', titulo: 'El arte, mes a mes', texto: 'Cada mes presenta una vanguardia con su ilustración y una introducción breve, de modo que usar la agenda es también recorrer la historia del arte.' },
+            { id: 'plana', titulo: 'Se abre en plano', texto: 'La encuadernación Wire-O con apertura de 360° deja la agenda plana para escribir cómodamente en cualquier página.' },
+            { id: 'regalos', titulo: 'Pequeños regalos', texto: 'Seis marcapáginas desprendibles al principio y una sopa de letras con las doce vanguardias al final, «para esos tiempos muertos».' }
+        ],
+        construccionTitulo: 'Cómo lo diseñé',
+        construccion: [
+            { id: 'planteamiento', titulo: 'Planteamiento', texto: 'Una agenda funcional con un hilo conductor inspirador: las vanguardias y estilos artísticos de la primera mitad del siglo XX.' },
+            { id: 'estilo', titulo: 'Estilo', texto: 'Una tipografía, una paleta y una estructura fijas y sobrias, para que las ilustraciones sean siempre las protagonistas.' },
+            { id: 'bocetos', titulo: 'Bocetos', texto: 'Moodboard, bocetos de la estructura y la jerarquía de las páginas, y bocetos de cada ilustración a partir de los rasgos de su movimiento.' },
+            { id: 'produccion', titulo: 'Producción', texto: 'Ajuste del detalle, la paleta y el equilibrio entre imagen y texto, maquetación en InDesign, preparación del archivo para imprenta y, por último, los montajes y mockups en Photoshop para ver la agenda como objeto real.' }
+        ],
+        flujos: {
+            titulo: 'Proceso de diseño',
+            texto: 'De los bocetos a lápiz a las páginas finales: la estructura de la agenda, las ideas de cada ilustración, el calendario mensual y el pasatiempo final. Pulsa una imagen para verla a tamaño completo.',
+            anchos: true,
+            diagramas: [
+                { id: 'estructura', titulo: 'Bocetos de estructura', imagen: '/assets/ag-bocetos-estructura.webp' },
+                { id: 'ilustraciones', titulo: 'Bocetos de ilustración', imagen: '/assets/ag-bocetos-ilustracion.webp' },
+                { id: 'calendario', titulo: 'Anotaciones y calendario', imagen: '/assets/ag-calendario.webp' },
+                { id: 'pasatiempo', titulo: 'Pasatiempo final', imagen: '/assets/ag-pasatiempo.webp' }
+            ]
+        },
+        diseno: 'Un estilo sobrio y constante que deja el color a las ilustraciones: morados suaves y desaturados para el papel interior y los fondos, y los tonos más oscuros para la tipografía. Las ilustraciones y los marcapáginas usan secundarios más vivos, propios de cada vanguardia.',
+        colores: [
+            { id: 'ciruela', nombre: 'Ciruela', hex: '#4B153E' },
+            { id: 'magenta', nombre: 'Magenta', hex: '#A4358B' },
+            { id: 'lila', nombre: 'Lila', hex: '#B8A0C9' },
+            { id: 'lila-claro', nombre: 'Lila claro', hex: '#F1EBF6' }
+        ],
+        tipografias: 'Space Grotesk para títulos, días y textos, y Work Sans para las citas: sans serif funcionales, legibles y sobrias, inspiradas en las que surgieron con las vanguardias.',
+        logo: { imagen: '/assets/ag-lamina-artdeco.webp', etiqueta: 'Lámina de noviembre, Art Déco' },
+        reto: {
+            titulo: 'Producción para imprenta',
+            texto: 'Cada decisión de material y acabado se tomó pensando en un objeto que se usa a diario durante todo un año.',
+            intro: 'Ficha técnica:',
+            lista: [
+                { id: 'formato', texto: 'Formato A5 vertical (148 × 210 mm) con 3 mm de sangrado.' },
+                { id: 'papel', texto: 'Interior en papel offset de 100 g y láminas ilustradas en papel couché mate.' },
+                { id: 'cubierta', texto: 'Cubierta en cartulina gráfica de 350 g con laminado soft touch mate, foil dorado y golpe seco.' },
+                { id: 'encuadernacion', texto: 'Encuadernación Wire-O con apertura de 360°.' },
+                { id: 'impresion', texto: 'Impresión en cuatricromía (CMYK) más tinta plana dorada para los acabados de la cubierta.' },
+                { id: 'marcapaginas', texto: 'Marcapáginas en cartulina de 300 g con laminado mate, impresos a doble cara y con microperforado.' }
+            ],
+            metricas: [
+                { id: 'formato', valor: 'A5', texto: 'Formato vertical' },
+                { id: 'paginas', valor: '162', texto: 'Páginas' }
+            ],
+            nota: 'Proyecto editorial: agenda multifuncional para 2026, diseñada y preparada para imprenta.'
+        },
+        conclusion: 'La Agenda 2026 me enseñó a diseñar pensando en la producción: elegir papeles, acabados y encuadernación según el uso, y preparar el archivo para imprenta sin perder una identidad propia. El resultado es una agenda equilibrada entre funcionalidad y expresión gráfica, pensada para el día a día.'
     }
 }

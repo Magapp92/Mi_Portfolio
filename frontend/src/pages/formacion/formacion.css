@@ -196,3 +196,47 @@ todas las medidas salen de --ancho para que no pierda la proporción */
 
     font-size: 1.5em;
 }
+
+/* MEDIA QUERIES */
+
+/* En tablet agrandamos los hexágonos y bajamos el título de la tarjeta para que quepa dentro */
+@media (max-width: 930px){
+    .Formacion-wrapper{
+        padding: 1rem 2rem;
+    }
+
+    .Formacion-bottom{
+        --ancho: clamp(13rem, 38vw, 18rem);
+    }
+
+    .Formacion-front{
+        padding: 0 1rem;
+    }
+
+    .Formacion-h3--front{
+        font-size: 1.2rem;
+    }
+}
+
+/* En móvil ajustamos el relleno y el tamaño de los textos */
+@media (max-width: 560px){
+    .Formacion-wrapper{
+        padding: 1rem 1.25rem;
+    }
+
+    .Formacion-bottom{
+        --ancho: clamp(13rem, 60vw, 16rem);
+    }
+
+    .Formacion-h2{
+        font-size: 2rem;
+    }
+
+    .Formacion-pSection{
+        font-size: clamp(1rem, 4.5vw, 1.25rem);
+    }
+
+    .Formacion-p{
+        font-size: .9rem;
+    }
+}

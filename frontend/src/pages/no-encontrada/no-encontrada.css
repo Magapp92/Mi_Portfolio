@@ -39,3 +39,25 @@
 .NoEncontrada-enlace:hover{
     transform: scale(1.1);
 }
+
+/* MEDIA QUERIES */
+
+/* En móvil achicamos el número y damos al enlace un área táctil más cómoda */
+@media (max-width: 560px){
+    .NoEncontrada{
+        padding: 3rem 1.25rem;
+        gap: 1.5rem;
+    }
+
+    .NoEncontrada-h2{
+        font-size: 6em;
+    }
+
+    .NoEncontrada-p{
+        font-size: 1.25em;
+    }
+
+    .NoEncontrada-enlace{
+        padding: .5rem 1rem;
+    }
+}

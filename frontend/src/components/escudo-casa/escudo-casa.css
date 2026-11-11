@@ -15,3 +15,21 @@
     width: 40px;
     height: 46px;
 }
+
+/* MEDIA QUERIES */
+
+/* En móvil el escudo grande se reduce para que quepan dos casas por fila */
+@media (max-width: 560px){
+    .EscudoCasa--grande{
+        width: 60px;
+        height: 69px;
+    }
+}
+
+/* En el ranking del móvil el escudo pequeño ocupa menos */
+@media (max-width: 480px){
+    .EscudoCasa--pequeno{
+        width: 30px;
+        height: 35px;
+    }
+}

@@ -36,3 +36,33 @@
 .Footer-fecha{
     font-size: 1.05em;
 }
+
+/* MEDIA QUERIES */
+
+/* En tablet reducimos los márgenes laterales */
+@media (max-width: 930px){
+    .Footer{
+        padding: 1.25rem 2rem;
+    }
+}
+
+/* En móvil apilamos el contacto y la autoría, centrados */
+@media (max-width: 560px){
+    .Footer{
+        padding: 1.5rem 1.25rem;
+
+        flex-flow: column nowrap;
+        gap: 1rem;
+
+        text-align: center;
+    }
+
+    .Footer-autor{
+        flex-flow: column nowrap;
+        gap: .4rem;
+    }
+
+    .Footer-h5{
+        max-width: 20rem;
+    }
+}

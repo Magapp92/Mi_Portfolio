@@ -67,3 +67,34 @@ del jugador y lleva su escudo */
     color: #3b2410;
     text-align: center;
 }
+
+/* MEDIA QUERIES */
+
+/* En móvil la tabla se compacta y, si aun así no cabe, se desplaza dentro de su caja */
+@media (max-width: 560px){
+    .RankingTabla-scroll{
+        max-width: 100%;
+        overflow-x: auto;
+        scrollbar-color: #8a6a3a #e8d7a9;
+    }
+
+    .RankingTabla{
+        font-size: .9em;
+    }
+
+    .RankingTabla-th{
+        padding: 0 .35rem;
+    }
+
+    .RankingTabla-td{
+        padding: .2rem .35rem;
+    }
+
+    .RankingTabla-td--posicion{
+        width: 1.8rem;
+    }
+
+    .RankingTabla-td--escudo{
+        width: 2.6rem;
+    }
+}

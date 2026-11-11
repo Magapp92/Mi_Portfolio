@@ -241,3 +241,81 @@ el fondo y el contenido va encima en pergaminos */
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* En tablet dejamos que la capa encoja y el pergamino ocupe el ancho disponible */
+@media (max-width: 930px){
+    .Juego-capa{
+        min-width: 0;
+        padding: 1.5rem 1.25rem;
+    }
+
+    .Juego-pergamino{
+        width: min(38rem, 100%);
+    }
+
+    .Juego-pergamino--resultado{
+        width: min(44rem, 100%);
+    }
+}
+
+/* En móvil achicamos títulos, márgenes y apilamos las acciones */
+@media (max-width: 560px){
+    .Juego-capa{
+        padding: 1.25rem 1rem;
+    }
+
+    .Juego-titulo{
+        font-size: 1.15em;
+    }
+
+    .Juego-titulo--resultado{
+        font-size: .95em;
+    }
+
+    .Juego-pergamino{
+        padding: 1rem;
+    }
+
+    .Juego-pergamino--resultado{
+        max-height: none;
+    }
+
+    .Juego-casa{
+        min-width: 0;
+        min-height: 2.75rem;
+    }
+
+    .Juego-boton{
+        min-height: 2.75rem;
+        line-height: 1.5;
+    }
+
+    .Juego-marcador{
+        gap: 1rem;
+    }
+
+    .Juego-dato b{
+        font-size: 1.8em;
+    }
+
+    .Juego-acciones{
+        flex-flow: column nowrap;
+        align-items: stretch;
+    }
+
+    .Juego-input--nick{
+        width: 100%;
+        flex: 0 0 auto;
+    }
+}
+
+/* En pantallas muy estrechas reducimos un poco más los datos del marcador */
+@media (max-width: 480px){
+    .Juego-titulo{
+        font-size: 1em;
+    }
+
+    .Juego-dato{
+        font-size: .5em;
+    }
+}

@@ -1,7 +1,7 @@
 /* Página de proyectos con un slider infinito que avanza solo cada 8 segundos,
 se para al pasar el ratón y también se mueve con las flechas */
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Cursor } from '@components/cursor/cursor.jsx'
 import { RUTAS } from '@const/rutas.js'
@@ -13,6 +13,9 @@ import './proyectos.css'
 por la copia del medio. Si salimos de ella saltamos sin transición a la tarjeta
 igual de la copia central y así no se nota el salto */
 const PASO = 2
+const PASO_MOVIL = 1
+// Píxeles que hay que arrastrar en horizontal para que cuente como deslizar
+const UMBRAL_SWIPE = 50
 const TOTAL = PROYECTOS.length
 const PISTA = [...PROYECTOS, ...PROYECTOS, ...PROYECTOS]
 // El translateX en % va sobre el propio contenedor, que mide toda la pista
@@ -24,6 +27,8 @@ export const Proyectos = () => {
     const [conTransicion, setConTransicion] = useState(true)
     const [moviendo, setMoviendo] = useState(false)
     const [pausado, setPausado] = useState(false)
+    const inicioSwipe = useRef(null)
+    const haDeslizado = useRef(false)
 
     /* Movemos el slider, pero ignoramos los clics mientras dura la animación
     para no salirnos de la pista */
@@ -34,10 +39,41 @@ export const Proyectos = () => {
         setIndice(indice + paso)
     }
 
-    const siguiente = () => mover(PASO)
-    const anterior = () => mover(-PASO)
+    // En móvil se ve una sola tarjeta, así que avanzamos de una en una
+    const calcularPaso = () => window.matchMedia('(max-width: 560px)').matches ? PASO_MOVIL : PASO
+
+    const siguiente = () => mover(calcularPaso())
+    const anterior = () => mover(-calcularPaso())
     const pausarSlider = () => setPausado(true)
     const reanudarSlider = () => setPausado(false)
+
+    /* Deslizar con el dedo o arrastrando con el ratón: guardamos dónde empieza
+    y al soltar movemos el slider si el arrastre es suficiente */
+    const empezarSwipe = (e) => {
+        inicioSwipe.current = e.clientX
+        haDeslizado.current = false
+    }
+
+    const terminarSwipe = (e) => {
+        if (inicioSwipe.current === null) return
+        const distancia = e.clientX - inicioSwipe.current
+        inicioSwipe.current = null
+        if (Math.abs(distancia) < UMBRAL_SWIPE) return
+        haDeslizado.current = true
+        if (distancia < 0) siguiente()
+        else anterior()
+    }
+
+    const cancelarSwipe = () => {
+        inicioSwipe.current = null
+    }
+
+    // Si acabamos de deslizar no abrimos el proyecto de la tarjeta
+    const evitarClicTrasSwipe = (e) => {
+        if (!haDeslizado.current) return
+        e.preventDefault()
+        haDeslizado.current = false
+    }
 
     /* Al acabar la animación, si estamos fuera de la copia central volvemos a ella */
     const terminarTransicion = (e) => {
@@ -68,7 +104,17 @@ export const Proyectos = () => {
                 <section className="Proyectos-section">
                     <h2 className="Proyectos-h2">Mis proyectos</h2>
                 </section>
-                <div className="Proyectos-slider" onMouseOver={pausarSlider} onMouseOut={reanudarSlider}>
+                <div
+                    className="Proyectos-slider"
+                    onMouseOver={pausarSlider}
+                    onMouseOut={reanudarSlider}
+                    onPointerDown={empezarSwipe}
+                    onPointerUp={terminarSwipe}
+                    onPointerCancel={cancelarSwipe}
+                    onPointerLeave={cancelarSwipe}
+                    onClickCapture={evitarClicTrasSwipe}
+                    onDragStart={e => e.preventDefault()}
+                >
                     <div
                         className="Proyectos-container"
                         style={{

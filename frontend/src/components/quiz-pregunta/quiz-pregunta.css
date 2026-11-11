@@ -84,3 +84,27 @@
     font-family: "pixel-titulos";
     font-size: .7em;
 }
+
+/* MEDIA QUERIES */
+
+/* En móvil dejamos que la cabecera baje de línea y las opciones sean fáciles de pulsar */
+@media (max-width: 560px){
+    .QuizPregunta-cabecera{
+        flex-flow: row wrap;
+        gap: .4rem 1rem;
+    }
+
+    .QuizPregunta-enunciado{
+        font-size: 1.1em;
+    }
+
+    .QuizPregunta-opcion{
+        min-height: 2.75rem;
+        padding: .5rem .7rem;
+
+        gap: .7rem;
+
+        font-size: 1em;
+        overflow-wrap: anywhere;
+    }
+}

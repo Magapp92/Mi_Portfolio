@@ -683,7 +683,7 @@ y altura fija para que las tarjetas queden iguales */
 /* MEDIA QUERIES */
 
 /* En pantallas medianas pasamos todo a una columna y achicamos flechas y huellas */
-@media (max-width: 900px){
+@media (max-width: 930px){
     .Proyecto-wrapper{
         padding: 1.25rem 1.5rem 2rem;
     }
@@ -711,6 +711,161 @@ y altura fija para que las tarjetas queden iguales */
     .Recorrido-huella{
         width: 1.8rem;
         height: 1.8rem;
+    }
+}
+
+/* En móvil apilamos las tarjetas, el slide ocupa todo el ancho
+y las flechas bajan a los lados del rastro de huellas */
+@media (max-width: 560px){
+    .Proyecto-wrapper{
+        padding: 1.25rem 1rem 2rem;
+        gap: 2rem;
+    }
+
+    .Proyecto-cabecera{
+        gap: 1.75rem;
+    }
+
+    .Proyecto-h2{
+        font-size: 2.4em;
+        overflow-wrap: anywhere;
+    }
+
+    .Proyecto-subtitulo{
+        font-size: 1.1em;
+    }
+
+    .Proyecto-h3{
+        font-size: 1.6em;
+    }
+
+    .Proyecto-h4{
+        font-size: 1.2em;
+    }
+
+    .Proyecto-grid,
+    .Proyecto-grid--dos,
+    .Proyecto-grid--tres,
+    .Proyecto-grid--flujos,
+    .Proyecto-grid--flujosAnchos{
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.25rem;
+    }
+
+    .Proyecto-tarjeta{
+        padding: 1rem;
+    }
+
+    .Proyecto-h4--flujo{
+        min-height: 0;
+    }
+
+    .Proyecto-flujoImg{
+        height: 18rem;
+    }
+
+    .Proyecto-diseno .Proyecto-imagen{
+        max-width: 20rem;
+        justify-self: center;
+    }
+
+    .Proyecto-metrica{
+        padding: .75rem 1rem;
+
+        flex: 1 1 8rem;
+
+        text-align: center;
+    }
+
+    .Recorrido{
+        position: relative;
+    }
+
+    .Recorrido-escenario{
+        display: block;
+    }
+
+    .Recorrido-slide{
+        padding: 1.25rem 1rem;
+    }
+
+    .Recorrido-paso{
+        box-shadow: 0 0 1rem .5rem var(--color-recuadro);
+        padding: 1rem;
+
+        gap: 1rem;
+    }
+
+    .Recorrido-paso.Recorrido-paso{
+        box-shadow: 0 0 1rem .5rem var(--color-header);
+    }
+
+    .Recorrido-h4{
+        font-size: 1.4em;
+    }
+
+    .Recorrido-huellas{
+        min-height: 3.5rem;
+        padding: 0 2.75rem;
+
+        gap: .45rem;
+    }
+
+    .Recorrido-huella{
+        width: 1.4rem;
+        height: 1.4rem;
+    }
+
+    .Recorrido-huella--rollo,
+    .Recorrido-huella--rollo.Recorrido-huella--derecha,
+    .Recorrido-huella--diente,
+    .Recorrido-huella--diente.Recorrido-huella--derecha,
+    .Recorrido-huella--silla,
+    .Recorrido-huella--silla.Recorrido-huella--derecha,
+    .Recorrido-huella--libro,
+    .Recorrido-huella--libro.Recorrido-huella--derecha,
+    .Recorrido-huella--calendario,
+    .Recorrido-huella--calendario.Recorrido-huella--derecha{
+        width: 1.4rem;
+        height: 1.4rem;
+    }
+
+    .Recorrido-flecha{
+        position: absolute;
+        bottom: .5rem;
+        z-index: 1;
+    }
+
+    .Recorrido-flecha--prev{
+        left: 0;
+    }
+
+    .Recorrido-flecha--next{
+        right: 0;
+    }
+
+    .Visor{
+        padding: 4rem 1rem 1rem;
+    }
+
+    .Visor-imagen{
+        padding: .4rem;
+    }
+
+    .Visor-cerrar{
+        top: .75rem;
+        right: 1rem;
+    }
+}
+
+/* En móviles pequeños bajamos un poco más los títulos */
+@media (max-width: 480px){
+    .Proyecto-h2{
+        font-size: 2.1em;
+    }
+
+    .Proyecto-metricaValor{
+        font-size: 1.8em;
     }
 }
 

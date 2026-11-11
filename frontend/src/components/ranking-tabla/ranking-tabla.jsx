@@ -13,28 +13,30 @@ export const RankingTabla = (props) => {
     }
 
     return (
-        <table className="RankingTabla">
-            <thead className="RankingTabla-cabecera">
-                <tr>
-                    <th className="RankingTabla-th">#</th>
-                    <th className="RankingTabla-th"><span className="RankingTabla-oculto">Casa</span></th>
-                    <th className="RankingTabla-th">Nick</th>
-                    <th className="RankingTabla-th">Puntos</th>
-                    <th className="RankingTabla-th">Aciertos</th>
-                    <th className="RankingTabla-th">Tiempo</th>
-                </tr>
-            </thead>
-            <tbody>
-                {puntuaciones.map((puntuacion, indice) =>
-                    <FilaRanking
-                        key={puntuacion._id}
-                        {...puntuacion}
-                        posicion={indice + 1}
-                        propia={puntuacion._id === idPropia}
-                    />
-                )}
-            </tbody>
-        </table>
+        <div className="RankingTabla-scroll">
+            <table className="RankingTabla">
+                <thead className="RankingTabla-cabecera">
+                    <tr>
+                        <th className="RankingTabla-th">#</th>
+                        <th className="RankingTabla-th"><span className="RankingTabla-oculto">Casa</span></th>
+                        <th className="RankingTabla-th">Nick</th>
+                        <th className="RankingTabla-th">Puntos</th>
+                        <th className="RankingTabla-th">Aciertos</th>
+                        <th className="RankingTabla-th">Tiempo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {puntuaciones.map((puntuacion, indice) =>
+                        <FilaRanking
+                            key={puntuacion._id}
+                            {...puntuacion}
+                            posicion={indice + 1}
+                            propia={puntuacion._id === idPropia}
+                        />
+                    )}
+                </tbody>
+            </table>
+        </div>
     )
 }
 

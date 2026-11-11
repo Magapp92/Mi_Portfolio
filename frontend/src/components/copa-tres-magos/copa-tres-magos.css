@@ -91,3 +91,32 @@
         animation: none;
     }
 }
+
+/* En móvil la caja de la copa se ajusta al ancho de la pantalla */
+@media (max-width: 560px){
+    .CopaTresMagos{
+        padding: 1.5rem;
+    }
+
+    .CopaTresMagos-caja{
+        max-width: 100%;
+        padding: 1.2rem 1rem 1rem;
+    }
+
+    .CopaTresMagos-copa{
+        width: 96px;
+        height: 112px;
+    }
+
+    .CopaTresMagos-titulo{
+        font-size: 1em;
+    }
+
+    .CopaTresMagos-texto{
+        font-size: .7em;
+    }
+
+    .CopaTresMagos-boton{
+        min-height: 2.75rem;
+    }
+}

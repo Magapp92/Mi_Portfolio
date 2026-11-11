@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { RUTAS } from '@const/rutas.js'
 import './header.css'
 
@@ -27,6 +27,29 @@ export const Header = () => {
         return () => window.removeEventListener('scroll', comprobarScroll)
     }, [])
 
+    const [abierto, setAbierto] = useState(false)
+    const { pathname } = useLocation()
+
+    /* Cerramos el menú del móvil cada vez que cambia la página */
+    useEffect(() => {
+        setAbierto(false)
+    }, [pathname])
+
+    /* Con la tecla Escape también se cierra el menú */
+    useEffect(() => {
+        if (!abierto) return
+
+        const cerrarConEscape = (e) => {
+            if (e.key === 'Escape') setAbierto(false)
+        }
+
+        document.addEventListener('keydown', cerrarConEscape)
+
+        return () => document.removeEventListener('keydown', cerrarConEscape)
+    }, [abierto])
+
+    const cerrar = () => setAbierto(false)
+
     return (
         <header className={`Header${conScroll ? ' isTranslucida' : ''}`}>
             <div className="Header-logo">
@@ -42,10 +65,23 @@ export const Header = () => {
                     <Link to={RUTAS.INICIO} title="ir a inicio" className="Header-a">Magaly Puente</Link>
                 </h1>
             </div>
-            <nav className="Header-nav">
+            {/* El botón del menú solo se ve en pantallas pequeñas */}
+            <button
+                type="button"
+                className={`Header-menuBoton${abierto ? ' isAbierto' : ''}`}
+                aria-label={abierto ? 'Cerrar menú' : 'Abrir menú'}
+                aria-expanded={abierto}
+                aria-controls="menu-principal"
+                onClick={() => setAbierto(!abierto)}
+            >
+                <span className="Header-menuBarra"></span>
+                <span className="Header-menuBarra"></span>
+                <span className="Header-menuBarra"></span>
+            </button>
+            <nav id="menu-principal" className={`Header-nav${abierto ? ' isAbierto' : ''}`}>
                 <ul className="Header-ul">
                     {ENLACES.map(enlace =>
-                        <EnlaceNav key={enlace.id} {...enlace} />
+                        <EnlaceNav key={enlace.id} {...enlace} cerrar={cerrar} />
                     )}
                 </ul>
             </nav>
@@ -56,11 +92,11 @@ export const Header = () => {
 /* Cada enlace del menú */
 const EnlaceNav = (props) => {
 
-    const { ruta, texto, titulo } = props
+    const { ruta, texto, titulo, cerrar } = props
 
     return (
         <li className="Header-li">
-            <Link to={ruta} title={titulo} className="Header-a">{texto}</Link>
+            <Link to={ruta} title={titulo} className="Header-a" onClick={cerrar}>{texto}</Link>
         </li>
     )
 }

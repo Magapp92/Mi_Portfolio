@@ -103,11 +103,154 @@ Las proporciones salen del SVG original */
     text-shadow: .1rem .1rem .25rem #001d27;
 }
 
+/* El botón del menú solo se muestra en pantallas pequeñas */
+.Header-menuBoton{
+    display: none;
+}
+
 /* MEDIA QUERIES */
 
 /* Si el usuario prefiere menos movimiento, el logo no gira */
 @media (prefers-reduced-motion: reduce){
     .Header-imgTexto{
         animation: none;
+    }
+}
+
+/* Hasta 930px el menú pasa a ser un desplegable que se abre con el botón hamburguesa */
+@media (max-width: 930px){
+    .Header{
+        padding: 0 1.25rem;
+    }
+
+    .Header-logo{
+        min-width: 0;
+
+        gap: 1rem;
+    }
+
+    .Header-logoCompleto{
+        height: 5rem;
+    }
+
+    /* Dibujamos las tres rayas del botón con CSS */
+    .Header-menuBoton{
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: .4rem;
+
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: .4rem;
+
+        flex-shrink: 0;
+
+        color: var(--color-texto-principal);
+
+        cursor: pointer;
+    }
+
+    .Header-menuBoton:focus-visible{
+        outline: 2px solid var(--color-claro);
+        outline-offset: 2px;
+    }
+
+    .Header-menuBarra{
+        width: 1.6rem;
+        height: .2rem;
+        border-radius: .1rem;
+        background-color: currentColor;
+
+        display: block;
+
+        transition: transform .3s ease, opacity .3s ease;
+    }
+
+    /* Al abrir el menú las rayas de arriba y abajo se cruzan en una X y la del medio desaparece */
+    .Header-menuBoton.isAbierto .Header-menuBarra:nth-child(1){
+        transform: translateY(.6rem) rotate(45deg);
+    }
+
+    .Header-menuBoton.isAbierto .Header-menuBarra:nth-child(2){
+        opacity: 0;
+    }
+
+    .Header-menuBoton.isAbierto .Header-menuBarra:nth-child(3){
+        transform: translateY(-.6rem) rotate(-45deg);
+    }
+
+    /* El menú se coloca debajo de la cabecera, oculto hasta que se abre */
+    .Header-nav{
+        padding: .5rem 1.25rem 1rem;
+        background-color: var(--color-header);
+        border-top: 1px solid var(--color-header-oscuro);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .35);
+
+        position: fixed;
+        top: var(--alto-header);
+        left: 0;
+        right: 0;
+        transform: translateY(-.75rem);
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity .25s ease, transform .25s ease, visibility .25s;
+    }
+
+    .Header-nav.isAbierto{
+        transform: none;
+
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .Header-ul{
+        flex-flow: column nowrap;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    .Header-li{
+        border-bottom: 1px solid var(--color-header-oscuro);
+    }
+
+    .Header-li:last-child{
+        border-bottom: 0;
+    }
+
+    /* En el desplegable no agrandamos el enlace, solo cambia el color */
+    .Header-li:hover{
+        transform: none;
+    }
+
+    .Header-li .Header-a{
+        padding: .85rem .25rem;
+    }
+}
+
+/* En móvil reducimos el logo y el nombre para que quepan en una línea con el botón */
+@media (max-width: 560px){
+    .Header{
+        padding: 0 1rem;
+    }
+
+    .Header-logo{
+        gap: .75rem;
+    }
+
+    .Header-logoCompleto{
+        height: 4.25rem;
+    }
+
+    .Header-h1{
+        font-size: 1.35em;
+    }
+
+    .Header-nav{
+        padding: .5rem 1rem 1rem;
     }
 }

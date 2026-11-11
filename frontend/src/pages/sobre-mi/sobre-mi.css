@@ -132,3 +132,35 @@
     align-items: flex-start;
     gap: .75rem;
 }
+
+/* MEDIA QUERIES */
+
+/* En tablet reducimos el relleno de la caja */
+@media (max-width: 930px){
+    .SobreMi-wrapper{
+        padding: 1rem 2rem;
+    }
+}
+
+/* En móvil damos más ancho al texto y bajamos el tamaño de los títulos */
+@media (max-width: 560px){
+    .SobreMi-wrapper{
+        padding: 1rem 1.25rem;
+    }
+
+    .SobreMi-content{
+        padding: .75rem 0;
+    }
+
+    .SobreMi-h3{
+        font-size: clamp(1.1rem, 5vw, 1.5rem);
+    }
+
+    .SobreMi-article, .SobreMi-bottom{
+        padding: .75rem .25rem;
+    }
+
+    .SobreMi-h2{
+        font-size: 1.75rem;
+    }
+}

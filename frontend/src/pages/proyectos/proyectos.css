@@ -299,4 +299,46 @@ El padding lateral es grande para que el texto no quede debajo de las flechas */
         font-size: 1.4em;
         text-align: center;
     }
+
+    /* En móvil los proyectos van en una cuadrícula de dos columnas con imagen, categoría y título.
+    La descripción se lee en la página de cada proyecto */
+    .Proyectos-cuadricula{
+        margin: 0 0 .5rem;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .75rem;
+    }
+
+    .Proyectos-cuadricula .Proyectos-article{
+        margin: 0;
+        padding: .6rem;
+        box-shadow: 0 0 6px 3px var(--color-sombra-texto);
+
+        justify-content: flex-start;
+        gap: .4rem;
+    }
+
+    .Proyectos-cuadricula .Proyectos-enlace{
+        gap: .4rem;
+    }
+
+    .Proyectos-cuadricula .Proyectos-img{
+        height: 95px;
+    }
+
+    .Proyectos-cuadricula .Proyectos-categoria{
+        padding: .15rem .55rem;
+
+        font-size: .7em;
+    }
+
+    .Proyectos-cuadricula .Proyectos-h3{
+        font-size: 1.05em;
+        line-height: 1.2;
+    }
+
+    .Proyectos-cuadricula .Proyectos-p{
+        display: none;
+    }
 }

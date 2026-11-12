@@ -1,5 +1,6 @@
 /* Página de proyectos con un slider infinito que avanza solo cada 8 segundos,
-se para al pasar el ratón y también se mueve con las flechas */
+se para al pasar el ratón y también se mueve con las flechas.
+En móvil el slider se cambia por una cuadrícula que se filtra por categoría */
 
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
@@ -13,7 +14,9 @@ import './proyectos.css'
 por la copia del medio. Si salimos de ella saltamos sin transición a la tarjeta
 igual de la copia central y así no se nota el salto */
 const PASO = 2
-const PASO_MOVIL = 1
+// Por debajo de este ancho mostramos la cuadrícula en lugar del slider
+const CONSULTA_CUADRICULA = '(max-width: 560px)'
+const TODOS = 'todos'
 // Píxeles que hay que arrastrar en horizontal para que cuente como deslizar
 const UMBRAL_SWIPE = 50
 const TOTAL = PROYECTOS.length
@@ -30,6 +33,16 @@ export const Proyectos = () => {
     const [arrastre, setArrastre] = useState(0)
     const inicioSwipe = useRef(null)
     const haDeslizado = useRef(false)
+    const [conCuadricula, setConCuadricula] = useState(() => window.matchMedia(CONSULTA_CUADRICULA).matches)
+    const [filtro, setFiltro] = useState(TODOS)
+
+    /* Cambiamos entre cuadrícula y slider si la pantalla cruza el ancho de móvil */
+    useEffect(() => {
+        const consulta = window.matchMedia(CONSULTA_CUADRICULA)
+        const actualizar = () => setConCuadricula(consulta.matches)
+        consulta.addEventListener('change', actualizar)
+        return () => consulta.removeEventListener('change', actualizar)
+    }, [])
 
     /* Movemos el slider, pero ignoramos los clics mientras dura la animación
     para no salirnos de la pista */
@@ -39,9 +52,6 @@ export const Proyectos = () => {
         setMoviendo(true)
         setIndice(indice + paso)
     }
-
-    // En móvil se ve una sola tarjeta, así que avanzamos de una en una
-    const calcularPaso = () => window.matchMedia('(max-width: 560px)').matches ? PASO_MOVIL : PASO
 
     // La categoría activa es la de la primera tarjeta visible, así el filtro sigue al slider
     const categoriaActual = PISTA[indice]?.categoria
@@ -56,8 +66,8 @@ export const Proyectos = () => {
         setIndice(destino)
     }
 
-    const siguiente = () => mover(calcularPaso())
-    const anterior = () => mover(-calcularPaso())
+    const siguiente = () => mover(PASO)
+    const anterior = () => mover(-PASO)
     const pausarSlider = () => setPausado(true)
     const reanudarSlider = () => setPausado(false)
 
@@ -113,13 +123,18 @@ export const Proyectos = () => {
     /* Avanzamos solos cada 8 segundos. Volvemos a crear el intervalo cuando cambia
     el índice para que siempre use el valor actual, y lo limpiamos al salir */
     useEffect(() => {
-        if (pausado) return
+        if (pausado || conCuadricula) return
 
         const intervalo = setInterval(siguiente, 8000)
 
         return () => clearInterval(intervalo)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [indice, pausado, moviendo])
+    }, [indice, pausado, moviendo, conCuadricula])
+
+    // En la cuadrícula el filtro marca la categoría elegida; en el slider, la que se está viendo
+    const estaActivo = (categoria) => conCuadricula ? filtro === categoria : categoriaActual === categoria
+    const elegirCategoria = (categoria) => conCuadricula ? setFiltro(categoria) : irACategoria(categoria)
+    const visibles = filtro === TODOS ? PROYECTOS : PROYECTOS.filter(proyecto => proyecto.categoria === filtro)
 
     return (
         <main className="Proyectos">
@@ -128,21 +143,28 @@ export const Proyectos = () => {
             <div className="Proyectos-wrapper">
                 <section className="Proyectos-section">
                     <h2 className="Proyectos-h2">Mis proyectos</h2>
-                    <div className="Proyectos-filtros" role="group" aria-label="Ir a los proyectos de una categoría">
+                    <div className="Proyectos-filtros" role="group" aria-label="Filtrar los proyectos por categoría">
+                        {conCuadricula &&
+                            <BotonFiltro texto="Todos" activo={filtro === TODOS} onClick={() => setFiltro(TODOS)} />
+                        }
                         {CATEGORIAS.map(categoria =>
-                            <button
+                            <BotonFiltro
                                 key={categoria.id}
-                                type="button"
-                                className={`Proyectos-filtro${categoriaActual === categoria.id ? ' isActivo' : ''}`}
-                                aria-pressed={categoriaActual === categoria.id}
-                                onClick={() => irACategoria(categoria.id)}
-                            >
-                                {categoria.texto}
-                            </button>
+                                texto={categoria.texto}
+                                activo={estaActivo(categoria.id)}
+                                onClick={() => elegirCategoria(categoria.id)}
+                            />
                         )}
                     </div>
                 </section>
-                <div
+                {conCuadricula &&
+                    <div className="Proyectos-cuadricula">
+                        {visibles.map(proyecto =>
+                            <TarjetaProyecto key={proyecto.id} {...proyecto} />
+                        )}
+                    </div>
+                }
+                {!conCuadricula && <div
                     className="Proyectos-slider"
                     onMouseOver={pausarSlider}
                     onMouseOut={reanudarSlider}
@@ -169,9 +191,26 @@ export const Proyectos = () => {
                     </div>
                     <button className="Slider-arrow Slider-arrow--next" onClick={siguiente} aria-label="Proyecto siguiente"></button>
                     <button className="Slider-arrow Slider-arrow--prev" onClick={anterior} aria-label="Proyecto anterior"></button>
-                </div>
+                </div>}
             </div>
         </main>
+    )
+}
+
+/* Botón del filtro por categoría */
+const BotonFiltro = (props) => {
+
+    const { texto, activo, onClick } = props
+
+    return (
+        <button
+            type="button"
+            className={`Proyectos-filtro${activo ? ' isActivo' : ''}`}
+            aria-pressed={activo}
+            onClick={onClick}
+        >
+            {texto}
+        </button>
     )
 }
 

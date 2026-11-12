@@ -253,8 +253,10 @@ export const PROYECTOS_DETALLE = {
                 { id: 'calendario', texto: 'Gestionar citas fue la tarea más difícil: casi un 10 % la abandonó y un 16,9 % se equivocó de clic, así que el calendario y la cancelación son lo primero que mejoraría.' }
             ],
             descarte: [
-                { id: 'gamificacion', texto: 'Un sistema de gamificación con recompensas por acudir a las citas: quedó fuera en el In & Out para centrar la app en lo esencial.' },
-                { id: 'tiempo-real', texto: 'La disponibilidad de cada clínica y especialista en tiempo real, que también se quedó fuera en el In & Out.' }
+                { id: 'gamificacion', texto: 'Un sistema de gamificación con recompensas por acudir a las citas.' },
+                { id: 'tiempo-real', texto: 'La disponibilidad de cada clínica y especialista en tiempo real y la actualización constante de sus horarios.' },
+                { id: 'extras', texto: 'El chat directo con la clínica, las preguntas frecuentes, las guías de cuidado dental preventivo, el aviso de la política de cancelación y el registro de cada consulta.' },
+                { id: 'motivo', texto: 'Todo quedó fuera en el In & Out para centrar la primera versión en lo esencial: buscar clínica, gestionar las citas y descargar el historial.' }
             ]
         },
         conclusion: 'PortalDental me enseñó que una app clínica tiene que ganarse la confianza del usuario, y que el método del doble diamante, investigando antes de diseñar, es la forma de conseguirlo. Figma me permitió prototipar con todo detalle las interacciones para que el equipo de desarrollo entienda el producto.'

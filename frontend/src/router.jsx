@@ -6,6 +6,7 @@ import { createBrowserRouter, Outlet } from 'react-router-dom'
 import { Header } from '@components/header/header.jsx'
 import { Footer } from '@components/footer/footer.jsx'
 import { RUTAS } from '@const/rutas.js'
+import { useTituloPagina } from '@hooks/use-titulo-pagina.js'
 
 const Inicio = lazy(() => import('@pages/inicio/inicio.jsx').then(({ Inicio }) => ({ default: Inicio })))
 const SobreMi = lazy(() => import('@pages/sobre-mi/sobre-mi.jsx').then(({ SobreMi }) => ({ default: SobreMi })))
@@ -17,6 +18,9 @@ const NoEncontrada = lazy(() => import('@pages/no-encontrada/no-encontrada.jsx')
 
 /* Estructura común a todas las páginas: header, contenido y footer */
 const Layout = () => {
+
+    useTituloPagina()
+
     return (
         <>
             <Header />

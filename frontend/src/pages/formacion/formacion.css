@@ -197,6 +197,21 @@ todas las medidas salen de --ancho para que no pierda la proporción */
     font-size: 1.5em;
 }
 
+/* Centro y años de cada formación, debajo del título.
+Lo subimos de capa para que el triángulo de abajo del hexágono no lo tape */
+.Formacion-centro{
+    margin: .5rem 0 0;
+    background-color: transparent;
+
+    position: relative;
+    z-index: 1;
+
+    font-family: "negrita";
+    font-size: .95em;
+    color: var(--color-claro);
+    text-align: center;
+}
+
 /* MEDIA QUERIES */
 
 /* En tablet agrandamos los hexágonos y bajamos el título de la tarjeta para que quepa dentro */
@@ -238,5 +253,42 @@ todas las medidas salen de --ancho para que no pierda la proporción */
 
     .Formacion-p{
         font-size: .9rem;
+    }
+
+    /* En móvil el hexágono pasa a ser una tarjeta con las dos caras a la vista, sin giro */
+    .Formacion-bottom{
+        flex-flow: column nowrap;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .Formacion-article{
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 1.25rem 1rem;
+        border-radius: .5rem;
+        perspective: none;
+    }
+
+    .Formacion-article:before,
+    .Formacion-article:after{
+        display: none;
+    }
+
+    .Formacion-front,
+    .Formacion-back,
+    .Formacion-article:hover .Formacion-front,
+    .Formacion-article:hover .Formacion-back{
+        height: auto;
+        padding: 0;
+        backface-visibility: visible;
+
+        position: static;
+        transform: none;
+    }
+
+    .Formacion-back{
+        margin: .75rem 0 0;
     }
 }

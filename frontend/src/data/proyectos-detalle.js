@@ -1,11 +1,18 @@
 
 /* Contenido de la página de detalle de cada proyecto, por el mismo id que
-en proyectos.js. Si imagen está vacía dejamos el hueco para la captura que indica la etiqueta */
+en proyectos.js. Si imagen está vacía dejamos el hueco para la captura que indica la etiqueta.
+El resumen es la ficha rápida de arriba: rol, tipo, contexto y resultado */
 export const PROYECTOS_DETALLE = {
     pawcare: {
         titulo: 'PawCare',
         subtitulo: 'Plataforma de reservas para el cuidado de mascotas',
         intro: 'PawCare conecta a dueños de mascotas con cuidadores particulares y profesionales para guardería de día, estancias largas, paseos o peluquería. Es una aplicación Full Stack completa: la diseñé, la desarrollé de principio a fin y la publiqué en producción.',
+        resumen: {
+            rol: 'Diseño, desarrollo Full Stack y despliegue',
+            tipo: 'Individual',
+            contexto: 'Proyecto final del curso de Desarrollo Web Full Stack en CEI · 2026',
+            resultado: 'App publicada en producción · Lighthouse 100 en escritorio y 96 en móvil'
+        },
         portada: { imagen: '/assets/pawcare-portada.webp', etiqueta: 'Captura: página de inicio de PawCare' },
         tecnologias: ['React', 'Vite', 'React Router', 'Node.js', 'Express', 'MongoDB', 'Mongoose', 'JWT', 'Vercel'],
         enlaces: [
@@ -77,6 +84,12 @@ export const PROYECTOS_DETALLE = {
         subtitulo: 'Dónde ver cada película, sin recorrer todas las plataformas',
         icono: 'rollo',
         intro: 'Busca tu peli reúne en una sola web 140 películas disponibles en Netflix, Prime Video, Disney+, Max y Apple TV+, con enlace directo a cada plataforma. Es una aplicación completa con API propia y base de datos, contenido que se renueva solo cada semana y comunicación con los usuarios por correo.',
+        resumen: {
+            rol: 'Diseño, desarrollo Full Stack y despliegue',
+            tipo: 'Individual',
+            contexto: 'Proyecto personal',
+            resultado: 'Web publicada con dominio propio · Lighthouse 99 en escritorio y 97 en móvil'
+        },
         portada: { imagen: '/assets/buscatupeli-portada.webp', etiqueta: 'Captura: página de inicio de Busca tu peli' },
         tecnologias: ['HTML', 'CSS (SUIT)', 'JavaScript', 'Node.js', 'Express', 'MongoDB Atlas', 'Mongoose', 'JWT', 'TMDB', 'Brevo', 'Netlify'],
         enlaces: [
@@ -157,6 +170,12 @@ export const PROYECTOS_DETALLE = {
         subtitulo: 'Tu clínica dental y tu historial, siempre contigo',
         icono: 'diente',
         intro: 'PortalDental es una app móvil para encontrar la clínica dental que mejor se adapta a cada paciente, por especialidad, cercanía y valoraciones, gestionar las citas y tener siempre a mano el historial dental. Es mi proyecto del curso de UX/UI: lo investigué, diseñé y prototipé de principio a fin, junto con una landing para pacientes y clínicas.',
+        resumen: {
+            rol: 'Investigación UX, diseño UI y prototipado',
+            tipo: 'Individual',
+            contexto: 'Proyecto del curso de UX/UI',
+            resultado: 'Prototipo validado en Maze: el 100 % vio sencillo el onboarding y el 95 % la búsqueda y el historial'
+        },
         portada: { imagen: '/assets/portaldental-portada.webp', etiqueta: 'Landing de PortalDental', natural: true },
         tecnologias: ['Figma', 'FigJam', 'Design Thinking', 'Doble diamante', 'Maze', 'Google Forms', 'WCAG'],
         enlaces: [
@@ -227,6 +246,17 @@ export const PROYECTOS_DETALLE = {
             ],
             nota: 'Testing de usabilidad en Maze y encuesta previa en Google Forms. El test señaló como mejora la claridad del calendario al cancelar citas.'
         },
+        aprendizaje: {
+            aprendi: [
+                { id: 'confianza', texto: 'Una app sanitaria se gana al usuario con confianza: valoraciones verificadas, la ficha completa de cada clínica y la trayectoria de sus profesionales.' },
+                { id: 'botones', texto: 'El onboarding y el login fueron un éxito para todos, pero el 11,5 % hizo algún clic erróneo: los botones y las llamadas a la acción necesitaban más claridad visual.' },
+                { id: 'calendario', texto: 'Gestionar citas fue la tarea más difícil: casi un 10 % la abandonó y un 16,9 % se equivocó de clic, así que el calendario y la cancelación son lo primero que mejoraría.' }
+            ],
+            descarte: [
+                { id: 'gamificacion', texto: 'Un sistema de gamificación con recompensas por acudir a las citas: quedó fuera en el In & Out para centrar la app en lo esencial.' },
+                { id: 'tiempo-real', texto: 'La disponibilidad de cada clínica y especialista en tiempo real, que también se quedó fuera en el In & Out.' }
+            ]
+        },
         conclusion: 'PortalDental me enseñó que una app clínica tiene que ganarse la confianza del usuario, y que el método del doble diamante, investigando antes de diseñar, es la forma de conseguirlo. Figma me permitió prototipar con todo detalle las interacciones para que el equipo de desarrollo entienda el producto.'
     },
 
@@ -235,6 +265,12 @@ export const PROYECTOS_DETALLE = {
         subtitulo: 'Los museos de Madrid, accesibles para todas las personas',
         icono: 'silla',
         intro: 'Turismo Sin Barreras es una app móvil para descubrir los museos y centros culturales de Madrid según su accesibilidad, calcular la ruta más accesible para llegar y organizar la visita con el propio museo. La acompaña una landing que presenta el servicio. Es un proyecto del curso de UX/UI, investigado con Design Thinking y prototipado en Figma.',
+        resumen: {
+            rol: 'Investigación UX, diseño UI y prototipado',
+            tipo: 'Individual',
+            contexto: 'Proyecto del curso de UX/UI',
+            resultado: 'Prototipo de app y landing a partir de una encuesta a 52 personas'
+        },
         portada: { imagen: '/assets/tsb-portada.webp', etiqueta: 'Landing de Turismo Sin Barreras', natural: true },
         tecnologias: ['Figma', 'FigJam', 'Design Thinking', 'Doble diamante', 'Google Forms', 'Diseño accesible'],
         enlaces: [
@@ -304,6 +340,18 @@ export const PROYECTOS_DETALLE = {
             ],
             nota: 'Encuesta en Google Forms.'
         },
+        aprendizaje: {
+            aprendi: [
+                { id: 'abiertas', texto: 'Las preguntas cerradas dibujaban un Madrid adaptado; las respuestas abiertas y la entrevista sacaron los problemas reales, como ascensores averiados o escaleras sin marcar.' },
+                { id: 'informacion', texto: 'La barrera no es solo física: la falta de información adaptada pesa casi tanto como la accesibilidad de los espacios.' },
+                { id: 'priorizar', texto: 'Priorizar con MoSCoW me ayudó a centrar el prototipo en lo imprescindible: rutas claras, qué espacios se adaptan a cada diversidad e información detallada.' }
+            ],
+            descarte: [
+                { id: 'formacion', texto: 'Una app de formación en atención inclusiva para el personal de los centros culturales.' },
+                { id: 'incidencias', texto: 'La capacitación para resolver incidencias y problemas durante la visita.' },
+                { id: 'virtual', texto: 'Las visitas virtuales para personas que no pueden desplazarse. Las tres quedaron en el Won\'t del MoSCoW, fuera de esta primera versión.' }
+            ]
+        },
         conclusion: 'Turismo Sin Barreras me enseñó a diseñar empezando por las personas: escuchar a quienes viven las barreras cambia lo que parece importante. La accesibilidad no es un añadido, es la base del producto, y prototipar en Figma me permitió comprobar que cada pantalla responde a una necesidad real.'
     },
 
@@ -312,6 +360,12 @@ export const PROYECTOS_DETALLE = {
         subtitulo: 'Cuento infantil ilustrado sobre la llegada de una hermana',
         icono: 'libro',
         intro: 'Ahora Somos Dos es un cuento ilustrado para primeros lectores, basado en una historia real: mi interpretación de cómo se conocieron mis dos perras y su evolución. Es un proyecto académico de diseño editorial en el que escribí el texto, creé las ilustraciones y maqueté el libro completo, preparado para imprenta.',
+        resumen: {
+            rol: 'Texto, ilustración y maquetación',
+            tipo: 'Individual',
+            contexto: 'Proyecto académico de diseño editorial',
+            resultado: 'Libro de 30 páginas preparado para imprenta'
+        },
         portada: { imagen: '/assets/asd-portada.webp', etiqueta: 'Mockup de la portada de Ahora Somos Dos', natural: true },
         tecnologias: ['Illustrator', 'Photoshop', 'InDesign', 'Ilustración vectorial', 'Diseño editorial', 'Maquetación'],
         enlaces: [],
@@ -365,11 +419,13 @@ export const PROYECTOS_DETALLE = {
             titulo: 'Producción para imprenta',
             texto: 'El libro está preparado para impresión profesional en tapa dura, con decisiones técnicas pensadas para un producto atractivo y resistente en manos de niños.',
             intro: 'Ficha técnica:',
-            lista: [
-                { id: 'formato', texto: 'Formato cuadrado de 220 × 220 mm, márgenes de 20 a 25 mm y sangrado de 3 mm.' },
-                { id: 'archivo', texto: 'Archivo final en PDF para imprenta, en CMYK y a 300 ppp.' },
-                { id: 'papel', texto: 'Tapa dura de cartón rígido forrada con la cubierta impresa y plastificado mate; interior en papel estucado mate de 150 g/m².' },
-                { id: 'acabado', texto: 'Impresión digital y encuadernación en tapa dura (cartoné), con lomo impreso con el título y la autora.' }
+            ficha: [
+                { id: 'formato', elemento: 'Formato', decision: 'Cuadrado de 220 × 220 mm, márgenes de 20 a 25 mm y sangrado de 3 mm', motivo: 'Los márgenes amplios facilitan la lectura a los primeros lectores.' },
+                { id: 'paginas', elemento: 'Páginas', decision: '30 páginas de contenido', motivo: '' },
+                { id: 'cubierta', elemento: 'Cubierta', decision: 'Tapa dura de cartón rígido forrada con la cubierta impresa y plastificado mate', motivo: 'Un libro resistente para manos pequeñas.' },
+                { id: 'interior', elemento: 'Interior', decision: 'Papel estucado mate de 150 g/m²', motivo: '' },
+                { id: 'encuadernacion', elemento: 'Encuadernación', decision: 'Tapa dura (cartoné) con el lomo impreso con el título y la autora', motivo: 'Aguanta el uso diario en manos de niños.' },
+                { id: 'impresion', elemento: 'Impresión', decision: 'Digital, con el archivo final en PDF, en CMYK y a 300 ppp', motivo: '' }
             ],
             metricas: [
                 { id: 'formato', valor: '220 mm', texto: 'Formato cuadrado' },
@@ -385,6 +441,12 @@ export const PROYECTOS_DETALLE = {
         subtitulo: 'Una agenda que acerca la historia del arte, mes a mes',
         icono: 'calendario',
         intro: 'La Agenda 2026 es un proyecto editorial: una agenda multifuncional para organizar todo el año. Quise ir más allá de su función organizativa y convertirla en un objeto con valor creativo: cada mes lo protagoniza una vanguardia artística con una ilustración propia y una breve introducción al estilo.',
+        resumen: {
+            rol: 'Ilustración, diseño editorial y preimpresión',
+            tipo: 'Individual',
+            contexto: 'Proyecto de producción gráfica',
+            resultado: 'Agenda de 162 páginas preparada para imprenta'
+        },
         portada: { imagen: '/assets/ag-portada.webp', etiqueta: 'Mockup de la cubierta y la contracubierta de la Agenda 2026', natural: true },
         tecnologias: ['Illustrator', 'InDesign', 'Photoshop', 'Ilustración vectorial', 'Diseño editorial', 'Producción gráfica', 'Preimpresión'],
         enlaces: [],
@@ -436,13 +498,15 @@ export const PROYECTOS_DETALLE = {
             titulo: 'Producción para imprenta',
             texto: 'Cada decisión de material y acabado se tomó pensando en un objeto que se usa a diario durante todo un año.',
             intro: 'Ficha técnica:',
-            lista: [
-                { id: 'formato', texto: 'Formato A5 vertical (148 × 210 mm) con 3 mm de sangrado.' },
-                { id: 'papel', texto: 'Interior en papel offset de 100 g y láminas ilustradas en papel couché mate.' },
-                { id: 'cubierta', texto: 'Cubierta en cartulina gráfica de 350 g con laminado soft touch mate, foil dorado y golpe seco.' },
-                { id: 'encuadernacion', texto: 'Encuadernación Wire-O con apertura de 360°.' },
-                { id: 'impresion', texto: 'Impresión en cuatricromía (CMYK) más tinta plana dorada para los acabados de la cubierta.' },
-                { id: 'marcapaginas', texto: 'Marcapáginas en cartulina de 300 g con laminado mate, impresos a doble cara y con microperforado.' }
+            ficha: [
+                { id: 'formato', elemento: 'Formato', decision: 'A5 vertical (148 × 210 mm) con 3 mm de sangrado', motivo: 'Un tamaño manejable para llevarla encima a diario.' },
+                { id: 'paginas', elemento: 'Páginas', decision: '162 páginas', motivo: 'Calendario mensual, semana vista y páginas de anotaciones para todo el año.' },
+                { id: 'interior', elemento: 'Interior', decision: 'Papel offset de 100 g', motivo: 'Pensado para escribir a diario.' },
+                { id: 'laminas', elemento: 'Láminas', decision: 'Papel couché mate', motivo: 'Reproduce mejor el color y el detalle de las ilustraciones.' },
+                { id: 'cubierta', elemento: 'Cubierta', decision: 'Cartulina gráfica de 350 g con laminado soft touch mate, foil dorado y golpe seco', motivo: 'Agradable al tacto y resistente al uso diario; el foil y el golpe seco aportan brillo y relieve sin recargar.' },
+                { id: 'encuadernacion', elemento: 'Encuadernación', decision: 'Wire-O con apertura de 360°', motivo: 'La agenda queda plana sobre la mesa para escribir cómodamente en cualquier página.' },
+                { id: 'impresion', elemento: 'Impresión', decision: 'Cuatricromía (CMYK) más tinta plana dorada', motivo: 'La tinta dorada se reserva para los acabados de la cubierta.' },
+                { id: 'marcapaginas', elemento: 'Marcapáginas', decision: 'Cartulina de 300 g con laminado mate, impresos a doble cara y con microperforado', motivo: 'El microperforado permite separarlos fácilmente.' }
             ],
             metricas: [
                 { id: 'formato', valor: 'A5', texto: 'Formato vertical' },

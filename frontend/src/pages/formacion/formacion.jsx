@@ -24,15 +24,17 @@ export const Formacion = () => {
     )
 }
 
-/* Tarjeta con el título delante y la descripción detrás, el giro lo hace el CSS */
+/* Tarjeta con el título, el centro y las fechas delante y la descripción detrás.
+El giro lo hace el CSS; en móvil se ven las dos caras sin girar */
 const TarjetaFormacion = (props) => {
 
-    const { titulo, descripcion } = props
+    const { titulo, centro, descripcion } = props
 
     return (
         <article className="Formacion-article">
             <div className="Formacion-front">
                 <h3 className="Formacion-h3 Formacion-h3--front">{titulo}</h3>
+                <p className="Formacion-centro">{centro}</p>
             </div>
             <div className="Formacion-back">
                 <p className="Formacion-p">{descripcion}</p>

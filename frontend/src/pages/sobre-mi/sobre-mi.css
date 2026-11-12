@@ -84,15 +84,11 @@
 }
 
 .SobreMi-article{
-    padding: .75rem 1.25rem;
-    background-color: var(--color-sombra-texto);
-    box-shadow: 0 0 2rem 2.5rem var(--color-sombra-texto);
-
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: .75rem;
+    gap: .5rem;
 }
 
 .SobreMi-h2{
@@ -113,6 +109,11 @@
     line-height: 1.5;
 }
 
+/* Separamos el segundo título de la presentación del párrafo de arriba */
+.SobreMi-p + .SobreMi-h2{
+    margin: .5rem 0 0;
+}
+
 .SobreMi-link{
     font-weight: 700;
     color: var(--color-claro);
@@ -121,7 +122,7 @@
 }
 
 .SobreMi-bottom{
-    margin: 1.25rem 0 .5rem;
+    margin: 1rem 0 .5rem;
     padding: .75rem 1.25rem;
     background-color: var(--color-sombra-texto);
     box-shadow: 0 0 2rem 2.5rem var(--color-sombra-texto);
@@ -133,12 +134,117 @@
     gap: .75rem;
 }
 
+/* FOTO Y PRESENTACIÓN */
+
+/* La foto va a la izquierda del texto y el fondo azul cubre las dos */
+.SobreMi-presentacion{
+    width: 100%;
+    padding: .75rem 1.25rem;
+    background-color: var(--color-sombra-texto);
+    box-shadow: 0 0 2rem 2.5rem var(--color-sombra-texto);
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.SobreMi-foto{
+    width: 11rem;
+    height: 11rem;
+    border: 4px solid var(--color-claro);
+    border-radius: 50%;
+    box-shadow: 0 0 1.5rem rgba(140, 219, 211, .45);
+    object-fit: cover;
+
+    flex-shrink: 0;
+}
+
+/* LÍNEA DE TIEMPO */
+
+.SobreMi-recorrido{
+    margin: 1rem 0 0;
+    padding: .75rem 1.25rem;
+    background-color: var(--color-sombra-texto);
+    box-shadow: 0 0 2rem 2.5rem var(--color-sombra-texto);
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: .75rem;
+}
+
+/* Las cuatro etapas en fila, unidas por una línea que pasa por los puntos */
+.SobreMi-linea{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+
+    position: relative;
+}
+
+.SobreMi-linea:before{
+    content: "";
+    height: 2px;
+    background-color: var(--color-claro);
+
+    position: absolute;
+    top: .45rem;
+    left: .5rem;
+    right: .5rem;
+}
+
+.SobreMi-etapa{
+    padding: 1.5rem 0 0;
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: .35rem;
+
+    position: relative;
+}
+
+/* Punto de cada etapa sobre la línea */
+.SobreMi-etapa:before{
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: var(--color-claro);
+    box-shadow: 0 0 .6rem var(--color-claro);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.SobreMi-fechas{
+    font-family: "negrita";
+    font-size: .95em;
+    color: var(--color-claro);
+}
+
+.SobreMi-etapaTitulo{
+    font-family: "titulos";
+    font-size: 1.25em;
+    font-weight: 800;
+    color: var(--color-texto-principal);
+}
+
 /* MEDIA QUERIES */
 
 /* En tablet reducimos el relleno de la caja */
 @media (max-width: 930px){
     .SobreMi-wrapper{
         padding: 1rem 2rem;
+    }
+
+    /* En tablet la línea de tiempo pasa a dos columnas y quitamos la línea horizontal */
+    .SobreMi-linea{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .SobreMi-linea:before{
+        display: none;
     }
 }
 
@@ -156,8 +262,47 @@
         font-size: clamp(1.1rem, 5vw, 1.5rem);
     }
 
-    .SobreMi-article, .SobreMi-bottom{
+    .SobreMi-presentacion, .SobreMi-bottom, .SobreMi-recorrido{
         padding: .75rem .25rem;
+    }
+
+    /* En móvil la foto va encima del texto */
+    .SobreMi-presentacion{
+        flex-flow: column nowrap;
+        gap: 1.25rem;
+    }
+
+    .SobreMi-foto{
+        width: 10rem;
+        height: 10rem;
+    }
+
+    /* La línea de tiempo pasa a vertical, con la línea a la izquierda */
+    .SobreMi-linea{
+        padding: 0 0 0 1.5rem;
+
+        grid-template-columns: 1fr;
+    }
+
+    .SobreMi-linea:before{
+        width: 2px;
+        height: auto;
+
+        display: block;
+
+        top: .5rem;
+        bottom: .5rem;
+        left: .45rem;
+        right: auto;
+    }
+
+    .SobreMi-etapa{
+        padding: 0;
+    }
+
+    .SobreMi-etapa:before{
+        top: .15rem;
+        left: -1.5rem;
     }
 
     .SobreMi-h2{

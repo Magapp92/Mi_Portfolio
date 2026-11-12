@@ -3,7 +3,8 @@
 /* Damos estilo al contenedor de la página */
 .Inicio{
     width: 100%;
-    min-height: 30rem;
+    /* Alto mínimo para que la frase, la presentación y los botones quepan en pantallas bajas */
+    min-height: 36rem;
     margin: var(--alto-header) 0 0;
     background-color: var(--color-fondo-principal);
     overflow: hidden;
@@ -108,6 +109,91 @@
     transform: scale(1.2);
 }
 
+/* PRESENTACIÓN */
+
+/* Debajo de la frase va quién soy, la disponibilidad y los botones */
+.Inicio-presentacion{
+    margin: 1.5rem 0 0;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.Inicio-rol{
+    font-family: "cabeceras";
+    font-size: 1.35em;
+    color: var(--color-claro);
+}
+
+.Inicio-disponible{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: .25rem;
+
+    font-family: "texto";
+    color: var(--color-texto-principal);
+}
+
+.Inicio-estado{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: .6rem;
+
+    font-weight: 700;
+}
+
+/* El punto verde indica que estoy disponible */
+.Inicio-punto{
+    width: .65rem;
+    height: .65rem;
+    border-radius: 50%;
+    background-color: var(--color-acierto);
+    box-shadow: 0 0 8px var(--color-acierto);
+}
+
+.Inicio-detalle{
+    font-size: .95em;
+    opacity: .9;
+}
+
+.Inicio-botones{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: .75rem;
+}
+
+.Inicio-boton{
+    padding: .75rem 1.4rem;
+    border: 2px solid var(--color-claro);
+    border-radius: 2rem;
+
+    font-family: "cabeceras";
+    font-size: 1em;
+    font-weight: 700;
+    white-space: nowrap;
+
+    cursor: none;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.Inicio-boton:hover,
+.Inicio-boton:focus-visible{
+    box-shadow: 0 .4rem 1rem rgba(140, 219, 211, .35);
+    transform: translateY(-3px);
+}
+
+.Inicio-boton--lleno{
+    background-color: var(--color-claro);
+    color: var(--color-texto-secundario);
+}
+
+.Inicio-boton--borde{
+    color: var(--color-claro);
+}
+
 /* MEDIA QUERIES */
 
 /* En tablet y móvil ponemos la frase encima de las especialidades en una sola columna
@@ -123,7 +209,7 @@ y dejamos que el contenido marque el alto para que el vídeo lo cubra entero */
         padding: 3rem 1.25rem;
 
         display: flex;
-        flex-flow: column-reverse nowrap;
+        flex-flow: column nowrap;
         justify-content: center;
         align-items: center;
         gap: 2.5rem;
@@ -137,6 +223,7 @@ y dejamos que el contenido marque el alto para que el vídeo lo cubra entero */
         margin: 0;
 
         align-items: center;
+        order: 2;
     }
 
     .Inicio-h2{
@@ -148,5 +235,35 @@ y dejamos que el contenido marque el alto para que el vídeo lo cubra entero */
     .Inicio-h3{
         font-size: clamp(1.5rem, 5.5vw, 2.5rem);
         text-align: center;
+    }
+
+    /* La frase va arriba, las especialidades en medio y la presentación en una franja abajo */
+    .Inicio-izquierda{
+        display: contents;
+    }
+
+    .Inicio-frase{
+        order: 1;
+    }
+
+    .Inicio-presentacion{
+        width: calc(100% + 2.5rem);
+        margin: 0 -1.25rem -3rem;
+        padding: 1.5rem 1.25rem 2rem;
+        background-color: #0d1b28cc;
+
+        align-items: center;
+        order: 3;
+
+        text-align: center;
+    }
+
+    .Inicio-disponible{
+        align-items: center;
+    }
+
+    .Inicio-botones{
+        flex-flow: row wrap;
+        justify-content: center;
     }
 }

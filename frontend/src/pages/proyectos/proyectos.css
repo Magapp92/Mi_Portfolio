@@ -62,6 +62,34 @@
     animation: translateLeft 3s ease;
 }
 
+/* Filtro por categoría: cada botón lleva el slider a sus proyectos */
+.Proyectos-filtros{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: .75rem;
+}
+
+.Proyectos-filtro{
+    padding: .5rem 1.2rem;
+    border: 2px solid var(--color-texto-secundario);
+    border-radius: 2rem;
+
+    font-family: "negrita";
+    font-size: 1em;
+    color: var(--color-texto-secundario);
+
+    cursor: none;
+    transition: background-color .3s ease, color .3s ease;
+}
+
+.Proyectos-filtro:hover,
+.Proyectos-filtro:focus-visible,
+.Proyectos-filtro.isActivo{
+    background-color: var(--color-texto-secundario);
+    color: var(--color-claro);
+}
+
 /* SLIDER */
 .Proyectos-slider{
     width: 100%;
@@ -176,6 +204,17 @@ El padding lateral es grande para que el texto no quede debajo de las flechas */
 .Proyectos-img--entera{
     background-color: transparent;
     object-fit: contain;
+}
+
+/* Etiqueta con la categoría encima del título de cada tarjeta */
+.Proyectos-categoria{
+    padding: .2rem .8rem;
+    border-radius: 1rem;
+    background-color: var(--color-texto-secundario);
+
+    font-family: "negrita";
+    font-size: .85em;
+    color: var(--color-claro);
 }
 
 .Proyectos-h3{

@@ -683,6 +683,133 @@ y altura fija para que las tarjetas queden iguales */
 /* MEDIA QUERIES */
 
 /* En pantallas medianas pasamos todo a una columna y achicamos flechas y huellas */
+/* RESUMEN */
+
+/* Ficha rápida de la cabecera, en dos columnas: nombre del dato y valor */
+.Proyecto-resumen{
+    width: 100%;
+    padding: .9rem 1.1rem;
+    border-left: 4px solid var(--color-recuadro);
+    background-color: rgba(255, 255, 255, .35);
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: .45rem;
+}
+
+.Proyecto-resumenFila{
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: .75rem;
+}
+
+.Proyecto-resumenNombre{
+    font-family: "negrita";
+    color: var(--color-texto-secundario);
+    font-size: .9em;
+    text-transform: uppercase;
+}
+
+.Proyecto-resumenValor{
+    font-family: "texto";
+    color: var(--color-texto-secundario);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* FICHA TÉCNICA */
+
+.Proyecto-ficha{
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 0 8px 5px var(--color-sombra-texto);
+
+    font-family: "texto";
+    color: var(--color-texto-secundario);
+    font-weight: 600;
+    line-height: 1.45;
+    text-align: left;
+}
+
+.Proyecto-fichaCabecera{
+    padding: .7rem 1rem;
+    background-color: var(--color-recuadro);
+
+    font-family: "negrita";
+    color: var(--color-texto-recuadro);
+}
+
+.Proyecto-fichaFila{
+    background-color: rgba(255, 255, 255, .4);
+}
+
+/* Alternamos el fondo de las filas para seguir cada línea con la vista */
+.Proyecto-fichaFila:nth-child(even){
+    background-color: rgba(255, 255, 255, .2);
+}
+
+.Proyecto-fichaElemento,
+.Proyecto-fichaCelda{
+    padding: .7rem 1rem;
+    vertical-align: top;
+}
+
+.Proyecto-fichaElemento{
+    font-family: "negrita";
+    white-space: nowrap;
+}
+
+/* APRENDIZAJE */
+
+.Proyecto-lista--tarjeta .Proyecto-item{
+    color: var(--color-texto-recuadro);
+}
+
+/* NAVEGACIÓN ENTRE PROYECTOS */
+
+.Proyecto-navegacion{
+    padding: 1.5rem 0 0;
+    border-top: 2px solid var(--color-texto-secundario);
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* El siguiente proyecto se alinea a la derecha y se desplaza un poco al pasar el ratón */
+.Proyecto-siguiente{
+    margin: 0 0 0 auto;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+
+    color: var(--color-texto-secundario);
+
+    cursor: none;
+    transition: transform .3s ease;
+}
+
+.Proyecto-siguiente:hover,
+.Proyecto-siguiente:focus-visible{
+    transform: translateX(.4rem);
+}
+
+.Proyecto-siguienteEtiqueta{
+    font-family: "texto";
+    font-size: .9em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.Proyecto-siguienteTitulo{
+    font-family: "titulos";
+    font-size: 1.6em;
+    font-weight: 800;
+}
+
 @media (max-width: 930px){
     /* En pantallas táctiles el paso entre tarjetas es rápido, al ritmo del dedo */
     .Recorrido-pista{
@@ -722,6 +849,53 @@ y altura fija para que las tarjetas queden iguales */
 /* En móvil apilamos las tarjetas, el slide ocupa todo el ancho
 y las flechas bajan a los lados del rastro de huellas */
 @media (max-width: 560px){
+    /* En móvil la ficha técnica pasa a tarjetas: cada fila se apila */
+    .Proyecto-ficha thead{
+        display: none;
+    }
+
+    .Proyecto-ficha,
+    .Proyecto-ficha tbody,
+    .Proyecto-fichaFila,
+    .Proyecto-fichaElemento,
+    .Proyecto-fichaCelda{
+        display: block;
+    }
+
+    .Proyecto-fichaFila{
+        padding: .6rem 0;
+    }
+
+    .Proyecto-fichaElemento,
+    .Proyecto-fichaCelda{
+        padding: .2rem 1rem;
+    }
+
+    .Proyecto-fichaCelda--motivo{
+        font-style: italic;
+    }
+
+    .Proyecto-resumenFila{
+        grid-template-columns: 1fr;
+        gap: .1rem;
+    }
+
+    /* Los dos enlaces del final ocupan todo el ancho, uno debajo del otro */
+    .Proyecto-navegacion{
+        flex-flow: column-reverse nowrap;
+        align-items: stretch;
+    }
+
+    .Proyecto-siguiente{
+        margin: 0;
+
+        align-items: center;
+    }
+
+    .Proyecto-boton--todos{
+        text-align: center;
+    }
+
     .Proyecto-wrapper{
         padding: 1.25rem 1rem 2rem;
         gap: 2rem;

@@ -24,6 +24,25 @@
     font-size: 1.15em;
 }
 
+/* Email, LinkedIn y CV en fila */
+.Footer-enlaces{
+    display: flex;
+    flex-flow: row wrap;
+    gap: .4rem 1.5rem;
+}
+
+.Footer-a{
+    color: var(--color-claro);
+
+    transition: color .3s ease;
+}
+
+.Footer-a:hover,
+.Footer-a:focus-visible{
+    color: var(--color-texto-principal);
+    text-decoration: underline;
+}
+
 /* Ponemos en fila el nombre y el año */
 .Footer-autor{
     display: flex;
@@ -55,6 +74,10 @@
         gap: 1rem;
 
         text-align: center;
+    }
+
+    .Footer-enlaces{
+        justify-content: center;
     }
 
     .Footer-autor{

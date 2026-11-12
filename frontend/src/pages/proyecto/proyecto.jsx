@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { Cursor } from '@components/cursor/cursor.jsx'
 import { RUTAS } from '@const/rutas.js'
+import { PROYECTOS } from '@data/proyectos.js'
 import { PROYECTOS_DETALLE } from '@data/proyectos-detalle.js'
 import './proyecto.css'
 
@@ -14,16 +15,22 @@ export const Proyecto = () => {
     const { id } = useParams()
     const proyecto = PROYECTOS_DETALLE[id]
 
+    /* Al pasar de un proyecto a otro empezamos desde arriba */
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [id])
+
     if (!proyecto) return <Navigate to={RUTAS.PROYECTOS} replace />
 
     const {
-        titulo, subtitulo, intro, portada, tecnologias, enlaces, idea, perfiles,
+        titulo, subtitulo, intro, resumen, portada, tecnologias, enlaces, idea, perfiles,
         recorrido, funcionalidades, construccion, flujos, diseno, colores, tipografias, logo,
-        reto, conclusion, icono = 'huella', construccionTitulo = 'Cómo está construido'
+        reto, aprendizaje, conclusion, icono = 'huella', construccionTitulo = 'Cómo está construido'
     } = proyecto
 
+    // Con la key el carrusel del recorrido vuelve al primer paso al cambiar de proyecto
     return (
-        <main className={`Proyecto Proyecto--${icono}`}>
+        <main key={id} className={`Proyecto Proyecto--${icono}`}>
             <Cursor variante={icono} />
 
             <div className="Proyecto-wrapper">
@@ -34,6 +41,7 @@ export const Proyecto = () => {
                         <h2 className="Proyecto-h2">{titulo}</h2>
                         <p className="Proyecto-subtitulo">{subtitulo}</p>
                         <p className="Proyecto-p">{intro}</p>
+                        {resumen && <Resumen {...resumen} />}
                         <ul className="Proyecto-tags">
                             {tecnologias.map(tecnologia =>
                                 <li key={tecnologia} className="Proyecto-tag">{tecnologia}</li>
@@ -121,11 +129,14 @@ export const Proyecto = () => {
                     <h3 className="Proyecto-h3">{reto.titulo}</h3>
                     <p className="Proyecto-p">{reto.texto}</p>
                     <p className="Proyecto-p">{reto.intro}</p>
-                    <ul className="Proyecto-lista">
-                        {reto.lista.map(item =>
-                            <li key={item.id} className="Proyecto-item">{item.texto}</li>
-                        )}
-                    </ul>
+                    {reto.lista &&
+                        <ul className="Proyecto-lista">
+                            {reto.lista.map(item =>
+                                <li key={item.id} className="Proyecto-item">{item.texto}</li>
+                            )}
+                        </ul>
+                    }
+                    {reto.ficha && <FichaTecnica filas={reto.ficha} />}
                     {reto.extra &&
                         <>
                             <p className="Proyecto-p">{reto.extra.intro}</p>
@@ -147,12 +158,112 @@ export const Proyecto = () => {
                     </div>
                 </section>
 
+                {aprendizaje &&
+                    <section className="Proyecto-section">
+                        <h3 className="Proyecto-h3">Qué aprendí y qué descarté</h3>
+                        <div className="Proyecto-grid Proyecto-grid--dos">
+                            <ListaAprendizaje titulo="Qué aprendí" items={aprendizaje.aprendi} />
+                            <ListaAprendizaje titulo="Qué descarté y por qué" items={aprendizaje.descarte} />
+                        </div>
+                    </section>
+                }
+
                 <section className="Proyecto-section">
                     <h3 className="Proyecto-h3">Lo que me llevo</h3>
                     <p className="Proyecto-p">{conclusion}</p>
                 </section>
+
+                <NavegacionProyectos id={id} />
             </div>
         </main>
+    )
+}
+
+/* Ficha rápida para quien lee en diagonal: rol, tipo, contexto y resultado */
+const Resumen = (props) => {
+
+    const { rol, tipo, contexto, resultado } = props
+
+    const datos = [
+        { id: 'rol', nombre: 'Rol', valor: rol },
+        { id: 'tipo', nombre: 'Tipo', valor: tipo },
+        { id: 'contexto', nombre: 'Contexto', valor: contexto },
+        { id: 'resultado', nombre: 'Resultado', valor: resultado }
+    ]
+
+    return (
+        <dl className="Proyecto-resumen">
+            {datos.map(dato =>
+                <div key={dato.id} className="Proyecto-resumenFila">
+                    <dt className="Proyecto-resumenNombre">{dato.nombre}</dt>
+                    <dd className="Proyecto-resumenValor">{dato.valor}</dd>
+                </div>
+            )}
+        </dl>
+    )
+}
+
+/* Tabla con cada decisión de producción y su porqué */
+const FichaTecnica = (props) => {
+
+    const { filas } = props
+
+    return (
+        <table className="Proyecto-ficha">
+            <thead>
+                <tr>
+                    <th scope="col" className="Proyecto-fichaCabecera">Elemento</th>
+                    <th scope="col" className="Proyecto-fichaCabecera">Decisión</th>
+                    <th scope="col" className="Proyecto-fichaCabecera">Por qué</th>
+                </tr>
+            </thead>
+            <tbody>
+                {filas.map(fila =>
+                    <tr key={fila.id} className="Proyecto-fichaFila">
+                        <th scope="row" className="Proyecto-fichaElemento">{fila.elemento}</th>
+                        <td className="Proyecto-fichaCelda">{fila.decision}</td>
+                        <td className="Proyecto-fichaCelda Proyecto-fichaCelda--motivo">{fila.motivo || '—'}</td>
+                    </tr>
+                )}
+            </tbody>
+        </table>
+    )
+}
+
+/* Recuadro con lo aprendido o lo descartado en el proyecto */
+const ListaAprendizaje = (props) => {
+
+    const { titulo, items } = props
+
+    return (
+        <article className="Proyecto-tarjeta">
+            <h4 className="Proyecto-h4">{titulo}</h4>
+            <ul className="Proyecto-lista Proyecto-lista--tarjeta">
+                {items.map(item =>
+                    <li key={item.id} className="Proyecto-item">{item.texto}</li>
+                )}
+            </ul>
+        </article>
+    )
+}
+
+/* Al final de cada proyecto: volver a todos o pasar al siguiente, en el orden del slider */
+const NavegacionProyectos = (props) => {
+
+    const { id } = props
+
+    const conDetalle = PROYECTOS.filter(proyecto => PROYECTOS_DETALLE[proyecto.id])
+    const posicion = conDetalle.findIndex(proyecto => proyecto.id === id)
+    const siguiente = conDetalle[(posicion + 1) % conDetalle.length]
+
+    return (
+        <nav className="Proyecto-navegacion" aria-label="Navegación entre proyectos">
+            <Link to={RUTAS.PROYECTOS} className="Proyecto-boton Proyecto-boton--todos">← Ver todos los proyectos</Link>
+            <Link to={`${RUTAS.PROYECTOS}/${siguiente.id}`} className="Proyecto-siguiente">
+                <span className="Proyecto-siguienteEtiqueta">Siguiente proyecto</span>
+                <span className="Proyecto-siguienteTitulo">{siguiente.titulo} →</span>
+            </Link>
+        </nav>
     )
 }
 

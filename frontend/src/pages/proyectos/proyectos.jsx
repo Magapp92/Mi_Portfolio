@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Cursor } from '@components/cursor/cursor.jsx'
 import { RUTAS } from '@const/rutas.js'
-import { PROYECTOS } from '@data/proyectos.js'
+import { PROYECTOS, CATEGORIAS } from '@data/proyectos.js'
 import { PROYECTOS_DETALLE } from '@data/proyectos-detalle.js'
 import './proyectos.css'
 
@@ -42,6 +42,19 @@ export const Proyectos = () => {
 
     // En móvil se ve una sola tarjeta, así que avanzamos de una en una
     const calcularPaso = () => window.matchMedia('(max-width: 560px)').matches ? PASO_MOVIL : PASO
+
+    // La categoría activa es la de la primera tarjeta visible, así el filtro sigue al slider
+    const categoriaActual = PISTA[indice]?.categoria
+
+    /* El filtro desplaza el slider hasta el primer proyecto de la categoría */
+    const irACategoria = (categoria) => {
+        if (moviendo) return
+        const destino = TOTAL + PROYECTOS.findIndex(proyecto => proyecto.categoria === categoria)
+        if (destino === indice) return
+        setConTransicion(true)
+        setMoviendo(true)
+        setIndice(destino)
+    }
 
     const siguiente = () => mover(calcularPaso())
     const anterior = () => mover(-calcularPaso())
@@ -115,6 +128,19 @@ export const Proyectos = () => {
             <div className="Proyectos-wrapper">
                 <section className="Proyectos-section">
                     <h2 className="Proyectos-h2">Mis proyectos</h2>
+                    <div className="Proyectos-filtros" role="group" aria-label="Ir a los proyectos de una categoría">
+                        {CATEGORIAS.map(categoria =>
+                            <button
+                                key={categoria.id}
+                                type="button"
+                                className={`Proyectos-filtro${categoriaActual === categoria.id ? ' isActivo' : ''}`}
+                                aria-pressed={categoriaActual === categoria.id}
+                                onClick={() => irACategoria(categoria.id)}
+                            >
+                                {categoria.texto}
+                            </button>
+                        )}
+                    </div>
                 </section>
                 <div
                     className="Proyectos-slider"
@@ -152,12 +178,15 @@ export const Proyectos = () => {
 /* Tarjeta de cada proyecto, solo enlaza si el proyecto tiene página de detalle */
 const TarjetaProyecto = (props) => {
 
-    const { id, titulo, imagen, descripcion, imagenEntera = false } = props
+    const { id, titulo, imagen, descripcion, categoria, imagenEntera = false } = props
+
+    const etiqueta = CATEGORIAS.find(item => item.id === categoria)?.texto
 
     const contenido = (
         <>
             {imagen && <img src={imagen} alt={`imagen ${titulo}`} className={`Proyectos-img${imagenEntera ? ' Proyectos-img--entera' : ''}`} />}
             {!imagen && <div className="Proyectos-img" aria-hidden="true"></div>}
+            {etiqueta && <span className="Proyectos-categoria">{etiqueta}</span>}
             <h3 className="Proyectos-h3">{titulo}</h3>
             <p className="Proyectos-p">{descripcion}</p>
         </>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { RUTAS } from '@const/rutas.js'
+import { CONTACTO } from '@const/contacto.js'
 import './header.css'
 
 /* Enlaces del menú de navegación */
@@ -8,7 +9,9 @@ const ENLACES = [
     { id: 'sobre-mi', ruta: RUTAS.SOBRE_MI, texto: 'Sobre mi', titulo: 'ir a sobre mi' },
     { id: 'proyectos', ruta: RUTAS.PROYECTOS, texto: 'Proyectos', titulo: 'ir a proyectos' },
     { id: 'formacion', ruta: RUTAS.FORMACION, texto: 'Formación', titulo: 'ir a formación' },
-    { id: 'juego', ruta: RUTAS.JUEGO, texto: 'Juego', titulo: 'ir al quiz de Harry Potter' }
+    { id: 'juego', ruta: RUTAS.JUEGO, texto: 'Juego', titulo: 'ir al quiz de Harry Potter' },
+    // Contacto abre el correo con mi dirección ya puesta
+    { id: 'contacto', correo: CONTACTO.EMAIL, texto: 'Contacto', titulo: 'escribirme un correo' }
 ]
 
 /* Cabecera fija con el logo animado, el nombre y el menú */
@@ -92,11 +95,14 @@ export const Header = () => {
 /* Cada enlace del menú */
 const EnlaceNav = (props) => {
 
-    const { ruta, texto, titulo, cerrar } = props
+    const { ruta, correo, texto, titulo, cerrar } = props
 
     return (
         <li className="Header-li">
-            <Link to={ruta} title={titulo} className="Header-a" onClick={cerrar}>{texto}</Link>
+            {correo
+                ? <a href={`mailto:${correo}`} title={titulo} className="Header-a" onClick={cerrar}>{texto}</a>
+                : <Link to={ruta} title={titulo} className="Header-a" onClick={cerrar}>{texto}</Link>
+            }
         </li>
     )
 }

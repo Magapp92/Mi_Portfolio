@@ -55,6 +55,7 @@
     font-size: 2.5em;
     font-weight: 800;
     color: var(--color-texto-principal);
+    text-shadow: var(--sombra-sobre-video);
 
     animation: translateLeft 3s ease;
 }
@@ -69,6 +70,7 @@
     color: var(--color-texto-principal);
     text-transform: uppercase;
     text-align: center;
+    text-shadow: var(--sombra-sobre-video);
 
     animation: translateRight 3s ease;
 }
@@ -189,6 +191,7 @@ todas las medidas salen de --ancho para que no pierda la proporción */
     font-size: 1em;
     color: var(--color-texto-principal);
     text-align: center;
+    line-height: 1.5;
 }
 
 .Formacion-h3--front{

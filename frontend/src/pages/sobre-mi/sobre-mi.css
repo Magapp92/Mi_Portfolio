@@ -29,7 +29,7 @@
 /* Damos estilo a la caja que va encima del vídeo */
 .SobreMi-wrapper{
     width: 95%;
-    margin: .75rem auto;
+    margin: 1.25rem auto;
     padding: 1rem 3rem;
     background-color: var(--color-fondo-seccion);
     box-shadow: 0 0 1rem 1rem var(--color-fondo-seccion);
@@ -252,6 +252,11 @@
 @media (max-width: 560px){
     .SobreMi-wrapper{
         padding: 1rem 1.25rem;
+    }
+
+    /* En móvil los párrafos llevan algo más de aire entre líneas */
+    .SobreMi-p{
+        line-height: 1.6;
     }
 
     .SobreMi-content{

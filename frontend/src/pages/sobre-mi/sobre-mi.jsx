@@ -45,8 +45,12 @@ export const SobreMi = () => {
                     <h2 className="SobreMi-h2">Cambiando el rumbo</h2>
                     <p className="SobreMi-p">
                         Hoy me dedico al desarrollo web y al diseño. He trabajado con pequeños negocios creando páginas web, logotipos y contenido multimedia, y en mi tiempo libre rediseño webs que me llaman la atención para seguir aprendiendo.
+                    </p>
+                    <p className="SobreMi-p">
                         Para dar el salto al desarrollo completo me he formado en desarrollo web Full Stack en <a href="https://cei.es/" target="_blank" rel="noopener noreferrer" className="SobreMi-link">CEI</a>: React, Next.js y TypeScript en el front, APIs REST con Node.js y Express, y bases de datos con MongoDB y Prisma.
                         Elegí CEI por su trayectoria de más de 30 años formando en diseño y nuevas tecnologías, por ser centro oficial de formación de empresas como Adobe, Microsoft o AWS y por las opiniones de sus exalumnos, que destacan la calidad del profesorado y una formación intensa y muy completa.
+                    </p>
+                    <p className="SobreMi-p">
                         Estoy acostumbrada a trabajar en equipo y a poner siempre en el centro las necesidades del cliente.
                         Fuera de la pantalla, disfruto del aire libre con mi familia y mis dos perritas. Pero lo que de verdad me impulsa es dar vida a ideas y proyectos: ahí es donde siento que estoy en mi lugar.
                     </p>

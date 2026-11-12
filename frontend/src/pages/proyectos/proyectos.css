@@ -34,8 +34,9 @@
     width: 95%;
     margin: 1.25rem auto;
     padding: .75rem 5rem;
-    background-color: var(--color-claro-fondo);
-    box-shadow: 0 0 1rem 1rem var(--color-claro-fondo);
+    /* El mismo turquesa claro que el resto de cajas, algo más opaco para que el título se lea sobre el vídeo */
+    background-color: #8cdbd3a6;
+    box-shadow: 0 0 1rem 1rem #8cdbd3a6;
 
     position: relative;
     z-index: 1;
@@ -160,7 +161,8 @@ El padding lateral es grande para que el texto no quede debajo de las flechas */
     flex: 0 0 calc(100% / var(--tarjetas) - 1.5rem);
     margin: 0 .75rem;
     padding: 1.25rem 4.5rem;
-    background-color: #1e9180;
+    /* Turquesa un punto más claro que antes para que el texto oscuro llegue al contraste mínimo */
+    background-color: #2aa08d;
     box-shadow: 0 0 8px 5px var(--color-sombra-texto);
 
     display: flex;
@@ -229,6 +231,7 @@ El padding lateral es grande para que el texto no quede debajo de las flechas */
     font-size: 1em;
     font-weight: 600;
     color: var(--color-texto-secundario);
+    line-height: 1.5;
 }
 
 /* MEDIA QUERIES */
@@ -272,7 +275,7 @@ El padding lateral es grande para que el texto no quede debajo de las flechas */
 /* En móvil enseñamos una sola tarjeta que ocupa todo el ancho del slider */
 @media (max-width: 560px){
     .Proyectos-wrapper{
-        padding: .75rem;
+        padding: 1rem 1.25rem;
     }
 
     .Proyectos-h2{

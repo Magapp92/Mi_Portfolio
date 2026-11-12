@@ -69,6 +69,7 @@
     font-size: 4.5em;
     color: var(--color-texto-principal);
     text-transform: capitalize;
+    text-shadow: var(--sombra-sobre-video);
 }
 
 /* Cada especialidad tarda un poco más en aparecer que la anterior */
@@ -100,8 +101,10 @@
     animation: disolve 6s;
 }
 
-/* Agrandamos la frase con sombra al pasar el ratón */
+/* Agrandamos la frase con sombra al pasar el ratón. Sin hover lleva la sombra de los textos sobre vídeo */
 .Inicio-frase{
+    text-shadow: var(--sombra-sobre-video);
+
     transition: transform 2s ease, text-shadow 1.5s ease;
 }
 .Inicio-frase:hover{
@@ -114,6 +117,8 @@
 /* Debajo de la frase va quién soy, la disponibilidad y los botones */
 .Inicio-presentacion{
     margin: 1.5rem 0 0;
+
+    text-shadow: var(--sombra-sobre-video);
 
     display: flex;
     flex-flow: column nowrap;
@@ -156,7 +161,7 @@
 
 .Inicio-detalle{
     font-size: .95em;
-    opacity: .9;
+    line-height: 1.5;
 }
 
 .Inicio-botones{
@@ -167,6 +172,7 @@
 
 .Inicio-boton{
     padding: .75rem 1.4rem;
+    text-shadow: none;
     border: 2px solid var(--color-claro);
     border-radius: 2rem;
 

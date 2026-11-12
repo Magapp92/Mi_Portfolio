@@ -45,10 +45,10 @@
     --color-texto-recuadro: var(--color-texto-principal);
 }
 
-/* PortalDental usa el azul de la marca con texto claro */
+/* PortalDental usa el azul de la marca con texto blanco, que es el que llega al contraste mínimo */
 .Proyecto--diente{
     --color-recuadro: var(--color-azul-portaldental);
-    --color-texto-recuadro: var(--color-texto-principal);
+    --color-texto-recuadro: #fff;
 }
 
 /* El texto de los recuadros toma el color que toque según el proyecto */
@@ -849,6 +849,12 @@ y altura fija para que las tarjetas queden iguales */
 /* En móvil apilamos las tarjetas, el slide ocupa todo el ancho
 y las flechas bajan a los lados del rastro de huellas */
 @media (max-width: 560px){
+    /* En móvil los párrafos llevan algo más de aire entre líneas */
+    .Proyecto-p,
+    .Proyecto-item{
+        line-height: 1.6;
+    }
+
     /* En móvil la ficha técnica pasa a tarjetas: cada fila se apila */
     .Proyecto-ficha thead{
         display: none;

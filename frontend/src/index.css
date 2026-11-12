@@ -77,6 +77,8 @@ button{
     --color-texto-principal: #EDEDED;
     --color-texto-secundario: #092c36;
     --color-sombra-texto: #223950d0;
+    /* Sombra suave para que los textos sobre vídeo se lean aunque el fondo se aclare */
+    --sombra-sobre-video: 0 2px 10px rgba(0, 0, 0, .65);
     --color-cursor: #0ff;
     --color-cursor-blur: rgba(255, 255, 255, .122);
     --color-cursor-halo: rgba(255, 39, 230, .7);

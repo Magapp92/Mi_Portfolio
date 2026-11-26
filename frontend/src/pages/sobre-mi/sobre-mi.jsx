@@ -1,4 +1,4 @@
-/* Página "Sobre mi" con el vídeo de fondo, mi foto, mi presentación y mi recorrido */
+/* Página "Sobre mí" con el vídeo de fondo, mi foto, mi presentación y mi recorrido */
 
 import { Link } from 'react-router-dom'
 import { Cursor } from '@components/cursor/cursor.jsx'

@@ -6,7 +6,7 @@ import './header.css'
 
 /* Enlaces del menú de navegación */
 const ENLACES = [
-    { id: 'sobre-mi', ruta: RUTAS.SOBRE_MI, texto: 'Sobre mi', titulo: 'ir a sobre mi' },
+    { id: 'sobre-mi', ruta: RUTAS.SOBRE_MI, texto: 'Sobre mí', titulo: 'ir a sobre mí' },
     { id: 'proyectos', ruta: RUTAS.PROYECTOS, texto: 'Proyectos', titulo: 'ir a proyectos' },
     { id: 'formacion', ruta: RUTAS.FORMACION, texto: 'Formación', titulo: 'ir a formación' },
     { id: 'juego', ruta: RUTAS.JUEGO, texto: 'Juego', titulo: 'ir al quiz de Harry Potter' },

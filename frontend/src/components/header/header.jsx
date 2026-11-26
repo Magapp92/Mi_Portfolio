@@ -14,6 +14,13 @@ const ENLACES = [
     { id: 'contacto', correo: CONTACTO.EMAIL, texto: 'Contacto', titulo: 'escribirme un correo' }
 ]
 
+/* Al pulsar un enlace con el ratón le quitamos el foco: si no, se queda enfocado
+y el navegador le pinta el recuadro de foco en cuanto la ventana vuelve a activarse.
+Con el teclado (detail 0) no lo quitamos, para no perder la posición del tabulador */
+const soltarFoco = (e) => {
+    if (e.detail > 0) e.currentTarget.blur()
+}
+
 /* Cabecera fija con el logo animado, el nombre y el menú */
 export const Header = () => {
 
@@ -56,7 +63,7 @@ export const Header = () => {
     return (
         <header className={`Header${conScroll ? ' isTranslucida' : ''}`}>
             <div className="Header-logo">
-                <Link to={RUTAS.INICIO} className="Header-a">
+                <Link to={RUTAS.INICIO} className="Header-a" onClick={soltarFoco}>
                     {/* El texto en arco va en otra imagen para que gire solo
                     y pase por detrás del ordenador */}
                     <div className="Header-logoCompleto">
@@ -65,7 +72,7 @@ export const Header = () => {
                     </div>
                 </Link>
                 <h1 className="Header-h1">
-                    <Link to={RUTAS.INICIO} title="ir a inicio" className="Header-a">Magaly Puente</Link>
+                    <Link to={RUTAS.INICIO} title="ir a inicio" className="Header-a" onClick={soltarFoco}>Magaly Puente</Link>
                 </h1>
             </div>
             {/* El botón del menú solo se ve en pantallas pequeñas */}
@@ -97,11 +104,16 @@ const EnlaceNav = (props) => {
 
     const { ruta, correo, texto, titulo, cerrar } = props
 
+    const alPulsar = (e) => {
+        soltarFoco(e)
+        cerrar()
+    }
+
     return (
         <li className="Header-li">
             {correo
-                ? <a href={`mailto:${correo}`} title={titulo} className="Header-a" onClick={cerrar}>{texto}</a>
-                : <Link to={ruta} title={titulo} className="Header-a" onClick={cerrar}>{texto}</Link>
+                ? <a href={`mailto:${correo}`} title={titulo} className="Header-a" onClick={alPulsar}>{texto}</a>
+                : <Link to={ruta} title={titulo} className="Header-a" onClick={alPulsar}>{texto}</Link>
             }
         </li>
     )

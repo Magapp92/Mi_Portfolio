@@ -25,6 +25,14 @@
     background-color: rgba(41, 80, 114, .55);
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
+    /* Brillo en el borde de abajo, como el canto de un cristal */
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, .22);
+}
+
+/* En Chrome y Edge el cristal además ondula lo que pasa por detrás */
+.conVidrioLiquido .Header.isTranslucida{
+    background-color: rgba(41, 80, 114, .4);
+    backdrop-filter: url(#vidrio-liquido) blur(2px) saturate(1.6);
 }
 
 .Header-logo{

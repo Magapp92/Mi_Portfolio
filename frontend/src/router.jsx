@@ -5,6 +5,7 @@ import { lazy, Suspense } from 'react'
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 import { Header } from '@components/header/header.jsx'
 import { Footer } from '@components/footer/footer.jsx'
+import { VidrioLiquido } from '@components/vidrio-liquido/vidrio-liquido.jsx'
 import { RUTAS } from '@const/rutas.js'
 import { useTituloPagina } from '@hooks/use-titulo-pagina.js'
 
@@ -23,6 +24,7 @@ const Layout = () => {
 
     return (
         <>
+            <VidrioLiquido />
             <Header />
             <Suspense fallback={<p style={{ padding: '8rem 2rem', textAlign: 'center', color: '#EDEDED' }}>Cargando…</p>}>
                 <Outlet />

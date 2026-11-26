@@ -155,14 +155,25 @@ el fondo y el contenido va encima en pergaminos */
     text-transform: uppercase;
 
     cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
 }
+/* Al pasar por encima se levanta y la sombra crece */
 .Juego-boton:hover:not(:disabled),
 .Juego-boton:focus-visible{
     filter: brightness(1.1);
+    box-shadow: 0 6px 0 #6b3412, inset 0 -3px 0 rgba(0, 0, 0, .25);
+    transform: translateY(-2px);
+}
+.Juego-boton--secundario:hover:not(:disabled),
+.Juego-boton--secundario:focus-visible{
+    box-shadow: 0 6px 0 #8a6a3a, inset 0 -3px 0 rgba(0, 0, 0, .15);
 }
 .Juego-boton:active:not(:disabled){
     box-shadow: 0 2px 0 #6b3412;
     transform: translateY(2px);
+}
+.Juego-boton--secundario:active:not(:disabled){
+    box-shadow: 0 2px 0 #8a6a3a;
 }
 .Juego-boton:disabled{
     opacity: .5;

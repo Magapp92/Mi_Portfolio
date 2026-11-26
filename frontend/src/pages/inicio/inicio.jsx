@@ -48,15 +48,18 @@ const Estudio = (props) => {
 const Presentacion = () => {
     return (
         <div className="Inicio-presentacion">
-            <p className="Inicio-rol">Magaly Puente · Desarrolladora Full Stack y diseñadora UX/UI</p>
-            <div className="Inicio-disponible">
-                <p className="Inicio-estado">
-                    <span className="Inicio-punto" aria-hidden="true"></span>
-                    {DISPONIBILIDAD.ESTADO}
-                </p>
-                {DISPONIBILIDAD.ZONAS.map(zona =>
-                    <p key={zona} className="Inicio-detalle">{zona}</p>
-                )}
+            {/* Quién soy y mi disponibilidad van juntos en una tarjeta de cristal */}
+            <div className="Inicio-tarjeta">
+                <p className="Inicio-rol">Magaly Puente · Desarrolladora Full Stack y diseñadora UX/UI</p>
+                <div className="Inicio-disponible">
+                    <p className="Inicio-estado">
+                        <span className="Inicio-punto" aria-hidden="true"></span>
+                        {DISPONIBILIDAD.ESTADO}
+                    </p>
+                    {DISPONIBILIDAD.ZONAS.map(zona =>
+                        <p key={zona} className="Inicio-detalle">{zona}</p>
+                    )}
+                </div>
             </div>
             <div className="Inicio-botones">
                 <Link to={RUTAS.PROYECTOS} className="Inicio-boton Inicio-boton--lleno">Ver proyectos</Link>

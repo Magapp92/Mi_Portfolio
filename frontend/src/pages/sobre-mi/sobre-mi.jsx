@@ -17,7 +17,15 @@ export const SobreMi = () => {
                         <h3 className="SobreMi-h3">Reinventarse es el arte de permitirte descubrir <br /> tu mejor versión</h3>
                     </div>
                     <div className="SobreMi-presentacion">
-                        <img src="/assets/magaly-puente.webp" alt="Magaly Puente" className="SobreMi-foto" width="520" height="520" />
+                        {/* La foto con dos luces que flotan detrás y tres órbitas girando alrededor */}
+                        <div className="SobreMi-retrato">
+                            <span className="SobreMi-luz SobreMi-luz--uno" aria-hidden="true"></span>
+                            <span className="SobreMi-luz SobreMi-luz--dos" aria-hidden="true"></span>
+                            <span className="SobreMi-orbita SobreMi-orbita--uno" aria-hidden="true"></span>
+                            <span className="SobreMi-orbita SobreMi-orbita--dos" aria-hidden="true"></span>
+                            <span className="SobreMi-orbita SobreMi-orbita--tres" aria-hidden="true"></span>
+                            <img src="/assets/magaly-puente.webp" alt="Magaly Puente" className="SobreMi-foto" width="520" height="520" />
+                        </div>
                         <article className="SobreMi-article">
                             <h2 className="SobreMi-h2">Un poco de mí</h2>
                             <p className="SobreMi-p">

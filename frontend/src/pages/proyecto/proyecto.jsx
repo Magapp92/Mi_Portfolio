@@ -97,11 +97,15 @@ export const Proyecto = () => {
                     <section className="Proyecto-section">
                         <h3 className="Proyecto-h3">{flujos.titulo}</h3>
                         <p className="Proyecto-p">{flujos.texto}</p>
-                        <div className={`Proyecto-grid Proyecto-grid--flujos${flujos.anchos ? ' Proyecto-grid--flujosAnchos' : ''}`}>
-                            {flujos.diagramas.map(flujo =>
-                                <Flujo key={flujo.id} {...flujo} />
-                            )}
-                        </div>
+                        {/* Con varios diagramas van en acordeón; si solo hay uno, en su tarjeta */}
+                        {flujos.diagramas.length > 1
+                            ? <Acordeon diagramas={flujos.diagramas} />
+                            : <div className={`Proyecto-grid Proyecto-grid--flujos${flujos.anchos ? ' Proyecto-grid--flujosAnchos' : ''}`}>
+                                {flujos.diagramas.map(flujo =>
+                                    <Flujo key={flujo.id} {...flujo} />
+                                )}
+                            </div>
+                        }
                     </section>
                 }
 
@@ -495,6 +499,57 @@ const Flujo = (props) => {
             </button>
             {abierto && <Visor imagen={imagen} alt={alt} onCerrar={() => setAbierto(false)} />}
         </article>
+    )
+}
+
+/* Galería en acordeón: el panel activo se abre y los demás quedan como tiras.
+Se activa al pasar el ratón o con el foco del teclado; en táctil, el primer toque
+abre el panel y el segundo amplía el diagrama en el visor si se puede ampliar */
+const Acordeon = (props) => {
+
+    const { diagramas } = props
+    const [activo, setActivo] = useState(0)
+    const [ampliado, setAmpliado] = useState(null)
+    const espera = useRef(null)
+
+    /* Con el ratón esperamos un momento antes de abrir el panel, para que
+    cruzar el acordeón de lado a lado no vaya abriendo todos por el camino */
+    const abrirConEspera = (i) => {
+        clearTimeout(espera.current)
+        espera.current = setTimeout(() => setActivo(i), 180)
+    }
+    const cancelarEspera = () => clearTimeout(espera.current)
+
+    useEffect(() => cancelarEspera, [])
+
+    return (
+        <div className="Acordeon">
+            {diagramas.map((diagrama, i) => {
+                const { id, titulo, imagen, ampliable = true } = diagrama
+                const esActivo = i === activo
+                const accion = esActivo && ampliable ? 'Ampliar' : 'Ver'
+
+                return (
+                    <button
+                        key={id}
+                        type="button"
+                        className={`Acordeon-panel${esActivo ? ' isActivo' : ''}`}
+                        onMouseEnter={() => abrirConEspera(i)}
+                        onMouseLeave={cancelarEspera}
+                        onFocus={() => setActivo(i)}
+                        onClick={() => {
+                            cancelarEspera()
+                            esActivo && ampliable ? setAmpliado(diagrama) : setActivo(i)
+                        }}
+                        aria-label={`${accion} diagrama: ${titulo}`}
+                    >
+                        <img src={imagen} alt="" className="Acordeon-img" loading="lazy" />
+                        <span className="Acordeon-titulo">{titulo}</span>
+                    </button>
+                )
+            })}
+            {ampliado && <Visor imagen={ampliado.imagen} alt={`Diagrama de flujo: ${ampliado.titulo}`} onCerrar={() => setAmpliado(null)} />}
+        </div>
     )
 }
 

@@ -67,11 +67,20 @@
     color: #fff4d6;
 
     cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
 }
 
+/* Se levanta al pasar por encima y se hunde al pulsar, como los del juego */
 .CopaTresMagos-boton:hover,
 .CopaTresMagos-boton:focus-visible{
     filter: brightness(1.15);
+    box-shadow: 0 6px 0 #1d3f8a;
+    transform: translateY(-2px);
+}
+
+.CopaTresMagos-boton:active{
+    box-shadow: 0 2px 0 #1d3f8a;
+    transform: translateY(2px);
 }
 
 /* ANIMACIONES */

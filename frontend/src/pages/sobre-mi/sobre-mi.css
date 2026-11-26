@@ -158,6 +158,129 @@
     object-fit: cover;
 
     flex-shrink: 0;
+
+    position: relative;
+    z-index: 1;
+}
+
+/* RETRATO CON ÓRBITAS */
+
+/* El margen deja sitio a las órbitas, que salen por fuera de la foto.
+Con isolation las luces se quedan detrás de la foto pero delante del fondo */
+.SobreMi-retrato{
+    margin: 1.5rem 1.75rem;
+
+    flex-shrink: 0;
+
+    position: relative;
+    isolation: isolate;
+}
+
+.SobreMi-orbita{
+    border-radius: 50%;
+
+    position: absolute;
+
+    pointer-events: none;
+}
+
+/* Cada órbita lleva un planeta, una bolita en su punto más alto */
+.SobreMi-orbita:after{
+    content: "";
+
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+    background-color: currentColor;
+    box-shadow: 0 0 .6rem currentColor;
+
+    position: absolute;
+    top: -.25rem;
+    left: calc(50% - .25rem);
+}
+
+/* Círculo pegado a la foto que gira despacio */
+.SobreMi-orbita--uno{
+    inset: -.9rem;
+    border: 1px solid rgba(140, 219, 211, .55);
+
+    color: var(--color-claro);
+
+    animation: orbitaGira 18s linear infinite;
+}
+
+/* Elipse ancha, inclinada y discontinua que gira al revés */
+.SobreMi-orbita--dos{
+    inset: -.4rem -1.75rem;
+    border: 1px dashed rgba(255, 39, 230, .55);
+
+    color: var(--color-cursor-halo);
+
+    transform: rotate(-20deg);
+    animation: orbitaGira 26s linear infinite reverse;
+}
+
+/* Elipse alta que se balancea y respira */
+.SobreMi-orbita--tres{
+    inset: -1.5rem -.6rem;
+    border: 1px solid rgba(237, 237, 237, .3);
+
+    color: var(--color-texto-principal);
+
+    animation: orbitaRespira 9s ease-in-out infinite;
+}
+
+/* Dos luces desenfocadas que flotan detrás de la foto */
+.SobreMi-luz{
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+    filter: blur(28px);
+    opacity: .55;
+
+    position: absolute;
+    z-index: -1;
+
+    pointer-events: none;
+}
+
+.SobreMi-luz--uno{
+    background-color: var(--color-claro);
+
+    top: -1.25rem;
+    left: -1.75rem;
+
+    animation: luzDeriva 9s ease-in-out infinite alternate;
+}
+
+.SobreMi-luz--dos{
+    background-color: var(--color-cursor-halo);
+
+    bottom: -1.25rem;
+    right: -1.75rem;
+
+    animation: luzDeriva 11s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes orbitaGira{
+    to{ rotate: 360deg; }
+}
+
+@keyframes orbitaRespira{
+    0%, 100%{ rotate: -14deg; scale: 1; }
+    50%{ rotate: 14deg; scale: 1.035; }
+}
+
+@keyframes luzDeriva{
+    from{ translate: 0 0; scale: .9; }
+    to{ translate: 1.5rem 1rem; scale: 1.15; }
+}
+
+/* Si el usuario prefiere menos movimiento, las órbitas y las luces se quedan quietas */
+@media (prefers-reduced-motion: reduce){
+    .SobreMi-orbita, .SobreMi-luz{
+        animation: none;
+    }
 }
 
 /* LÍNEA DE TIEMPO */

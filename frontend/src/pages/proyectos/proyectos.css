@@ -80,8 +80,17 @@
     font-size: 1em;
     color: var(--color-texto-secundario);
 
+    /* Cristal claro sobre el vídeo */
+    background-color: rgba(255, 255, 255, .22);
+    -webkit-backdrop-filter: blur(6px) saturate(1.4);
+    backdrop-filter: blur(6px) saturate(1.4);
+
     cursor: none;
-    transition: background-color .3s ease, color .3s ease;
+    transition: background-color .3s ease, color .3s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.conVidrioLiquido .Proyectos-filtro{
+    backdrop-filter: url(#vidrio-liquido) blur(2px) saturate(1.6);
 }
 
 .Proyectos-filtro:hover,
@@ -89,6 +98,18 @@
 .Proyectos-filtro.isActivo{
     background-color: var(--color-texto-secundario);
     color: var(--color-claro);
+}
+
+/* Se levanta con una sombra dura al pasar por encima y se hunde al pulsar */
+.Proyectos-filtro:hover,
+.Proyectos-filtro:focus-visible{
+    box-shadow: 0 4px 0 rgba(0, 0, 0, .45);
+    transform: translateY(-2px);
+}
+
+.Proyectos-filtro:active{
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .45);
+    transform: translateY(1px);
 }
 
 /* SLIDER */

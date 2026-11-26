@@ -3,9 +3,13 @@
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/harrypotter'
 
 /* Hacemos la petición a la API y devolvemos solo el data de la respuesta.
-Si la API responde con error lanzamos su message para enseñarlo en pantalla */
+Si la API responde con error lanzamos su message para enseñarlo en pantalla.
+Si nos pasan un token lo mandamos en la cabecera Authorization */
 export const pedir = async (ruta, opciones = {}) => {
-    const { method = 'GET', body, query } = opciones
+    const { method = 'GET', body, query, token } = opciones
+
+    const headers = { 'Content-Type': 'application/json' }
+    if (token) headers.Authorization = `Bearer ${token}`
 
     // Añadimos a la URL los parámetros de la query que tengan valor
     const url = new URL(BASE_URL + ruta)
@@ -22,7 +26,7 @@ export const pedir = async (ruta, opciones = {}) => {
     try {
         res = await fetch(url, {
             method,
-            headers: { 'Content-Type': 'application/json' },
+            headers,
             body: body ? JSON.stringify(body) : undefined
         })
     } catch {

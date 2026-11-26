@@ -57,7 +57,8 @@ app.use( errorHandler )
 
 /* Conectamos al arrancar para ver en consola si Mongo responde */
 conectar()
-    .then(()=> console.log(`Conectado a Mongo ${MONGO_URI}🔗`))
+    // Nunca mostramos MONGO_URI: lleva el usuario y la contraseña de la base de datos
+    .then(()=> console.log('Conectado a Mongo 🔗'))
     .catch(( error )=> console.log(`Sin conexión a Mongo: ${error.message}`))
 
 app.listen( PORT , ()=> {

@@ -47,6 +47,9 @@ const puntuacionSchema = new mongoose.Schema (
         tiempoTotalSegundos: { type: mongoose.Schema.Types.Number, required: true },
         fecha: { type: mongoose.Schema.Types.Date, default: Date.now },
         estado: { type: mongoose.Schema.Types.String, default: 'finalizada' },
+        /* Huella del token de la partida. Con select: false nunca sale en las
+        consultas salvo que la pidamos a propósito con .select('+tokenHash') */
+        tokenHash: { type: mongoose.Schema.Types.String, select: false }
     },
     {
         collection: 'puntuaciones',

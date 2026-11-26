@@ -36,6 +36,9 @@ export const Juego = () => {
     const [respuestas, setRespuestas] = useState([])
     const [opcionSeleccionada, setOpcionSeleccionada] = useState(null)
     const [resultado, setResultado] = useState(null)
+    // Token que da la API al guardar la partida: solo con él podemos cambiar el nick o borrarla.
+    // Va aparte del resultado porque al cambiar el nick la API ya no lo vuelve a mandar
+    const [tokenPartida, setTokenPartida] = useState(null)
     const [nuevoNick, setNuevoNick] = useState('')
     const [error, setError] = useState(null)
     const [cargando, setCargando] = useState(false)
@@ -127,6 +130,7 @@ export const Juego = () => {
             })
 
             setResultado(data)
+            setTokenPartida(data.token)
             setCopaCerrada(false)
             guardarUltimaPuntuacionId(data._id)
             setEstadoPartida('resultado')
@@ -144,7 +148,8 @@ export const Juego = () => {
         try {
             const data = await pedir(`/puntuacion/${resultado._id}`, {
                 method: 'PATCH',
-                body: { nick: nuevoNick.trim() }
+                body: { nick: nuevoNick.trim() },
+                token: tokenPartida
             })
 
             setResultado(data)
@@ -160,10 +165,11 @@ export const Juego = () => {
     const borrarMiPuntuacion = async () => {
         setError(null)
         try {
-            await pedir(`/puntuacion/${resultado._id}`, { method: 'DELETE' })
+            await pedir(`/puntuacion/${resultado._id}`, { method: 'DELETE', token: tokenPartida })
 
             guardarUltimaPuntuacionId(null)
             setResultado(null)
+            setTokenPartida(null)
             setEstadoPartida('inicio')
         } catch (err) {
             setError(err)
@@ -172,6 +178,7 @@ export const Juego = () => {
 
     const jugarOtraVez = () => {
         setResultado(null)
+        setTokenPartida(null)
         setError(null)
         setEstadoPartida('inicio')
     }
